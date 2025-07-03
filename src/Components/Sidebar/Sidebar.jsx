@@ -3,43 +3,54 @@ import ToggleLang from './ToggleLang'
 import ToggleMusic from './ToggleMusic'
 
 function Sidebar() {
-  const [collapsed, setCollapsed] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
-  // Cargar estado del localStorage al montar
   useEffect(() => {
-    const savedState = localStorage.getItem('sidebarCollapsed')
-    if (savedState === 'true') {
-      setCollapsed(true)
+    const checkIsMobile = () => {
+      const width = window.innerWidth
+      const height = window.innerHeight
+      // Considerar móvil/tablet si alguna dimensión es <= 1024px (vertical u horizontal)
+      setIsMobile(width <= 1024 || height <= 820)
     }
+    checkIsMobile()
+    window.addEventListener('resize', checkIsMobile)
+    return () => window.removeEventListener('resize', checkIsMobile)
   }, [])
 
-  const toggleCollapse = (e) => {
-    const newState = !collapsed
-    setCollapsed(newState)
-    localStorage.setItem('sidebarCollapsed', newState.toString())
-    e.target.blur()
+  // Permitir touch y click para máxima compatibilidad
+  const handleSidebarToggle = (e) => {
+    if (isMobile) {
+      // Solo evitar el toggle si es un botón de texto
+      const isTextButton = e.target.closest('button') && 
+        (e.target.closest('.sidebar-text-btn') || e.target.closest('.sidebar-text-btn2'))
+      if (!isTextButton) {
+        setIsOpen(prevState => !prevState)
+      }
+    }
+  }
+
+  const handleButtonClick = (e) => {
+    e.stopPropagation()
   }
 
   return (
     <>
-      {/* Imagen de fondo de la sidebar y controles */}
-      <div id="sidebar-toggles" className={collapsed ? 'collapsed' : ''}>
-        {/* Botón de colapso */}
-        <button 
-          className="toggle-collapse-btn" 
-          onClick={toggleCollapse}
-          title={collapsed ? 'Mostrar sidebar' : 'Ocultar sidebar'}
-        >
-          <span className="pixel-ring"></span>
-          <span className="pixel-collapse">{collapsed ? '>' : '<'}</span>
-        </button>
-        {/* Controles de idioma */}
-        <div id="sidebar-text-toggles" className={collapsed ? 'collapsed' : ''}>
+      <div 
+        id="sidebar-toggles" 
+        className={isMobile && isOpen ? 'mobile-open' : ''}
+        onClick={handleSidebarToggle}
+        style={isMobile ? { 
+          cursor: 'pointer', 
+          touchAction: 'manipulation',
+          userSelect: 'none'
+        } : {}}
+      >
+        <div id="sidebar-text-toggles" onClick={handleButtonClick}>
           <ToggleLang />
         </div>
-        {/* Controles de música */}
-        <div id="sidebar-text-toggles2" className={collapsed ? 'collapsed' : ''}>
-          <ToggleMusic collapsed={collapsed} setCollapsed={setCollapsed} />
+        <div id="sidebar-text-toggles2" onClick={handleButtonClick}>
+          <ToggleMusic />
         </div>
       </div>
     </>

@@ -434,190 +434,338 @@ h2 {
     }
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 1024px) {
-    main {
-        max-width: 95vw;
-        padding: 1.2em;
-    }
-    
-    .pixel-header {
-        min-height: 180px;
-        padding: 1em;
-    }
-    
-    .pixel-header h1 {
-        font-size: 1.5em;
-        padding: 0.3em 0.7em;
-    }
-    
-    .nav-btns {
-        gap: 1em;
-    }
-    
-    .bio-gato-img, .pixelart {
-        width: 160px;
-    }
-}
+/* ===== RESPONSIVE DESIGN - REDISEÑO COMPLETO PARA MÓVILES ===== */
 
-@media (max-width: 768px) {
+/* Tablets */
+@media (max-width: 1024px) {
+    body {
+        font-size: 1.4em;
+    }
+    
+    main {
+        max-width: 90vw;
+        padding: 1.8em;
+        margin: 2em auto;
+    }
+    
     .pixel-header {
-        min-height: 70px;
-        padding: 0.5em 0.2em;
-        background-size: cover;
-        background-position: center 65%;
-        border-bottom-width: 2px;
-        box-shadow: 0 2px 0 #7c6a4a;
+        min-height: 280px;
+        padding: 1.3em 0;
     }
     
     .pixel-header h1 {
-        font-size: 1.1em;
-        padding: 0.2em 0.5em;
-        margin: 0.2em 0;
-        border-width: 4px;
-        background: rgba(210,192,155,0.92);
-        border-radius: 0;
-        box-shadow: 0 1px 4px #b6a07755;
+        font-size: 1.9em;
+        padding: 0.35em 1em;
+        letter-spacing: 2px;
+        min-width: 380px;
     }
     
     .nav-btns {
-        flex-direction: column;
-        gap: 0.2em;
-        margin: 0.5em 0 1em 0;
+        gap: 1.2em;
     }
     
     .nav-btn {
-        font-size: 0.95em;
-        padding: 0.5em 1.2em;
-        border-width: 4px;
-        width: 100%;
-        text-align: center;
+        font-size: 1.1em;
+        padding: 0.6em 1.4em;
+    }
+    
+    .bio-gato-img, .pixelart {
+        width: 200px;
     }
     
     .pixel-footer {
-        height: auto;
-        min-height: 100px;
+        min-height: 280px;
+        padding: 1.3em 0;
+    }
+    
+    .pixel-footer h1 {
+        font-size: 1.9em;
+        padding: 0.35em 1em;
+        min-width: 340px;
+    }
+    
+    .to-top-btn {
+        font-size: 1.1em;
+        padding: 0.6em 1.4em;
+    }
+}
+
+/* ===== DISEÑO MÓVIL COMPLETAMENTE NUEVO ===== */
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+    body {
+        font-size: 1.2em;
+    }
+    
+    main {
+        max-width: 95vw;
+        padding: 1.4em;
+        margin: 1.5em auto;
+        border-width: 4px;
+        box-shadow: -6px 6px 0px #7c6a4a;
+    }
+    
+    /* HEADER MÓVIL - Diseño compacto y moderno */
+    .pixel-header {
+        min-height: 160px;
+        padding: 1em 0.5em;
+        background: linear-gradient(135deg, #a8987b 0%, #cfbc96 50%, #a8987b 100%);
+        border-bottom: 4px solid #3a2d1a;
+        box-shadow: 0 2px 0 #7c6a4a;
+        position: relative;
+        overflow: visible;
+    }
+    
+    /* Eliminar decoraciones laterales en móvil */
+    .pixel-header::before, 
+    .pixel-header::after {
+        display: none;
+    }
+    
+    .pixel-header h1 {
+        font-size: 1.4em;
+        padding: 0.4em 0.8em;
+        margin: 0.3em auto;
+        border: 3px solid #3a2d1a;
+        outline: 2px solid #fff6e0;
+        outline-offset: -5px;
+        letter-spacing: 1.2px;
+        min-width: auto;
+        max-width: 90vw;
+        min-height: auto;
+        animation: none;
+        background: rgba(182, 160, 119, 0.95);
+        backdrop-filter: blur(2px);
+        box-sizing: border-box;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .pixel-header h1:hover {
+        animation: none;
+        transform: scale(1.02);
+        background: rgba(124, 106, 74, 0.95);
+    }
+    
+    .header-content {
+        gap: 0.3em;
+    }
+    
+    .header-gato-img {
+        width: 48px;
+        margin-bottom: 0.2em;
+    }
+    
+    /* NAVEGACIÓN MÓVIL - Diseño en grid compacto */
+    .nav-btns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8em;
+        margin: 1em auto;
+        max-width: 90vw;
+        padding: 0 0.5em;
+    }
+    
+    .nav-btn {
         font-size: 0.9em;
-        background-size: cover;
-        padding: 1em 0.2em;
-        border-top-width: 2px;
+        padding: 0.6em 0.4em;
+        border: 2px solid #3a2d1a;
+        outline: 1px solid #fff6e0;
+        outline-offset: -3px;
+        background: #e7dbb8;
+        color: #3a2d1a;
+        text-align: center;
+        min-height: 3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .nav-btn:hover {
+        background: #b6a077;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(58, 45, 26, 0.3);
+    }
+    
+    /* FOOTER MÓVIL - Diseño minimalista */
+    .pixel-footer {
+        height: auto;
+        min-height: 140px;
+        background: linear-gradient(135deg, #5b4d37 0%, #7c6a4a 50%, #5b4d37 100%);
+        background-size: auto;
+        padding: 1.2em 0.5em;
+        border-top: 4px solid #1a1a1a;
         box-shadow: 0 -2px 0 #7c6a4a;
     }
     
     .pixel-footer h1 {
-        font-size: 1.2em;
-        padding: 0.1em 0.3em;
-        margin: 0.2em 0;
-        background: rgba(210,192,155,0.92);
-        border-radius: 6px;
-        box-shadow: 0 1px 4px #b6a07755;
+        font-size: 1.3em;
+        min-width: auto;
+        max-width: 90vw;
+        min-height: auto;
+        margin: 0 auto 0.8em auto;
+        padding: 0.3em 0.6em;
+        background: rgba(182, 160, 119, 0.9);
+        border: 2px solid #3a2d1a;
+        outline: 1px solid #fff6e0;
+        outline-offset: -3px;
+        color: #3a2d1a;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .pixel-footer p {
+        font-size: 0.85em;
+        padding: 0.4em 0.8em;
+        margin: 0.5em auto;
+        max-width: 85vw;
+        border: 1px solid #fff6e0;
+        outline: 2px solid #3a2d1a;
+        outline-offset: -3px;
     }
     
     .to-top-btn {
-        font-size: 0.95em;
-        padding: 0.5em 1.2em;
-        border-width: 2px;
+        font-size: 0.9em;
+        padding: 0.6em 1.2em;
+        border: 2px solid #3a2d1a;
+        outline: 1px solid #fff6e0;
+        outline-offset: -3px;
         margin-top: 1em;
-        width: 100%;
+        max-width: 80vw;
+    }
+    
+    .pixel-footer-div {
+        padding: 0.6em 1em;
+        font-size: 0.8em;
+        border-top: 2px solid #1a1a1a;
+        margin-top: 1em;
+    }
+    
+    .bio-gato-img, .pixelart {
+        width: 160px;
+        border-width: 2px;
+    }
+    
+    .galeria {
+        gap: 1em;
+    }
+    
+    .galeria img {
+        width: 88vw;
+        max-width: 300px;
+        border-width: 2px;
     }
 }
 
-@media (max-width: 600px) {
+/* Móviles pequeños */
+@media (max-width: 480px) {
     body {
-        font-size: 1em;
+        font-size: 1.1em;
     }
     
+    main {
+        max-width: 96vw;
+        padding: 1.2em;
+        margin: 1.2em auto;
+        border-width: 3px;
+        box-shadow: -4px 4px 0px #7c6a4a;
+    }
+    
+    /* HEADER SÚPER COMPACTO */
     .pixel-header {
-        padding: 0.5em 0.2em;
+        min-height: 120px;
+        padding: 0.8em 0.3em;
+        border-bottom: 3px solid #3a2d1a;
     }
     
     .pixel-header h1 {
         font-size: 1.2em;
-        padding: 0.3em 0.5em;
-        margin: 0.3em 0;
-        width: 95vw;
-        box-sizing: border-box;
+        padding: 0.3em 0.6em;
+        border: 2px solid #3a2d1a;
+        outline: 1px solid #fff6e0;
+        outline-offset: -3px;
+        letter-spacing: 1px;
+        max-width: 92vw;
     }
     
-    nav {
-        flex-direction: column;
-        gap: 0.5em;
-        align-items: center;
-        width: 100%;
-        margin: 0.5em 0;
+    .header-gato-img {
+        width: 40px;
+        margin-bottom: 0.1em;
     }
     
-    nav a {
-        font-size: 1em;
-        padding: 0.3em 0.5em;
+    /* NAVEGACIÓN SÚPER COMPACTA */
+    .nav-btns {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6em;
+        margin: 0.8em auto;
+        max-width: 94vw;
+    }
+    
+    .nav-btn {
+        font-size: 0.8em;
+        padding: 0.5em 0.3em;
+        border: 1px solid #3a2d1a;
+        outline: 1px solid #fff6e0;
+        outline-offset: -2px;
+        min-height: 2.8em;
+    }
+    
+    /* FOOTER SÚPER COMPACTO */
+    .pixel-footer {
+        min-height: 120px;
+        padding: 1em 0.3em;
+        border-top: 3px solid #1a1a1a;
+    }
+    
+    .pixel-footer h1 {
+        font-size: 1.1em;
+        padding: 0.25em 0.5em;
+        border: 1px solid #3a2d1a;
+        max-width: 94vw;
+    }
+    
+    .pixel-footer p {
+        font-size: 0.8em;
+        padding: 0.3em 0.6em;
+        max-width: 90vw;
+        border: 1px solid #fff6e0;
+        outline: 1px solid #3a2d1a;
+        outline-offset: -2px;
+    }
+    
+    .to-top-btn {
+        font-size: 0.8em;
+        padding: 0.5em 1em;
+        border: 1px solid #3a2d1a;
+        outline: 1px solid #fff6e0;
+        outline-offset: -2px;
+        max-width: 85vw;
+    }
+    
+    .pixel-footer-div {
+        padding: 0.5em 0.8em;
+        font-size: 0.75em;
+        border-top: 1px solid #1a1a1a;
+    }
+    
+    .bio-gato-img, .pixelart {
+        width: 140px;
+        border-width: 1px;
+    }
+    
+    .galeria img {
         width: 90vw;
-        box-sizing: border-box;
-        text-align: center;
-    }
-    
-    main {
-        max-width: 98vw;
-        padding: 1em 0.5em;
-        margin: 1em auto;
-        border-width: 2px;
-    }
-    
-    .pixelart, .galeria img {
-        width: 90vw;
-        height: auto;
-        max-width: 300px;
-        margin: 0.5em auto;
-        display: block;
-    }
-    
-    .galeria {
-        flex-direction: column;
-        gap: 0.5em;
-        align-items: center;
-    }
-    
-    .bio-gato-img {
-        width: 60vw;
-        max-width: 180px;
+        max-width: 280px;
+        border-width: 1px;
     }
     
     .bio-text {
-        font-size: 1em;
-        padding: 0.2em;
-        max-width: 95vw;
-    }
-    
-    .nav-btns {
-        flex-direction: column;
-        gap: 0.5em;
-        margin: 1em 0;
-    }
-    
-    .nav-btn, .to-top-btn {
-        width: 90vw;
-        max-width: 300px;
-        font-size: 1em;
-        padding: 0.5em 0.2em;
-        margin: 0.2em auto;
-        text-align: center;
-    }
-    
-    .pixel-footer {
-        height: auto;
-        min-height: 120px;
-        background-size: cover;
-        padding: 1em 0.2em;
-    }
-    
-    .pixel-footer h1, 
-    .pixel-footer p, 
-    .pixel-footer-div {
-        max-width: 95vw;
-        width: 100%;
-        font-size: 1em;
-        padding: 0.2em 0.1em;
-        margin: 0.1em auto;
-        text-align: center;
-        box-sizing: border-box;
+        font-size: 0.95em;
+        line-height: 1.6em;
+        max-width: 92vw;
     }
 }

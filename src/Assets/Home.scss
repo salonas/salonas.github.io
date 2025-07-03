@@ -101,90 +101,178 @@
         max-width: 90%;
     }
 
-    /* Responsive para Home */
-    @media (max-width: 768px) {
-        .home-section {
-            max-width: 95vw;
-            margin: 1.5em auto;
-            padding: 1.5em 1em;
+    /* ===== RESPONSIVE DESIGN - MANTIENE LA ESTÉTICA PIXEL ART ===== */
+    
+    /* Tablets */
+    @media (max-width: 1024px) {
+        main {
+            max-width: 90vw;
+            margin: 2.2em auto;
+            padding: 1.8em;
             border-width: 6px;
-            outline-width: 3px;
+            outline-width: 2px;
+            outline-offset: -12px;
+            box-shadow: -10px 10px 0px #7c6a4a;
+        }
+        
+        .home-section {
+            max-width: 95%;
+            margin: 0 auto 1.8em auto;
+            padding: 1.8em;
+            border-width: 3px;
+            outline-width: 2px;
             outline-offset: -8px;
-            box-shadow: -8px 8px 0px #7c6a4a;
+            box-shadow: -8px 8px 0px #cebc99;
         }
 
         .home-section:hover {
-            box-shadow: -10px 10px 0px #7c6a4a;
+            transform: translateY(-2px);
+            box-shadow: -10px 10px 0px #cebc99;
         }
 
         .bio-title {
-            font-size: 1.6em;
-            padding: 0.3em 0.8em;
-            border-width: 4px;
-            outline-width: 3px;
-            outline-offset: -8px;
-            box-shadow: -4px 6px 0 #060403;
-            letter-spacing: 1px;
+            font-size: 1.8em;
+            padding: 0.18em 0.9em;
+            border-width: 3px;
+            outline-width: 1px;
+            outline-offset: -5px;
+            letter-spacing: 1.8px;
         }
 
         .bio-gato-img {
             width: 220px;
             border-width: 3px;
+            outline-width: 10px;
         }
 
         .bio-text {
             font-size: 1.1em;
-            line-height: 1.8em;
-            padding: 0 0.5em;
+            line-height: 2em;
+            max-width: 90%;
+        }
+
+        .quote-highlight {
+            font-size: 1.05em;
+            padding: 0.45em 0.9em;
+            border-width: 5px;
+            outline-width: 5px;
+            outline-offset: -5px;
+        }
+    }
+
+    /* Móviles grandes */
+    @media (max-width: 768px) {
+        main {
+            max-width: 92vw;
+            margin: 2em auto;
+            padding: 1.6em;
+            border-width: 5px;
+            outline-width: 2px;
+            outline-offset: -10px;
+            box-shadow: -8px 8px 0px #7c6a4a;
+        }
+        
+        .home-section {
+            max-width: 96%;
+            margin: 0 auto 1.6em auto;
+            padding: 1.6em;
+            border-width: 2px;
+            outline-width: 2px;
+            outline-offset: -6px;
+            box-shadow: -6px 6px 0px #cebc99;
+        }
+
+        .home-section:hover {
+            transform: translateY(-1px);
+            box-shadow: -8px 8px 0px #cebc99;
+        }
+
+        .bio-title {
+            font-size: 1.6em;
+            padding: 0.15em 0.8em;
+            border-width: 2px;
+            outline-width: 1px;
+            outline-offset: -4px;
+            letter-spacing: 1.5px;
+        }
+
+        .bio-gato-img {
+            width: 200px;
+            border-width: 2px;
+            outline-width: 8px;
+        }
+
+        .bio-text {
+            font-size: 1.05em;
+            line-height: 1.9em;
+            max-width: 92%;
+            letter-spacing: 0.8px;
         }
 
         .quote-highlight {
             font-size: 1em;
             padding: 0.4em 0.8em;
             border-width: 4px;
+            outline-width: 4px;
+            outline-offset: -4px;
         }
     }
 
+    /* Móviles pequeños */
     @media (max-width: 480px) {
-        .home-section {
-            max-width: 98vw;
-            margin: 1em auto;
-            padding: 1.2em 0.8em;
+        main {
+            max-width: 94vw;
+            margin: 1.8em auto;
+            padding: 1.4em;
             border-width: 4px;
-            outline-width: 2px;
-            outline-offset: -6px;
+            outline-width: 1px;
+            outline-offset: -8px;
             box-shadow: -6px 6px 0px #7c6a4a;
+        }
+        
+        .home-section {
+            max-width: 98%;
+            margin: 0 auto 1.4em auto;
+            padding: 1.4em;
+            border-width: 2px;
+            outline-width: 1px;
+            outline-offset: -4px;
+            box-shadow: -4px 4px 0px #cebc99;
         }
 
         .home-section:hover {
-            box-shadow: -8px 8px 0px #7c6a4a;
+            transform: translateY(-1px);
+            box-shadow: -6px 6px 0px #cebc99;
         }
 
         .bio-title {
-            font-size: 1.3em;
-            padding: 0.2em 0.6em;
-            border-width: 3px;
-            outline-width: 2px;
-            outline-offset: -6px;
-            box-shadow: -3px 4px 0 #060403;
-            letter-spacing: 0.5px;
+            font-size: 1.4em;
+            padding: 0.12em 0.7em;
+            border-width: 2px;
+            outline-width: 1px;
+            outline-offset: -3px;
+            letter-spacing: 1.2px;
         }
 
         .bio-gato-img {
-            width: 180px;
+            width: 170px;
             border-width: 2px;
+            outline-width: 6px;
         }
 
         .bio-text {
             font-size: 1em;
-            line-height: 1.6em;
+            line-height: 1.8em;
+            max-width: 95%;
             letter-spacing: 0.5px;
         }
 
         .quote-highlight {
-            font-size: 0.9em;
-            padding: 0.3em 0.6em;
+            font-size: 0.95em;
+            padding: 0.35em 0.7em;
             border-width: 3px;
+            outline-width: 3px;
+            outline-offset: -3px;
             margin: 0.8em auto;
         }
     }

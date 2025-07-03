@@ -110,49 +110,159 @@
   cursor: url('../Assets/cursors/webfishing_link.cur'), pointer;
 }
 
-@media (max-width: 900px) {
+/* ===== RESPONSIVE DESIGN - MANTIENE LA ESTÉTICA ORIGINAL ===== */
+
+/* Clase para móviles cuando está abierta */
+.mobile-open {
+  left: 0% !important;
+  filter: brightness(1) !important;
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
   #sidebar-toggles {
-    width: 95vw;
-    max-width: 98vw;
-    height: 60vw;
-    max-height: 60vw;
-    left: -60vw; /* Oculta más en pantallas chicas */
-    background-size: cover;
+    width: 80vw;
+    max-width: 640px;
+    height: 48vw;
+    max-height: 384px;
+    left: -55%; /* Igual que móviles pequeños */
+    cursor: pointer;
   }
+  
+  /* Desactivar hover en tablets - solo touch */
   #sidebar-toggles:hover,
   #sidebar-toggles:focus-within {
-    left: 0;
+    left: -30%; /* Igual que móviles pequeños */
+    filter: brightness(0.7); /* Mantiene el filtro original */
   }
-  #sidebar-text-toggles, #sidebar-text-toggles2 {
-    left: -40vw;
-    top: 8vw;
-    gap: 10px;
-    font-size: 1.1em;
+  
+  #sidebar-toggles.mobile-open {
+    left: -28% !important; /* Igual que móviles pequeños */
+    filter: brightness(1) !important;
+  }
+  
+  #sidebar-text-toggles {
+    left: 42%;
+    gap: 14px;
+    transform: translateY(28%);
+  }
+  
+  #sidebar-text-toggles2 {
+    left: 40%;
+    gap: 14px;
+    transform: translateY(-12%);
+  }
+  
+  .sidebar-text-btn {
+    font-size: 1.8em;
+    padding: 3px 8px;
+    pointer-events: auto;
+  }
+  
+  .sidebar-text-btn2 {
+    font-size: 1.4em;
+    max-width: 120px;
+    padding: 3px 8px;
+    pointer-events: auto;
   }
 }
 
-@media (max-width: 600px) {
+/* Móviles grandes */
+@media (max-width: 768px) {
   #sidebar-toggles {
-    width: 100vw;
-    max-width: 100vw;
-    height: 60vw;
-    max-height: 60vw;
-    left: -80vw;
-    background-size: cover;
+    width: 75vw;
+    max-width: 600px;
+    height: 45vw;
+    max-height: 360px;
+    left: -55%; /* Igual que móviles pequeños */
+    cursor: pointer;
   }
+  
+  /* Desactivar hover en móviles grandes - solo touch */
   #sidebar-toggles:hover,
   #sidebar-toggles:focus-within {
-    left: 0;
+    left: -55%; /* Mantiene la posición oculta */
+    filter: brightness(0.7); /* Mantiene el filtro original */
   }
-  #sidebar-text-toggles, #sidebar-text-toggles2 {
-    left: -70vw;
-    top: 4vw;
-    gap: 8px;
-    font-size: 1em;
+  
+  /* Solo cuando tiene la clase mobile-open se muestra completamente */
+  #sidebar-toggles.mobile-open {
+    left: -28% !important; /* Igual que móviles pequeños */
+    filter: brightness(1) !important;
   }
-  .sidebar-text-btn, .sidebar-text-btn2 {
+  
+  #sidebar-text-toggles {
+    left: 40%;
+    gap: 16px;
+    transform: translateY(22%);
+  }
+  
+  #sidebar-text-toggles2 {
+    left: 34%;
+    gap: 16px;
+    transform: translateY(-18%);
+  }
+  
+  .sidebar-text-btn {
+    font-size: 1.6em;
+    padding: 4px 10px;
+    pointer-events: auto;
+  }
+  
+  .sidebar-text-btn2 {
+    font-size: 1.2em;
+    max-width: 180px;
+    padding: 4px 10px;
+    pointer-events: auto;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  #sidebar-toggles {
+    width: 80vw;
+    max-width: 640px;
+    height: 48vw;
+    max-height: 384px;
+    left: -55%; /* Casi completamente oculta en móviles pequeños */
+    cursor: pointer;
+  }
+  
+  /* Desactivar hover en móviles pequeños */
+  #sidebar-toggles:hover,
+  #sidebar-toggles:focus-within {
+    left: -30%; /* Mantiene la posición original */
+    filter: brightness(0.7); /* Mantiene el filtro original */
+  }
+  
+  /* Solo cuando tiene la clase mobile-open se muestra completamente */
+  #sidebar-toggles.mobile-open {
+    left: -28% !important;
+    filter: brightness(1) !important;
+  }
+  
+  #sidebar-text-toggles {
+    left: 42%;
+    gap: 14px;
+    transform: translateY(28%);
+  }
+  
+  #sidebar-text-toggles2 {
+    left: 36%;
+    gap: 14px;
+    transform: translateY(-12%);
+  }
+  
+  .sidebar-text-btn {
+    font-size: 1.4em;
+    padding: 3px 8px;
+    pointer-events: auto;
+  }
+  
+  .sidebar-text-btn2 {
     font-size: 1em;
-    padding: 2px 6px;
-    max-width: 90vw;
+    max-width: 120px;
+    padding: 3px 8px;
+    pointer-events: auto;
   }
 }
