@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLanguage } from '../Components/Lang'
 import PageLoader from '../Components/PageLoader'
 import emailjs from '@emailjs/browser'
+import ReactDOM from 'react-dom'
 import '../Assets/Contact.scss'
 
 // EmailJS configuration
@@ -24,15 +25,21 @@ function Contact() {
     emailjs.init(EMAILJS_USER_ID)
   }, [])
 
-  // Block/unblock body scroll when modal opens/closes
+  // Block/unblock body scroll cuando el modal abre/cierra
   useEffect(() => {
     if (showModal) {
       document.body.style.overflow = 'hidden'
+      // Hacer scroll al centro del modal
+      setTimeout(() => {
+        const modal = document.querySelector('.modal-content')
+        if (modal) {
+          modal.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }
+      }, 50)
     } else {
       document.body.style.overflow = 'unset'
     }
-
-    // Cleanup function to restore scroll when component unmounts
+    // Cleanup function para restaurar scroll al desmontar
     return () => {
       document.body.style.overflow = 'unset'
     }
@@ -213,7 +220,7 @@ function Contact() {
         </main>
 
         {/* Modal de confirmación */}
-        {showModal && (
+        {showModal && ReactDOM.createPortal(
           <div className="modal-overlay" onClick={closeModal}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <h3 className="modal-title">{t('contact-modal-title')}</h3>
@@ -222,7 +229,8 @@ function Contact() {
                 {t('contact-modal-close')}
               </button>
             </div>
-          </div>
+          </div>,
+          document.body
         )}
       </div>
     </PageLoader>

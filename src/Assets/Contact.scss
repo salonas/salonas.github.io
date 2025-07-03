@@ -394,18 +394,23 @@
 }
 
 /* ===== MODAL DE CONFIRMACIÓN ===== */
+html, body {
+  height: 100%;
+}
+
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(58, 45, 26, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  animation: modalFadeIn 0.3s ease-out;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+  background: rgba(58, 45, 26, 0.85) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 99999 !important;
+  animation: modalFadeIn 0.3s ease-out !important;
 }
 
 .modal-content {
