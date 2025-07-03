@@ -1,0 +1,158 @@
+/* sidebar.css - Estilos para mostrar la imagen de la sidebar */
+
+@font-face {
+  font-family: 'Notepen';
+  src: url('../Assets/fonts/Notepen.ttf') format('truetype');
+  font-display: swap;
+}
+
+#sidebar-toggles {
+  width: 80vw;
+  max-width: 640px;
+  height: 48vw;
+  max-height: 384px;
+  background: url('../Assets/img/sidebar.png') no-repeat center center;
+  background-size: contain;
+  image-rendering: pixelated;
+  position: fixed;
+  top: 50%;
+  left: -24%; /* Oculta el 80%, solo 20% visible */
+  transform: translateY(-50%);
+  z-index: 3000;
+  border: none;
+  padding: 0;
+  margin: 0;
+  transition: left 0.3s cubic-bezier(.4,1,.6,1), filter 0.3s;
+  filter: brightness(0.7); /* Más oscuro cuando está oculta */
+  overflow: visible; /* Asegura que los hijos se posicionen relativos a este contenedor */
+}
+
+#sidebar-toggles:hover,
+#sidebar-toggles:focus-within {
+  left: -11%;
+  filter: brightness(1);
+}
+
+/* Cambiar: los textos ahora se posicionan igual que el sidebar y se mueven juntos */
+#sidebar-text-toggles{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: absolute;
+  left: 40%; /* Ajusta para que los textos estén dentro del sidebar */
+  z-index: 3100;
+  gap: 20px;
+  cursor: url('../Assets/cursors/webfishing_link.cur'), pointer;
+  font-family: 'Notepen', cursive, sans-serif;
+  transition: color 0.2s;
+  transform: translateY(20%);
+}
+
+#sidebar-text-toggles2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: absolute;
+  left: 34%; /* Ajusta para que los textos estén dentro del sidebar */
+  z-index: 3100;
+  gap: 20px;
+  cursor: url('../Assets/cursors/webfishing_link.cur'), pointer;
+  font-family: 'Notepen', cursive, sans-serif;
+  transition: color 0.2s;
+  transform: translateY(-20%);
+}
+
+#sidebar-text-toggles {
+  top: 10%;
+}
+
+#sidebar-text-toggles2 {
+  top: 40%;
+}
+
+.sidebar-text-btn {
+  background: none;
+  border: none;
+  color: #7c6a4a;
+  font-family: 'Notepen', cursive, sans-serif;
+  font-size: 2em;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.sidebar-text-btn2 {
+  background: none;
+  border: none;
+  color: #7c6a4a;
+  font-family: 'Notepen', cursive, sans-serif;
+  font-size: 1.5em;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: color 0.2s;
+  max-width: 220px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-align: center;
+  display: block;
+  margin-right: 0;
+}
+
+.sidebar-text-btn:hover {
+  color: #fff6e0;
+  outline: none;
+  cursor: url('../Assets/cursors/webfishing_link.cur'), pointer;
+}
+
+.sidebar-text-btn2:hover {
+  color: #fff6e0;
+  outline: none;
+  cursor: url('../Assets/cursors/webfishing_link.cur'), pointer;
+}
+
+@media (max-width: 900px) {
+  #sidebar-toggles {
+    width: 95vw;
+    max-width: 98vw;
+    height: 60vw;
+    max-height: 60vw;
+    left: -60vw; /* Oculta más en pantallas chicas */
+    background-size: cover;
+  }
+  #sidebar-toggles:hover,
+  #sidebar-toggles:focus-within {
+    left: 0;
+  }
+  #sidebar-text-toggles, #sidebar-text-toggles2 {
+    left: -40vw;
+    top: 8vw;
+    gap: 10px;
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 600px) {
+  #sidebar-toggles {
+    width: 100vw;
+    max-width: 100vw;
+    height: 60vw;
+    max-height: 60vw;
+    left: -80vw;
+    background-size: cover;
+  }
+  #sidebar-toggles:hover,
+  #sidebar-toggles:focus-within {
+    left: 0;
+  }
+  #sidebar-text-toggles, #sidebar-text-toggles2 {
+    left: -70vw;
+    top: 4vw;
+    gap: 8px;
+    font-size: 1em;
+  }
+  .sidebar-text-btn, .sidebar-text-btn2 {
+    font-size: 1em;
+    padding: 2px 6px;
+    max-width: 90vw;
+  }
+}

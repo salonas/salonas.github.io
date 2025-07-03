@@ -1,0 +1,77 @@
+[Version]
+signature="$CHICAGO$"
+
+[DefaultInstall]
+CopyFiles = Scheme.Cur
+AddReg    = Scheme.Reg,Wreg 
+
+
+[DestinationDirs]
+Scheme.Cur = 10,"%CUR_DIR%"
+
+[Scheme.Reg]
+HKCU,"Control Panel\Cursors\Schemes","%SCHEME_NAME%",,"%10%\%CUR_DIR%\%arrow%,%10%\%CUR_DIR%\%help%,%10%\%CUR_DIR%\%working%,%10%\%CUR_DIR%\%wait%,%10%\%CUR_DIR%\%precision%,%10%\%CUR_DIR%\%beam%,%10%\%CUR_DIR%\%pen%,%10%\%CUR_DIR%\%unavailable%,%10%\%CUR_DIR%\%vert%,%10%\%CUR_DIR%\%horz%,%10%\%CUR_DIR%\%dgnl%,%10%\%CUR_DIR%\%dgnr%,%10%\%CUR_DIR%\%move%,%10%\%CUR_DIR%\%up%,%10%\%CUR_DIR%\%link%,%10%\%CUR_DIR%\%person%,%10%\%CUR_DIR%\%pin%"
+
+
+[Wreg]
+HKCU,"Control Panel\Cursors",,0x00020000,"%SCHEME_NAME%"
+HKCU,"Control Panel\Cursors",AppStarting,0x00020000,"%10%\%CUR_DIR%\%working%"
+HKCU,"Control Panel\Cursors",Arrow,0x00020000,"%10%\%CUR_DIR%\%arrow%"
+HKCU,"Control Panel\Cursors",crosshair,0x00020000,"%10%\%CUR_DIR%\%precision%"
+HKCU,"Control Panel\Cursors",precisionhair,0x00020000,"%10%\%CUR_DIR%\%precision%"
+HKCU,"Control Panel\Cursors",Hand,0x00020000,"%10%\%CUR_DIR%\%link%"
+HKCU,"Control Panel\Cursors",Help,0x00020000,"%10%\%CUR_DIR%\%help%"
+HKCU,"Control Panel\Cursors",IBeam,0x00020000,"%10%\%CUR_DIR%\%beam%"
+HKCU,"Control Panel\Cursors",No,0x00020000,"%10%\%CUR_DIR%\%unavailable%"
+HKCU,"Control Panel\Cursors",NWPen,0x00020000,"%10%\%CUR_DIR%\%pen%"
+HKCU,"Control Panel\Cursors",SizeAll,0x00020000,"%10%\%CUR_DIR%\%move%"
+HKCU,"Control Panel\Cursors",SizeNESW,0x00020000,"%10%\%CUR_DIR%\%dgnr%"
+HKCU,"Control Panel\Cursors",SizeNS,0x00020000,"%10%\%CUR_DIR%\%vert%"
+HKCU,"Control Panel\Cursors",SizeNWSE,0x00020000,"%10%\%CUR_DIR%\%dgnl%"
+HKCU,"Control Panel\Cursors",SizeWE,0x00020000,"%10%\%CUR_DIR%\%horz%"
+HKCU,"Control Panel\Cursors",UpArrow,0x00020000,"%10%\%CUR_DIR%\%up%"
+HKCU,"Control Panel\Cursors",Wait,0x00020000,"%10%\%CUR_DIR%\%wait%"
+HKCU,"Control Panel\Cursors",Person,0x00020000,"%10%\%CUR_DIR%\%person%"
+HKCU,"Control Panel\Cursors",Pin,0x00020000,"%10%\%CUR_DIR%\%pin%"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Runonce\Setup\","",,"rundll32.exe shell32.dll,Control_RunDLL main.cpl @0,1"
+
+[Scheme.Cur]
+"webfishing_arrow.cur"
+"webfishing_helpsel.cur"
+"webfishing_wait.cur"
+"webfishing_busy.cur"
+"webfishing_precision.cur"
+"webfishing_pen.cur"
+"webfishing_beam.cur"
+"webfishing_unavailable.cur"
+"webfishing_size4.cur"   
+"webfishing_size3.cur"
+"webfishing_size2.cur"
+"webfishing_size1.cur"
+"webfishing_move.cur"
+"webfishing_alternate.cur"
+"webfishing_link.cur"
+"webfishing_person.cur"
+"webfishing_pin.cur"
+
+[Strings]
+CUR_DIR     = "Cursors\webfishing"
+SCHEME_NAME = "webfishing"
+arrow		= "webfishing_arrow.cur"
+help		= "webfishing_helpsel.cur"
+working		= "webfishing_wait.cur"
+wait		= "webfishing_busy.cur"
+precision	= "webfishing_precision.cur"
+pen	 	= "webfishing_pen.cur"
+beam		= "webfishing_beam.cur"
+unavailable	= "webfishing_unavailable.cur"
+vert		= "webfishing_size4.cur"   
+horz		= "webfishing_size3.cur"
+dgnl		= "webfishing_size2.cur"
+dgnr		= "webfishing_size1.cur"
+move		= "webfishing_move.cur"
+up	        = "webfishing_alternate.cur"
+link		= "webfishing_link.cur"
+person      	= "webfishing_person.cur"
+pin         	= "webfishing_pin.cur"
+

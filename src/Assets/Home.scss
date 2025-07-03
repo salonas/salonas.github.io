@@ -1,0 +1,191 @@
+/* ===== HOME PAGE - PIXEL ART STYLE ===== */
+
+.home-page {
+    
+    /* Estilos específicos para main en Home para igualar altura con otras páginas */
+    main {
+        max-width: 800px;
+        margin: 2.5em auto;
+        background: #f2e5cc;
+        border: 8px outset #3a2d1a;
+        border-radius: 0px;
+        outline: 3px outset #b6a077;
+        outline-style: dashed;
+        outline-offset: -14px;
+        padding: 2em;
+        box-shadow: -12px 12px 0px #7c6a4a;
+        position: relative;
+    }
+    
+    /* Estilos base para las secciones de Home */
+    .home-section {
+        max-width: 700px;
+        margin: 0 auto 2em auto;
+        padding: 2em;
+        background: #e7dbb8;
+        border: 4px outset #b6a07799;
+        outline: 3px outset #b6a077;
+        outline-style: dashed;
+        outline-offset: -10px;
+        border-radius: 0;
+        box-shadow: -10px 10px 0px #cebc99;
+        text-align: center;
+        transition: all 0.1s ease;
+    }
+
+    /* Primera sección sin margin-top extra */
+    .home-section:first-child {
+        margin-top: 0;
+    }
+
+    /* Hover effect para las secciones */
+    .home-section:hover {
+        transform: translateY(-2px);
+        box-shadow: -12px 12px 0px #cebc99;
+    }
+
+    /* Imagen del gato en la bio */
+    .bio-gato-img {
+        width: 260px;
+        height: auto;
+        margin: 0.5em auto;
+        border: 4px solid #3a2d1a;
+        outline: 12px double #b6a077;
+        box-shadow: 0 2px #7c6a4a55;
+        display: block;
+        border-radius: 0;
+    }
+
+    /* Títulos de las secciones */
+    .bio-title {
+        font-size: 2em;
+        color: #f5ecd6;
+        background: #b6a077;
+        padding: 0.2em 1em;
+        margin: 0.5em auto 0.7em auto;
+        display: inline-block;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 0 #3a2d1a;
+        box-shadow: 0 2px 8px #b6a07799;
+        border: 4px solid #523f25;
+        outline: 2px solid #fff6e0;
+        outline-offset: -6px;
+    }
+
+    /* Texto de biografía */
+    .bio-text {
+        font-family: 'MGPixel', monospace;
+        font-size: 1.2em;
+        max-width: 600px;
+        margin: 0 auto 1.2em auto;
+        color: #3a2d1a;
+        letter-spacing: 1px;
+        word-spacing: 0.2em;
+        white-space: pre-line;
+        line-height: 2.1em;
+    }
+
+    /* Citas destacadas */
+    .quote-highlight {
+        display: inline-block;
+        margin: 1em auto;
+        padding: 0.5em 1em;
+        background: #fff6e0;
+        color: #7c6a4a;
+        border: 6px solid #b6a07781;
+        outline: 6px dashed #b6a077;
+        outline-offset: -6px;
+        font-weight: bold;
+        font-size: 1.1em;
+        text-align: center;
+        max-width: 90%;
+    }
+
+    /* Responsive para Home */
+    @media (max-width: 768px) {
+        .home-section {
+            max-width: 95vw;
+            margin: 1.5em auto;
+            padding: 1.5em 1em;
+            border-width: 6px;
+            outline-width: 3px;
+            outline-offset: -8px;
+            box-shadow: -8px 8px 0px #7c6a4a;
+        }
+
+        .home-section:hover {
+            box-shadow: -10px 10px 0px #7c6a4a;
+        }
+
+        .bio-title {
+            font-size: 1.6em;
+            padding: 0.3em 0.8em;
+            border-width: 4px;
+            outline-width: 3px;
+            outline-offset: -8px;
+            box-shadow: -4px 6px 0 #060403;
+            letter-spacing: 1px;
+        }
+
+        .bio-gato-img {
+            width: 220px;
+            border-width: 3px;
+        }
+
+        .bio-text {
+            font-size: 1.1em;
+            line-height: 1.8em;
+            padding: 0 0.5em;
+        }
+
+        .quote-highlight {
+            font-size: 1em;
+            padding: 0.4em 0.8em;
+            border-width: 4px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .home-section {
+            max-width: 98vw;
+            margin: 1em auto;
+            padding: 1.2em 0.8em;
+            border-width: 4px;
+            outline-width: 2px;
+            outline-offset: -6px;
+            box-shadow: -6px 6px 0px #7c6a4a;
+        }
+
+        .home-section:hover {
+            box-shadow: -8px 8px 0px #7c6a4a;
+        }
+
+        .bio-title {
+            font-size: 1.3em;
+            padding: 0.2em 0.6em;
+            border-width: 3px;
+            outline-width: 2px;
+            outline-offset: -6px;
+            box-shadow: -3px 4px 0 #060403;
+            letter-spacing: 0.5px;
+        }
+
+        .bio-gato-img {
+            width: 180px;
+            border-width: 2px;
+        }
+
+        .bio-text {
+            font-size: 1em;
+            line-height: 1.6em;
+            letter-spacing: 0.5px;
+        }
+
+        .quote-highlight {
+            font-size: 0.9em;
+            padding: 0.3em 0.6em;
+            border-width: 3px;
+            margin: 0.8em auto;
+        }
+    }
+}

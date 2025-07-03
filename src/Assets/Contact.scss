@@ -1,0 +1,549 @@
+/* ===== CONTACT PAGE - PIXEL ART STYLE ===== */
+
+.contact-page-root {
+  main {
+    max-width: 1200px;
+    margin: 2.5em auto;
+    background: #f2e5cc;
+    border: 8px outset #3a2d1a;
+    border-radius: 0;
+    outline: 3px dashed #b6a077;
+    padding: 2.5em 2em;
+    box-shadow: -16px 16px 0px #7c6a4a;
+    position: relative;
+  }
+
+  .contact-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .contact-main-section {
+    padding: 2em;
+    background: #e7dbb8;
+    border: 4px outset #c9b891;
+    outline: 3px outset #b6a077;
+    outline-style: dashed;
+    outline-offset: -12px;
+    border-radius: 0;
+    box-shadow: -10px 10px 0px #cebc99;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  .contact-title {
+    font-family: 'MGPixel', 'Press Start 2P', monospace;
+    font-size: 2em;
+    color: #f5ecd6;
+    background: #b6a077;
+    padding: 0.2em 1em;
+    margin: 0.5em auto 0.7em auto;
+    display: inline-block;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0 #3a2d1a;
+    box-shadow: 0 2px 8px #b6a07799;
+    border: 4px solid #523f25;
+    outline: 2px solid #fff6e0;
+    outline-offset: -6px;
+  }
+
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3em;
+    align-items: start;
+  }
+
+  .contact-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3em;
+  }
+
+  .contact-info-title {
+    font-family: 'MGPixel', monospace;
+    font-size: 1.3em;
+    color: #3a2d1a;
+    background: #fff6e0;
+    padding: 0.5em 1em;
+    margin: 0 auto 1em auto;
+    display: inline-block;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 0 #f5ecd6;
+    box-shadow: 0 2px 4px #7c6a4a99;
+    border: 3px solid #7c6a4a;
+    outline: 2px solid #b6a077;
+    outline-offset: -6px;
+  }
+
+  .contact-item {
+    background: #fff6e0;
+    border: 4px solid #b6a07799;
+    outline: 3px solid #b6a077;
+    outline-offset: -10px;
+    border-radius: 0;
+    padding: 1.5em 1.8em;
+    box-shadow: -6px 6px 0px #7c6a4a;
+    display: flex;
+    align-items: center;
+    gap: 1.3em;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-align: left;
+
+    &:hover {
+      background: #f5ecd6;
+      box-shadow: -8px 8px 0px #7c6a4a;
+      transform: translateY(-4px) translateX(2px);
+      border-color: #523f25;
+      outline-color: #523f25;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border: 3px solid #3a2d1a;
+      padding: 6px;
+      background: #e7dbb8;
+      box-shadow: 0 2px 4px #7c6a4a55;
+    }
+
+    .contact-info {
+      min-width: 0;
+      flex: 1;
+
+      .contact-label {
+        font-family: 'MGPixel', monospace;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #3a2d1a;
+        margin-bottom: 0.3em;
+        letter-spacing: 0.5px;
+      }
+
+      .contact-link {
+        font-family: 'MGPixel', monospace;
+        font-size: 1em;
+        color: #7c6a4a;
+        text-decoration: underline;
+        word-break: break-all;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #3a2d1a;
+          text-shadow: 1px 1px 0 #f5ecd6;
+        }
+      }
+    }
+  }
+
+  .contact-form-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-form-title {
+    font-family: 'MGPixel', monospace;
+    font-size: 1.3em;
+    color: #3a2d1a;
+    background: #fff6e0;
+    padding: 0.5em 1em;
+    margin: 0 auto 1.5em auto;
+    display: inline-block;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 0 #f5ecd6;
+    box-shadow: 0 2px 4px #7c6a4a99;
+    border: 3px solid #7c6a4a;
+    outline: 2px solid #b6a077;
+    outline-offset: -6px;
+  }
+
+  .contact-form {
+    background: #f5ecd6;
+    border: 4px solid #b6a077;
+    outline: 3px dashed #7c6a4a;
+    outline-offset: -10px;
+    border-radius: 0;
+    padding: 2em;
+    box-shadow: -6px 6px 0px #7c6a4a;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3em;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+    }
+
+    .form-label {
+      font-family: 'MGPixel', monospace;
+      font-size: 1em;
+      font-weight: bold;
+      color: #3a2d1a;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input,
+    .form-textarea {
+      font-family: 'MGPixel', monospace;
+      font-size: 0.9em;
+      padding: 0.8em;
+      border: 3px solid #7c6a4a;
+      outline: 2px solid #b6a077;
+      outline-offset: -6px;
+      border-radius: 0;
+      background: #fff6e0;
+      color: #3a2d1a;
+      letter-spacing: 0.5px;
+      transition: all 0.2s ease;
+
+      &:focus {
+        background: #ffffff;
+        border-color: #523f25;
+        outline-color: #3a2d1a;
+        box-shadow: 0 0 0 2px #b6a07799;
+      }
+
+      &::placeholder {
+        color: #7c6a4a;
+        opacity: 0.7;
+      }
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-submit-btn {
+      font-family: 'MGPixel', 'Press Start 2P', monospace;
+      font-size: 1em;
+      padding: 0.8em 2em;
+      background: #b6a077;
+      color: #f5ecd6;
+      border: 4px solid #523f25;
+      outline: 2px solid #fff6e0;
+      outline-offset: -6px;
+      border-radius: 0;
+      cursor: url('../Assets/cursors/webfishing_link.cur'), pointer;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 0 #3a2d1a;
+      box-shadow: -5px 5px 0px #7c6a4a;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      align-self: center;
+      min-width: 180px;
+
+      &:hover:not(:disabled) {
+        background: #a8987b;
+        box-shadow: -6px 6px 0px #7c6a4a;
+        transform: translateY(-2px) translateX(2px);
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(0px) translateX(0px);
+        box-shadow: -3px 3px 0px #7c6a4a;
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        background: #9a8a6e;
+      }
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    main {
+      max-width: 95vw;
+      padding: 2em 1.5em;
+      border-width: 6px;
+      box-shadow: -12px 12px 0px #7c6a4a;
+    }
+
+    .contact-content {
+      gap: 2.5em;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    main {
+      max-width: 95vw;
+      padding: 1.5em 1.5em;
+      border-width: 5px;
+      box-shadow: -10px 10px 0px #7c6a4a;
+    }
+
+    .contact-content {
+      gap: 2em;
+    }
+  }
+
+  @media (max-width: 900px) {
+    main {
+      padding: 1.5em 1em;
+      border-width: 4px;
+      box-shadow: -8px 8px 0px #7c6a4a;
+    }
+
+    .contact-content {
+      grid-template-columns: 1fr;
+      gap: 2em;
+    }
+
+    .contact-main-section {
+      padding: 1.5em 1em;
+    }
+
+    .contact-title {
+      font-size: 1.6em;
+      padding: 0.3em 0.8em;
+      letter-spacing: 1px;
+    }
+
+    .contact-info-title,
+    .contact-form-title {
+      font-size: 1.2em;
+      padding: 0.4em 0.8em;
+    }
+
+    .contact-item {
+      padding: 1.2em;
+      gap: 1em;
+
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .contact-info {
+        .contact-label {
+          font-size: 1em;
+        }
+
+        .contact-link {
+          font-size: 0.9em;
+        }
+      }
+    }
+
+    .contact-form {
+      padding: 1.5em;
+    }
+  }
+
+  @media (max-width: 600px) {
+    main {
+      margin: 1.5em auto;
+      padding: 1em 0.8em;
+      border-width: 3px;
+      box-shadow: -6px 6px 0px #7c6a4a;
+    }
+
+    .contact-main-section {
+      padding: 1.2em 0.8em;
+      gap: 1.5em;
+    }
+
+    .contact-title {
+      font-size: 1.3em;
+      padding: 0.2em 0.6em;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-info-title,
+    .contact-form-title {
+      font-size: 1.1em;
+      padding: 0.3em 0.6em;
+    }
+
+    .contact-item {
+      padding: 1em;
+      gap: 0.8em;
+      flex-direction: column;
+      text-align: center;
+
+      .contact-icon {
+        width: 36px;
+        height: 36px;
+        align-self: center;
+      }
+    }
+
+    .contact-form {
+      padding: 1.2em;
+      gap: 1em;
+
+      .form-input,
+      .form-textarea {
+        font-size: 0.85em;
+        padding: 0.7em;
+      }
+
+      .form-submit-btn {
+        font-size: 0.9em;
+        padding: 0.7em 1.5em;
+        min-width: 180px;
+      }
+    }
+  }
+}
+
+/* ===== MODAL DE CONFIRMACIÓN ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(58, 45, 26, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background: #f5ecd6;
+  border: 6px solid #3a2d1a;
+  outline: 4px dashed #b6a077;
+  outline-offset: -14px;
+  border-radius: 0;
+  padding: 2.5em 3em;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  .modal-title {
+    font-family: 'MGPixel', 'Press Start 2P', monospace;
+    font-size: 1.4em;
+    color: #3a2d1a;
+    background: #b6a077;
+    color: #f5ecd6;
+    padding: 0.4em 1em;
+    margin: 0 auto 1.5em auto;
+    display: inline-block;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 #3a2d1a;
+    box-shadow: 0 2px 8px #7c6a4a99;
+    border: 4px solid #523f25;
+    outline: 2px solid #fff6e0;
+    outline-offset: -6px;
+  }
+
+  .modal-message {
+    font-family: 'MGPixel', monospace;
+    font-size: 1.1em;
+    color: #3a2d1a;
+    margin-bottom: 2em;
+    letter-spacing: 0.5px;
+    line-height: 1.6em;
+  }
+
+  .modal-close-btn {
+    font-family: 'MGPixel', 'Press Start 2P', monospace;
+    font-size: 1em;
+    background: #b6a077;
+    color: #3a2d1a;
+    border: 4px solid #3a2d1a;
+    padding: 0.7em 2em;
+    box-shadow: 0 2px 0 #7c6a4a;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    outline: 2px solid #fff6e0;
+    outline-offset: -6px;
+    border-radius: 0;
+    cursor: url('../Assets/cursors/webfishing_link.cur'), pointer;
+
+    &:hover {
+      background: #7c6a4a;
+      color: #fff6e0;
+      transform: translateY(-2px) scale(1.05);
+      animation: bounce 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+
+    &:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
+  }
+}
+
+/* Animación bounce para el botón */
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Animaciones del modal */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive para el modal */
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 2em 1.5em;
+    max-width: 90%;
+    border-width: 4px;
+    outline-width: 3px;
+    outline-offset: -8px;
+    box-shadow: -8px 8px 0px #7c6a4a;
+
+    .modal-title {
+      font-size: 1.2em;
+      padding: 0.3em 0.8em;
+      border-width: 3px;
+      outline-width: 2px;
+      outline-offset: -4px;
+    }
+
+    .modal-message {
+      font-size: 1em;
+      margin-bottom: 1.5em;
+    }
+
+    .modal-close-btn {
+      font-size: 0.9em;
+      padding: 0.6em 1.5em;
+      border-width: 3px;
+      outline-width: 2px;
+      outline-offset: -4px;
+
+      &:hover {
+        background: #7c6a4a;
+        color: #fff6e0;
+        transform: translateY(-2px) scale(1.05);
+        animation: bounce 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+      }
+
+      &:active {
+        transform: translate(2px, 2px);
+        box-shadow: none;
+      }
+    }
+  }
+}
