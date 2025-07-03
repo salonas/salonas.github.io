@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a9edeb82.css",
-    "main.js": "/static/js/main.6120afcd.js",
+    "main.css": "/static/css/main.e509e673.css",
+    "main.js": "/static/js/main.b36e2cf3.js",
     "static/js/453.97aeb6cf.chunk.js": "/static/js/453.97aeb6cf.chunk.js",
     "static/media/orquesta1.gif": "/static/media/orquesta1.5403414b574ef4189867.gif",
     "static/media/orquesta2.gif": "/static/media/orquesta2.31575f8523c8a48e7a7c.gif",
@@ -14,12 +14,12 @@
     "index.html": "/index.html",
     "static/media/webfishing_beam.cur": "/static/media/webfishing_beam.9ffc3195098e3f947f23.cur",
     "static/media/webfishing_link.cur": "/static/media/webfishing_link.db516231a0103d69785a.cur",
-    "main.a9edeb82.css.map": "/static/css/main.a9edeb82.css.map",
-    "main.6120afcd.js.map": "/static/js/main.6120afcd.js.map",
+    "main.e509e673.css.map": "/static/css/main.e509e673.css.map",
+    "main.b36e2cf3.js.map": "/static/js/main.b36e2cf3.js.map",
     "453.97aeb6cf.chunk.js.map": "/static/js/453.97aeb6cf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a9edeb82.css",
-    "static/js/main.6120afcd.js"
+    "static/css/main.e509e673.css",
+    "static/js/main.b36e2cf3.js"
   ]
 }
