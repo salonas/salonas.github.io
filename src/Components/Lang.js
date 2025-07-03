@@ -95,7 +95,7 @@ const translations = {
         'nav-contact': 'Contact',
         'welcome-title': 'Welcome to my website!',
         'about-title': 'About Me',
-        'about-desc': "Hi! I'm <strong>Salonas</strong> <span style=\"font-size:0.8em;\">(He/Him)</span>, a computer engineering student based in Concepción, Chile.",
+        'about-desc': "Hi! I'm <strong>Salonas</strong> <span style=\"font-size:0.8em;\">(He/Him)</span>, a computer engineering student from Concepción, Chile.",
         'journey-title': 'How did I get here?',
         'journey-desc': "I didn't grow up dreaming of becoming a programmer. In fact, I ended up here because I didn't manage to get into music education and ended up in computer science by chance, something that, oddly enough, I liked.<br /><br />I'm currently immersed in web development, learning as I go and gradually moving towards being a fullstack developer.<br /><br />So far, I've only made simple web pages (which miraculously work) and pixel art that looks like something out of a teenager's notebook.<br /><br />I have a long way to go, but for now I'm enjoying the moment. I'm no coding expert, just someone who stumbled into programming and stayed because it allowed me to create things that feel like my own.",
         'journey-quote': "My work's not perfect, but it's honest. And I think that counts.",
