@@ -24,6 +24,20 @@ function Contact() {
     emailjs.init(EMAILJS_USER_ID)
   }, [])
 
+  // Block/unblock body scroll when modal opens/closes
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    // Cleanup function to restore scroll when component unmounts
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [showModal])
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({
