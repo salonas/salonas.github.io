@@ -1,5 +1,11 @@
 @use './scss/mixins' as mixins;
 
+/* Animación bounce para botones */
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
 .projects-page {
   /* ===== PROJECTS PAGE - CON ENCANTO RESTAURADO ===== */
 
@@ -560,7 +566,14 @@
     .project-link:hover {
       background: #7c6a4a;
       color: #fff6e0;
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.05);
+      animation: bounce 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+      box-shadow: 0 4px 8px rgba(58, 45, 26, 0.4);
+    }
+    
+    .project-link:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
     }
   }
 
