@@ -7,6 +7,7 @@ import Contact from './Pages/Contact'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
 import Sidebar from './Components/Sidebar/Sidebar'
+import ScrollToTop from './Components/ScrollToTop'
 import { LanguageProvider, useLanguage } from './Components/Lang'
 import './Assets/Styles.scss'
 import './Assets/Sidebar.scss'
@@ -37,6 +38,7 @@ export default function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <AppContent />
       </BrowserRouter>
     </LanguageProvider>
