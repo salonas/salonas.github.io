@@ -1,55 +1,79 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import ToggleLang from './ToggleLang'
 import ToggleMusic from './ToggleMusic'
 
 function Sidebar() {
+  const containerRef = useRef(null)
+  const [isTouch, setIsTouch] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
 
+  // Detect touch/coarse pointer devices (phones/tablets) 
   useEffect(() => {
-    const checkIsMobile = () => {
-      const width = window.innerWidth
-      const height = window.innerHeight
-      // Considerar móvil/tablet si alguna dimensión es <= 1024px (vertical u horizontal)
-      setIsMobile(width <= 1024 || height <= 820)
+    if (typeof window === 'undefined' || !window.matchMedia) return
+    const mql = window.matchMedia('(hover: none) and (pointer: coarse)')
+    const update = (e) => setIsTouch(e.matches)
+    setIsTouch(mql.matches)
+    if (mql.addEventListener) mql.addEventListener('change', update)
+    else if (mql.addListener) mql.addListener(update)
+    return () => {
+      if (mql.removeEventListener) mql.removeEventListener('change', update)
+      else if (mql.removeListener) mql.removeListener(update)
     }
-    checkIsMobile()
-    window.addEventListener('resize', checkIsMobile)
-    return () => window.removeEventListener('resize', checkIsMobile)
   }, [])
 
-  // Permitir touch y click para máxima compatibilidad
-  const handleSidebarToggle = (e) => {
-    if (isMobile) {
-      // Solo evitar el toggle si es un botón de texto
-      const isTextButton = e.target.closest('button') && 
-        (e.target.closest('.sidebar-text-btn') || e.target.closest('.sidebar-text-btn2'))
-      if (!isTextButton) {
-        setIsOpen(prevState => !prevState)
+  // Close when clicking outside or pressing Escape (touch mode only)
+  useEffect(() => {
+    if (!isTouch || !isOpen) return
+    const onDocClick = (e) => {
+      if (!containerRef.current) return
+      if (!containerRef.current.contains(e.target)) {
+        setIsOpen(false)
       }
     }
-  }
+    const onKey = (e) => {
+      if (e.key === 'Escape') setIsOpen(false)
+      if ((e.key === 'Enter' || e.key === ' ') && document.activeElement === containerRef.current) {
+        e.preventDefault()
+        setIsOpen((v) => !v)
+      }
+    }
+    document.addEventListener('click', onDocClick)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('click', onDocClick)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [isTouch, isOpen])
 
-  const handleButtonClick = (e) => {
-    e.stopPropagation()
+  // Toggle sidebar on container click (touch mode only)
+  const onContainerClick = useCallback((e) => {
+    if (!isTouch) return
+    // Only toggle when clicking the container background, not inner controls
+    if (containerRef.current && containerRef.current === e.currentTarget) {
+      setIsOpen((v) => !v)
+    }
+  }, [isTouch])
+
+  // Stop propagation inside text areas so inner buttons don't close the sidebar on tap
+  const stopPropagation = (e) => {
+    if (isTouch) e.stopPropagation()
   }
 
   return (
     <>
-      <div 
-        id="sidebar-toggles" 
-        className={isMobile && isOpen ? 'mobile-open' : ''}
-        onClick={handleSidebarToggle}
-        style={isMobile ? { 
-          cursor: 'pointer', 
-          touchAction: 'manipulation',
-          userSelect: 'none'
-        } : {}}
+      <div
+        id="sidebar-toggles"
+        ref={containerRef}
+        className={`hover ${isOpen ? 'open' : ''}`}
+        onClick={onContainerClick}
+        role="button"
+        tabIndex={0}
+        aria-label="Sidebar con controles de idioma y música"
       >
-        <div id="sidebar-text-toggles" onClick={handleButtonClick}>
+        <div id="sidebar-text-toggles" onClick={stopPropagation}>
           <ToggleLang />
         </div>
-        <div id="sidebar-text-toggles2" onClick={handleButtonClick}>
+        <div id="sidebar-text-toggles2" onClick={stopPropagation}>
           <ToggleMusic />
         </div>
       </div>

@@ -1,3 +1,5 @@
+@use './scss/mixins' as mixins;
+
 .projects-page {
   /* ===== PROJECTS PAGE - CON ENCANTO RESTAURADO ===== */
 
@@ -318,33 +320,8 @@
 
   /* Enlaces estilo botón nav-btn de Styles.scss */
   .project-link {
-    font-family: "MGPixel", "Press Start 2P", monospace;
-    font-size: 0.9em;
-    background: #b6a077;
-    color: #3a2d1a;
-    border: 4px solid #3a2d1a;
-    padding: 0.7em 2em;
-    box-shadow: 0 2px 0 #7c6a4a;
-    transition: all 0.2s;
-    text-decoration: none;
-    display: inline-block;
-    outline: 2px solid #fff6e0;
-    outline-offset: -6px;
+    @include mixins.pixel-button($font-size: 0.9em, $padding: 0.7em 2em);
     margin: 0.5em 0.5em 0.5em 0;
-    letter-spacing: 0.3px;
-    border-radius: 0;
-  }
-
-  .project-link:hover {
-    background: #7c6a4a;
-    color: #fff6e0;
-    transform: translateY(-2px) scale(1.05);
-    animation: bounce 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  }
-
-  .project-link:active {
-    transform: translate(2px, 2px);
-    box-shadow: none;
   }
 
   /* Contenedor del enlace */

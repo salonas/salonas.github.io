@@ -1,0 +1,52 @@
+@use './theme' as *;
+
+// Reusable pixel-art button mixin that mirrors existing .nav-btn/.to-top-btn/.project-link
+@mixin pixel-button(
+  $bg: $color-accent,
+  $fg: $color-border,
+  $border: $color-border,
+  $outline: $color-outline,
+  $shadow: $btn-shadow,
+  $font: $font-pixel,
+  $font-size: 1em,
+  $padding: 0.7em 2em,
+  $outline-offset: -6px
+) {
+  font-family: $font;
+  font-size: $font-size;
+  background: $bg;
+  color: $fg;
+  border: 4px solid $border;
+  padding: $padding;
+  box-shadow: $shadow;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  outline: 2px solid $outline;
+  outline-offset: $outline-offset;
+  letter-spacing: 0.3px;
+  border-radius: 0;
+
+  &:hover {
+    background: $color-accent-dark;
+    color: $color-outline;
+    transform: translateY(-2px) scale(1.05);
+    animation: bounce 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+  }
+
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
+}
+
+// Media query helper
+@mixin respond($bp) {
+  @if $bp == lg {
+    @media (max-width: $bp-lg) { @content; }
+  } @else if $bp == md {
+    @media (max-width: $bp-md) { @content; }
+  } @else if $bp == sm {
+    @media (max-width: $bp-sm) { @content; }
+  }
+}

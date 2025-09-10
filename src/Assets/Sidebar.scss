@@ -6,6 +6,59 @@
   font-display: swap;
 }
 
+/*
+  Consejo de ajuste: usa la variable --sidebar-shift para desplazar
+  ligeramente la sidebar a la izquierda al reducir el ancho de ventana.
+  - Desktop (hover): se aplica a la posición base y a la de hover.
+  - Móvil (touch): se aplica a la posición base y puedes decidir si
+    afecta al estado open o no (aquí no lo aplicamos al open para que
+    se mantenga totalmente visible al abrirse).
+  Puedes cambiar este comportamiento abajo donde se usa var(--sidebar-shift).
+*/
+
+:root {
+  /* Ajuste global adicional:
+    Valor positivo mueve a la derecha; negativo mueve a la izquierda.
+    Ejemplo: 0.5cm ≈ 19px.
+    Ajusta a tu gusto o pon 0px si no lo quieres. */
+  --sidebar-extra-nudge: 0px;
+
+  /* ===== Variables EDITABLES de posición (Desktop/Hover) ===== */
+  /* Posición base (cerrada) en escritorio: porcentaje hacia la izquierda (negativo) */
+  --sidebar-left-closed: -100%;
+  /* Posición al hacer hover/focus en escritorio */
+  --sidebar-left-hovered: -11%;
+  /* Ajustes finos adicionales existentes */
+  --sidebar-shift: 0px;           /* desplaza base a izq/dcha */
+  --hover-extra-shift: 0px;       /* desplaza extra en hover */
+
+  /* Peek fijo en touch (ancho visible cuando está cerrado) */
+  --peek-fixed: 28px;
+
+  /* ===== Variables EDITABLES de textos/controles ===== */
+  /* Posición de los bloques de toggles (porcentaje relativo al contenedor imagen) */
+  --sidebar-text1-left: 38%;
+  --sidebar-text1-top: 7%;
+  --sidebar-text1-translateY: 20%;
+
+  --sidebar-text2-left: 34%;
+  --sidebar-text2-top: 40%;
+  --sidebar-text2-translateY: -20%;
+
+  /* Desplazamiento fino horizontal común a ambos (px) */
+  --sidebar-text-shift: clamp(-10px, calc(100vw / 100), 20px);
+
+  /* Tamaños base de texto (no cambia la fuente, solo el tamaño) */
+  --sidebar-btn1-size: 3em;   /* Botón superior (idioma) */
+  --sidebar-btn2-size: 2.6em; /* Botón inferior (música) */
+  /* Escalado común opcional - ESTE es tu control principal de tamaño */
+  --sidebar-text-scale: 1;
+
+  /* Offset relativo al ancho del propio elemento (para usar con transform) */
+  --sidebar-x-closed: -65%;  /* EDITADO: oculta completamente */
+  --sidebar-x-hovered: -35%;  /* oculta ~11% en abierto (como el diseño base) */
+}
+
 #sidebar-toggles {
   width: 80vw;
   max-width: 640px;
@@ -16,20 +69,28 @@
   image-rendering: pixelated;
   position: fixed;
   top: 50%;
-  left: -24%; /* Oculta el 80%, solo 20% visible */
-  transform: translateY(-50%);
+  /* Anclar al borde y desplazar con transform (offset relativo al propio ancho) */
+  left: 0;
+  /* Usa --sidebar-x-closed; si no está, cae a --sidebar-left-closed para compatibilidad */
+  transform: translateX(var(--sidebar-x-closed, var(--sidebar-left-closed, -80%))) translateY(-50%);
   z-index: 3000;
   border: none;
   padding: 0;
   margin: 0;
-  transition: left 0.3s cubic-bezier(.4,1,.6,1), filter 0.3s;
+  transition: transform 0.35s cubic-bezier(.4,1,.6,1), filter 0.3s;
   filter: brightness(0.7); /* Más oscuro cuando está oculta */
   overflow: visible; /* Asegura que los hijos se posicionen relativos a este contenedor */
+  /* Desacoplar tamaños de texto del body: em de los botones parte de aquí */
+  font-size: 16px;
+  /* ELIMINADO: auto-escala que ignoraba tus valores personalizados */
 }
 
-#sidebar-toggles:hover,
-#sidebar-toggles:focus-within {
-  left: -11%;
+/* Desktop/hover behavior: peek and brighten on hover/focus */
+#sidebar-toggles.hover:hover,
+#sidebar-toggles.hover:focus-within {
+  /* Desktop hover/focus: offset relativo al ancho */
+  /* Usa --sidebar-x-hovered; si no está, cae a --sidebar-left-hovered */
+  transform: translateX(var(--sidebar-x-hovered, var(--sidebar-left-hovered, -11%))) translateY(-50%);
   filter: brightness(1);
 }
 
@@ -39,13 +100,27 @@
   flex-direction: column;
   align-items: flex-end;
   position: absolute;
-  left: 40%; /* Ajusta para que los textos estén dentro del sidebar */
+  left: var(--sidebar-text1-left, 40%); /* Editable */
   z-index: 3100;
   gap: 20px;
   cursor: url('../Assets/cursors/webfishing_link.cur'), pointer;
   font-family: 'Notepen', cursive, sans-serif;
   transition: color 0.2s;
-  transform: translateY(20%);
+  /* Mantener misma posición base; ya no escalamos el contenedor para evitar blur del texto */
+  transform: translateX(var(--sidebar-text-shift, 0px)) translateY(var(--sidebar-text1-translateY, 20%));
+  transform-origin: top right;
+
+}
+
+/* Cuando la sidebar se revela por hover/focus, acompaña el texto con el mismo extra-shift */
+#sidebar-toggles.hover:hover #sidebar-text-toggles,
+#sidebar-toggles.hover:focus-within #sidebar-text-toggles {
+  transform: translateX(calc(var(--sidebar-text-shift, 0px) + var(--hover-extra-shift, 0px))) translateY(var(--sidebar-text1-translateY, 20%));
+}
+
+#sidebar-toggles.hover:hover #sidebar-text-toggles2,
+#sidebar-toggles.hover:focus-within #sidebar-text-toggles2 {
+  transform: translateX(calc(var(--sidebar-text-shift, 0px) + var(--hover-extra-shift, 0px))) translateY(var(--sidebar-text2-translateY, -20%));
 }
 
 #sidebar-text-toggles2 {
@@ -53,21 +128,23 @@
   flex-direction: column;
   align-items: flex-end;
   position: absolute;
-  left: 34%; /* Ajusta para que los textos estén dentro del sidebar */
+  left: var(--sidebar-text2-left, 34%); /* Editable */
   z-index: 3100;
   gap: 20px;
   cursor: url('../Assets/cursors/webfishing_link.cur'), pointer;
   font-family: 'Notepen', cursive, sans-serif;
   transition: color 0.2s;
-  transform: translateY(-20%);
+  /* Mantener misma posición base; no usar transform scale para texto */
+  transform: translateX(var(--sidebar-text-shift, 0px)) translateY(var(--sidebar-text2-translateY, -20%));
+  transform-origin: top right;
 }
 
 #sidebar-text-toggles {
-  top: 10%;
+  top: var(--sidebar-text1-top, 10%);
 }
 
 #sidebar-text-toggles2 {
-  top: 40%;
+  top: var(--sidebar-text2-top, 40%);
 }
 
 .sidebar-text-btn {
@@ -75,7 +152,8 @@
   border: none;
   color: #7c6a4a;
   font-family: 'Notepen', cursive, sans-serif;
-  font-size: 2em;
+  /* Escalado suave por font-size para mantener apariencia de desktop */
+  font-size: calc(var(--sidebar-btn1-size, 2em) * var(--sidebar-text-scale, 1));
   padding: 4px 12px;
   cursor: pointer;
   transition: color 0.2s;
@@ -86,15 +164,17 @@
   border: none;
   color: #7c6a4a;
   font-family: 'Notepen', cursive, sans-serif;
-  font-size: 1.5em;
+  font-size: calc(var(--sidebar-btn2-size, 1.5em) * var(--sidebar-text-scale, 1));
   padding: 4px 12px;
   cursor: pointer;
   transition: color 0.2s;
-  max-width: 220px;
+  max-width: 200px; /* REDUCIDO: fuerza el wrap más pronto */
   white-space: normal;
   overflow-wrap: break-word;
+  word-break: break-word; /* Añadido: rompe palabras largas */
   text-align: center;
   display: block;
+  line-height: 1.2; /* Añadido: espaciado entre líneas */
   margin-right: 0;
 }
 
@@ -110,159 +190,186 @@
   cursor: url('../Assets/cursors/webfishing_link.cur'), pointer;
 }
 
-/* ===== RESPONSIVE DESIGN - MANTIENE LA ESTÉTICA ORIGINAL ===== */
+/* =====================
+   DESKTOP ONLY BEHAVIOR
+   - Siempre usa comportamiento hover, sin modo touch
+   - Funciona en todas las resoluciones como escritorio
+====================== */
 
-/* Clase para móviles cuando está abierta */
-.mobile-open {
-  left: 0% !important;
+/* ===== ESCALADO RESPONSIVE SIMPLE Y EFECTIVO ===== */
+
+/* 🖥️ Pantallas extra grandes: 4K y superiores (2560px+) */
+@media (min-width: 2560px) {
+  :root {
+    --sidebar-text-scale: 1.1; /* Un poco más grande para 4K */
+    --sidebar-text1-left: 41%; /* Ajuste fino para pantallas enormes */
+    --sidebar-text2-left: 33%; 
+    --sidebar-text-shift: -2px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 280px; /* Extra ancho para 4K */
+  }
+}
+
+/* 🖥️ Pantallas muy grandes: QHD y Full HD+ (1920px-2559px) */
+@media (max-width: 2559px) and (min-width: 1920px) {
+  :root {
+    --sidebar-text-scale: 1; /* Tu tamaño perfecto */
+    --sidebar-text1-left: 42%; /* Tus valores personalizados */
+    --sidebar-text2-left: 34%; 
+    --sidebar-text-shift: 0px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 250px; /* Tu valor personalizado */
+  }
+}
+
+/* 💻 Pantallas grandes: laptops gaming/profesionales (1680px-1919px) */
+@media (max-width: 1919px) and (min-width: 1680px) {
+  :root {
+    --sidebar-text-scale: 0.92; /* Transición suave hacia tus valores medianos */
+    --sidebar-text1-left: 41%; 
+    --sidebar-text2-left: 35%; 
+    --sidebar-text-shift: 2px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 220px; 
+  }
+}
+
+/* 💻 Pantallas medias-grandes: laptops estándar (1440px-1679px) */
+@media (max-width: 1679px) and (min-width: 1440px) {
+  :root {
+    --sidebar-text-scale: 0.85; /* Manteniendo tu valor mediano */
+    --sidebar-text1-left: 42%; 
+    --sidebar-text2-left: 36%; 
+    --sidebar-text-shift: 5px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 200px; /* Tu valor mediano */
+  }
+}
+
+/* 💻 Pantallas medianas: laptops compactos (1280px-1439px) */
+@media (max-width: 1439px) and (min-width: 1280px) {
+  :root {
+    --sidebar-text-scale: 0.8; /* Transición hacia tu valor pequeño */
+    --sidebar-text1-left: 42%; 
+    --sidebar-text2-left: 36%; 
+    --sidebar-text-shift: 7px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 200px; 
+  }
+}
+
+/* 📱 Tablets landscape y pantallas pequeñas (1024px-1279px) */
+@media (max-width: 1279px) and (min-width: 1024px) {
+  :root {
+    --sidebar-text-scale: 0.8; /* Acercándose a tu valor final */
+    --sidebar-text1-left: 42%; 
+    --sidebar-text2-left: 38%; 
+    --sidebar-text-shift: 8px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 160px; 
+  }
+}
+
+/* 📱 Tablets portrait (768px-1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  :root {
+    --sidebar-text-scale: 0.8; /* Acercándose a tu valor final */
+    --sidebar-text1-left: 42%; 
+    --sidebar-text2-left: 38%; 
+    --sidebar-text-shift: 8px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 160px; 
+  }
+}
+
+/* 📱 Teléfonos grandes en landscape y tablets pequeñas (600px-767px) */
+@media (max-width: 767px) and (min-width: 600px) {
+  :root {
+    --sidebar-text-scale: 0.7; /* Tu valor personalizado */
+    --sidebar-text1-left: 42%; /* Tus valores personalizados */
+    --sidebar-text2-left: 38%; 
+    --sidebar-text-shift: 10px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 160px; /* Tu valor personalizado */
+  }
+}
+
+/* 📱 Teléfonos estándar: iPhone Pro Max, Galaxy S+ (430px-599px) */
+@media (max-width: 599px) and (min-width: 430px) {
+  :root {
+    --sidebar-text-scale: 0.5; /* Ligeramente más pequeño */
+    --sidebar-text1-left: 40%; /* Más centrado para pantallas estrechas */
+    --sidebar-text2-left: 32%; 
+    --sidebar-text-shift: 8px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 140px; /* Más estrecho para más líneas */
+  }
+}
+
+/* 📱 Teléfonos medianos: iPhone estándar, Galaxy S (375px-429px) */
+@media (max-width: 429px) and (min-width: 375px) {
+  :root {
+    --sidebar-text-scale: 0.5; /* Ligeramente más pequeño */
+    --sidebar-text1-left: 38%; /* Más centrado para pantallas estrechas */
+    --sidebar-text2-left: 32%; 
+    --sidebar-text-shift: 8px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 120px; /* Compacto para pantallas pequeñas */
+  }
+}
+
+/* 📱 Teléfonos pequeños: iPhone SE, Android compactos (320px-374px) */
+@media (max-width: 374px) and (min-width: 320px) {
+  :root {
+    --sidebar-text-scale: 0.4; /* Ligeramente más pequeño */
+    --sidebar-text1-left: 36%; /* Más centrado para pantallas estrechas */
+    --sidebar-text2-left: 31%; 
+    --sidebar-text-shift: 8px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 100px; /* Muy estrecho, máximo número de líneas */
+  }
+}
+
+/* 📱 Teléfonos muy pequeños: dispositivos legacy (menos de 320px) */
+@media (max-width: 319px) {
+  :root {
+    --sidebar-text-scale: 0.4; /* Ligeramente más pequeño */
+    --sidebar-text1-left: 36%; /* Más centrado para pantallas estrechas */
+    --sidebar-text2-left: 31%; 
+    --sidebar-text-shift: 8px; 
+  }
+  
+  .sidebar-text-btn2 {
+    max-width: 100px; /* Máxima compresión */
+  }
+}
+
+/* ===== ESTADO ABIERTO PARA DISPOSITIVOS TÁCTILES ===== */
+/* Cuando se detecta touch y se abre la sidebar, usar la posición de hover */
+#sidebar-toggles.open {
+  transform: translateX(var(--sidebar-x-hovered, var(--sidebar-left-hovered, -35%))) translateY(-50%) !important;
   filter: brightness(1) !important;
 }
 
-/* Tablets */
-@media (max-width: 1024px) {
-  #sidebar-toggles {
-    width: 80vw;
-    max-width: 640px;
-    height: 48vw;
-    max-height: 384px;
-    left: -55%; /* Igual que móviles pequeños */
-    cursor: pointer;
-  }
-  
-  /* Desactivar hover en tablets - solo touch */
-  #sidebar-toggles:hover,
-  #sidebar-toggles:focus-within {
-    left: -30%; /* Igual que móviles pequeños */
-    filter: brightness(0.7); /* Mantiene el filtro original */
-  }
-  
-  #sidebar-toggles.mobile-open {
-    left: -28% !important; /* Igual que móviles pequeños */
-    filter: brightness(1) !important;
-  }
-  
-  #sidebar-text-toggles {
-    left: 42%;
-    gap: 14px;
-    transform: translateY(28%);
-  }
-  
-  #sidebar-text-toggles2 {
-    left: 40%;
-    gap: 14px;
-    transform: translateY(-12%);
-  }
-  
-  .sidebar-text-btn {
-    font-size: 1.8em;
-    padding: 3px 8px;
-    pointer-events: auto;
-  }
-  
-  .sidebar-text-btn2 {
-    font-size: 1.4em;
-    max-width: 120px;
-    padding: 3px 8px;
-    pointer-events: auto;
-  }
-}
-
-/* Móviles grandes */
-@media (max-width: 768px) {
-  #sidebar-toggles {
-    width: 75vw;
-    max-width: 600px;
-    height: 45vw;
-    max-height: 360px;
-    left: -55%; /* Igual que móviles pequeños */
-    cursor: pointer;
-  }
-  
-  /* Desactivar hover en móviles grandes - solo touch */
-  #sidebar-toggles:hover,
-  #sidebar-toggles:focus-within {
-    left: -55%; /* Mantiene la posición oculta */
-    filter: brightness(0.7); /* Mantiene el filtro original */
-  }
-  
-  /* Solo cuando tiene la clase mobile-open se muestra completamente */
-  #sidebar-toggles.mobile-open {
-    left: -28% !important; /* Igual que móviles pequeños */
-    filter: brightness(1) !important;
-  }
-  
-  #sidebar-text-toggles {
-    left: 40%;
-    gap: 16px;
-    transform: translateY(22%);
-  }
-  
-  #sidebar-text-toggles2 {
-    left: 34%;
-    gap: 16px;
-    transform: translateY(-18%);
-  }
-  
-  .sidebar-text-btn {
-    font-size: 1.6em;
-    padding: 4px 10px;
-    pointer-events: auto;
-  }
-  
-  .sidebar-text-btn2 {
-    font-size: 1.2em;
-    max-width: 180px;
-    padding: 4px 10px;
-    pointer-events: auto;
-  }
-}
-
-/* Móviles pequeños */
-@media (max-width: 480px) {
-  #sidebar-toggles {
-    width: 80vw;
-    max-width: 640px;
-    height: 48vw;
-    max-height: 384px;
-    left: -55%; /* Casi completamente oculta en móviles pequeños */
-    cursor: pointer;
-  }
-  
-  /* Desactivar hover en móviles pequeños */
-  #sidebar-toggles:hover,
-  #sidebar-toggles:focus-within {
-    left: -30%; /* Mantiene la posición original */
-    filter: brightness(0.7); /* Mantiene el filtro original */
-  }
-  
-  /* Solo cuando tiene la clase mobile-open se muestra completamente */
-  #sidebar-toggles.mobile-open {
-    left: -28% !important;
-    filter: brightness(1) !important;
-  }
-  
-  #sidebar-text-toggles {
-    left: 42%;
-    gap: 14px;
-    transform: translateY(28%);
-  }
-  
-  #sidebar-text-toggles2 {
-    left: 36%;
-    gap: 14px;
-    transform: translateY(-12%);
-  }
-  
-  .sidebar-text-btn {
-    font-size: 1.4em;
-    padding: 3px 8px;
-    pointer-events: auto;
-  }
-  
-  .sidebar-text-btn2 {
-    font-size: 1em;
-    max-width: 120px;
-    padding: 3px 8px;
-    pointer-events: auto;
-  }
-}

@@ -1,0 +1,18 @@
+// Theme variables centralized to keep pixel-art palette consistent
+
+// Colors
+$color-accent: #b6a077;
+$color-accent-dark: #7c6a4a;
+$color-border: #3a2d1a;
+$color-outline: #fff6e0;
+
+// Typography
+$font-pixel: 'MGPixel', 'Press Start 2P', monospace;
+
+// Shadows
+$btn-shadow: 0 2px 0 $color-accent-dark;
+
+// Breakpoints
+$bp-lg: 1024px;
+$bp-md: 768px;
+$bp-sm: 480px;
