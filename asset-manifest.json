@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.0db73601.css",
-    "main.js": "/static/js/main.20885ebe.js",
+    "main.js": "/static/js/main.c6b2a0b2.js",
     "static/js/453.97aeb6cf.chunk.js": "/static/js/453.97aeb6cf.chunk.js",
     "static/media/orquesta1.gif": "/static/media/orquesta1.5403414b574ef4189867.gif",
     "static/media/orquesta2.gif": "/static/media/orquesta2.31575f8523c8a48e7a7c.gif",
@@ -15,11 +15,11 @@
     "static/media/webfishing_beam.cur": "/static/media/webfishing_beam.9ffc3195098e3f947f23.cur",
     "static/media/webfishing_link.cur": "/static/media/webfishing_link.db516231a0103d69785a.cur",
     "main.0db73601.css.map": "/static/css/main.0db73601.css.map",
-    "main.20885ebe.js.map": "/static/js/main.20885ebe.js.map",
+    "main.c6b2a0b2.js.map": "/static/js/main.c6b2a0b2.js.map",
     "453.97aeb6cf.chunk.js.map": "/static/js/453.97aeb6cf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0db73601.css",
-    "static/js/main.20885ebe.js"
+    "static/js/main.c6b2a0b2.js"
   ]
 }
