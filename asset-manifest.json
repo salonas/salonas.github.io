@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7605693e.css",
+    "main.js": "/static/js/main.a0973a39.js",
+    "static/js/453.97aeb6cf.chunk.js": "/static/js/453.97aeb6cf.chunk.js",
+    "static/media/orquesta1.gif": "/static/media/orquesta1.5403414b574ef4189867.gif",
+    "static/media/orquesta2.gif": "/static/media/orquesta2.31575f8523c8a48e7a7c.gif",
+    "static/media/MGPixel.otf": "/static/media/MGPixel.888129ba494852dead06.otf",
+    "static/media/gayheader.png": "/static/media/gayheader.ec33164e5b95deb1284c.png",
+    "static/media/saygexfooter.png": "/static/media/saygexfooter.6de16df1a25bfd8df71e.png",
+    "static/media/Notepen.ttf": "/static/media/Notepen.468f20ddaa71363d16db.ttf",
+    "static/media/salonas_gato-twitter3.png": "/static/media/salonas_gato-twitter3.9d26a44a63c138a579b3.png",
+    "static/media/webfishing_arrow.cur": "/static/media/webfishing_arrow.f0d651917e2a9bd64f98.cur",
+    "index.html": "/index.html",
+    "static/media/webfishing_beam.cur": "/static/media/webfishing_beam.9ffc3195098e3f947f23.cur",
+    "static/media/webfishing_link.cur": "/static/media/webfishing_link.db516231a0103d69785a.cur",
+    "main.7605693e.css.map": "/static/css/main.7605693e.css.map",
+    "main.a0973a39.js.map": "/static/js/main.a0973a39.js.map",
+    "453.97aeb6cf.chunk.js.map": "/static/js/453.97aeb6cf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7605693e.css",
+    "static/js/main.a0973a39.js"
+  ]
+}
