@@ -420,7 +420,7 @@ $color-border-light: #d2c09b;
     max-width: 1200px;
     margin: 2.5em auto;
     background: #f2e5cc;
-    border: 8px outset #3a2d1a;
+    border: 8px solid #3a2d1a;
     border-radius: 0;
     outline: 3px dashed #b6a077;
     padding: 2.5em 2em;
@@ -489,7 +489,7 @@ $color-border-light: #d2c09b;
 
   .skill-category-title {
     font-family: 'MGPixel', 'Press Start 2P', monospace;
-    font-size: 1.4em;
+    font-size: 1em;
     color: #3a2d1a;
     margin: 0;
     text-shadow: 1px 1px 0 #fff6e0;
@@ -721,7 +721,50 @@ $color-border-light: #d2c09b;
       height: 16px;
     }
   }
-  
+  /* mmm 800*/
+  @media (max-width: 800px) {
+    main {
+      max-width: 92vw;
+      padding: 2em 1.6em;
+      border-width: 4px;
+      box-shadow: -10px 10px 0px #7c6a4a;
+    }
+    
+    .skills-container {
+      max-width: 96%;
+    }
+    
+    .skills-title {
+      font-size: 1.6em;
+      padding: 0.15em 0.8em;
+      letter-spacing: 1.5px;
+      border-width: 2px;
+      outline-width: 1px;
+      outline-offset: -4px;
+    }
+    
+    .skills-grid {
+      grid-template-columns: 1fr;
+      gap: 1.4em;
+    }
+    
+    .skills-main-section {
+      padding: 1.6em;
+    }
+    
+    .skill-category {
+      padding: 1.2em;
+    }
+    
+    .skill-item {
+      padding: 0.2em;
+    }
+    
+    .skill-progress-track {
+      height: 16px;
+    }
+  }
+
   /* Móviles pequeños */
   @media (max-width: 480px) {
     main {
@@ -747,6 +790,7 @@ $color-border-light: #d2c09b;
     .skills-grid {
       grid-template-columns: 1fr;
       gap: 1.2em;
+      justify-items: center;
     }
     
     .skills-main-section {
@@ -755,6 +799,8 @@ $color-border-light: #d2c09b;
     
     .skill-category {
       padding: 1em;
+      max-width: 240px;
+      width: 100%;
     }
     
     .skill-item {
