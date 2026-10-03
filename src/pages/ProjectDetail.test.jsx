@@ -17,7 +17,7 @@ it.each(projects)('renders $slug with every section title', (p) => {
 it('shows role, tools and year in the facts strip', () => {
   renderAt('/projects/agami')
   expect(within(main()).getByText('Código · Arte · Música')).toBeInTheDocument()
-  expect(within(main()).getByText('Unity 6 · C# · Aseprite · sforzando')).toBeInTheDocument()
+  expect(within(main()).getByText('Unity 6 · C# · Aseprite · FL Studio')).toBeInTheDocument()
   expect(within(main()).getByText('2026')).toBeInTheDocument()
 })
 
@@ -59,4 +59,33 @@ it('opens the viewer on the clicked image and walks across sections', async () =
   expect(within(viewer).getByText('3 / 4')).toBeInTheDocument()
   await userEvent.click(within(viewer).getByRole('button', { name: es['next'] }))
   expect(within(viewer).getByText('4 / 4')).toBeInTheDocument()
+})
+
+it('links the inspirations of Sailing to their sources, in a new tab', () => {
+  renderAt('/projects/sailing')
+  const link = (name) => within(main()).getByRole('link', { name })
+  expect(link(/Jerry Was a Race Car Driver/)).toHaveAttribute('href', 'https://youtu.be/LBQ2305fLeA?t=200')
+  expect(link(/Sailing the Seas of Cheese/)).toHaveAttribute(
+    'href',
+    'https://en.wikipedia.org/wiki/Sailing_the_Seas_of_Cheese#/media/File:1991_Sailing_the_Seas_of_Cheese.jpg',
+  )
+  expect(link('Primus')).toHaveAttribute('href', 'https://en.wikipedia.org/wiki/Primus_(band)')
+  expect(link('Primus')).toHaveAttribute('target', '_blank')
+})
+
+it('shows no link markup as plain text', () => {
+  renderAt('/projects/sailing')
+  expect(main().textContent).not.toMatch(/\]\(|\[/)
+})
+
+it('describes Sailing as set in the Seas of Cheese', () => {
+  renderAt('/projects/sailing', 'en')
+  expect(within(main()).getByText(/^Boss rush in the Seas of Cheese:/)).toBeInTheDocument()
+})
+
+it('says how the music of Agami was made and what inspired the game', () => {
+  renderAt('/projects/agami')
+  expect(within(main()).getByText(/FL Studio con Sforzando 2/)).toBeInTheDocument()
+  expect(within(main()).getByRole('heading', { level: 4, name: 'The Legend of Zelda: A Link to the Past' })).toBeInTheDocument()
+  expect(within(main()).getByRole('heading', { level: 4, name: 'The Binding of Isaac' })).toBeInTheDocument()
 })

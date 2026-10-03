@@ -2,6 +2,21 @@ import MediaPlayer from '../MediaPlayer'
 import Paper from '../Paper'
 import { useLanguage } from '../../i18n/LanguageProvider'
 import { mediaUrl } from '../../projects'
+import { outside } from '../outside'
+
+// Project texts may carry links written as [[label|url]].
+function RichText({ text }) {
+  const parts = text.split(/\[\[([^|\]]+)\|([^\]]+)\]\]/)
+  return parts.map((part, i) => {
+    if (i % 3 === 0) return part
+    if (i % 3 === 2) return null
+    return (
+      <a key={i} href={parts[i + 1]} {...outside}>
+        {part}
+      </a>
+    )
+  })
+}
 
 const tiltOf = (i) => (i % 2 ? 'r' : 'l')
 
@@ -37,7 +52,9 @@ export default function Section({ project, section, onZoom }) {
     ),
     text: () => (
       <Paper>
-        <p className="prose">{L(section.body)}</p>
+        <p className="prose">
+          <RichText text={L(section.body)} />
+        </p>
       </Paper>
     ),
     list: () => (

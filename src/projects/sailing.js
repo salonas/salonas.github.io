@@ -14,8 +14,8 @@ export default {
   tools: 'Unity 6 · C# · Blender',
   code: { es: 'No público', en: 'Not public' },
   summary: {
-    es: 'Boss rush en un océano de queso: controlas un barco con físicas para sobrevivir al asedio de un jefe. Lo considero un proyecto fallido.',
-    en: 'Boss rush on an ocean of cheese: you steer a physics-driven ship to survive a boss. I consider it a failed project.'
+    es: 'Boss rush en los Mares de Queso: controlas un barco con físicas para sobrevivir al asedio de un jefe. Lo considero un proyecto fallido.',
+    en: 'Boss rush in the Seas of Cheese: you steer a physics-driven ship to survive a boss. I consider it a failed project.'
   },
   sections: [
     { kind: 'video', title: { es: 'Gameplay', en: 'Gameplay' }, src: 'gameplay.mp4' },
@@ -23,8 +23,8 @@ export default {
       kind: 'text',
       title: { es: 'Qué falló', en: 'What went wrong' },
       body: {
-        es: 'Era una evaluación con poco tiempo de entrega, y la verdad es que todavía no me manejo tan bien con 3D.',
-        en: 'It was a graded assignment with a short deadline, and honestly I am still not that comfortable with 3D.'
+        es: 'Era una evaluación con poco plazo de entrega y, la verdad, no me alcanzó el tiempo para sentirme cómodo con el 3D ni para sumar más jefes, más mecánicas y pulido.',
+        en: 'It was a graded assignment with a short deadline, and honestly I did not have enough time to get comfortable with 3D or to add more bosses, more mechanics and polish.'
       }
     },
     {
@@ -129,8 +129,8 @@ export default {
       kind: 'text',
       title: { es: 'Inspiración', en: 'Inspiration' },
       body: {
-        es: 'Está basado en el video musical de «Jerry Was a Race Car Driver» y en la portada del álbum Sailing the Seas of Cheese, de Primus. Usa un par de canciones de la banda, por eso el video se publica sin audio.',
-        en: 'It is based on the music video for "Jerry Was a Race Car Driver" and on the cover of the album Sailing the Seas of Cheese, by Primus. It uses a couple of songs by the band, which is why the video is published without audio.'
+        es: 'Está basado en el video musical de [[«Jerry Was a Race Car Driver»|https://youtu.be/LBQ2305fLeA?t=200]] y en la portada del [[álbum Sailing the Seas of Cheese|https://en.wikipedia.org/wiki/Sailing_the_Seas_of_Cheese#/media/File:1991_Sailing_the_Seas_of_Cheese.jpg]], de [[Primus|https://en.wikipedia.org/wiki/Primus_(band)]]. Usa un par de canciones de la banda, por eso el video se publica sin audio.',
+        en: 'It is based on the music video for [["Jerry Was a Race Car Driver"|https://youtu.be/LBQ2305fLeA?t=200]] and on the cover of [[the album Sailing the Seas of Cheese|https://en.wikipedia.org/wiki/Sailing_the_Seas_of_Cheese#/media/File:1991_Sailing_the_Seas_of_Cheese.jpg]], by [[Primus|https://en.wikipedia.org/wiki/Primus_(band)]]. It uses a couple of songs by the band, which is why the video is published without audio.'
       }
     }
   ]
