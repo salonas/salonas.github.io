@@ -23,3 +23,10 @@ it('has none in the image viewer either', async () => {
 it('has none in any translation', () => {
   for (const text of [...Object.values(es), ...Object.values(en)]) expect(text).not.toMatch(SYMBOLS)
 })
+
+it.each(['es', 'en'])('does not call any project a failure in %s', (lang) => {
+  for (const p of projects) {
+    renderAt('/projects/' + p.slug, lang)
+    expect(document.body.textContent).not.toMatch(/fall[oó]|fallid|fail|went wrong/i)
+  }
+})

@@ -78,3 +78,60 @@ it('does not resume music the visitor turned off before leaving', async () => {
   await new Promise((r) => setTimeout(r, 20))
   expect(screen.getByRole('button', { name: es['music-on'] })).toBeInTheDocument()
 })
+
+const setHidden = (hidden) => {
+  Object.defineProperty(document, 'hidden', { configurable: true, get: () => hidden })
+  fireEvent(document, new Event('visibilitychange'))
+}
+const pausedElements = () => window.HTMLMediaElement.prototype.pause.mock.contexts
+const playedElements = () => play().mock.contexts
+
+describe('when the page goes to the background', () => {
+  afterEach(() => setHidden(false))
+
+  it('silences the music while another window has the focus', async () => {
+    renderAt('/')
+    await screen.findByRole('button', { name: es['music-off'] })
+    fireEvent.blur(window)
+    expect(pausedElements()).toContain(bgm())
+    expect(await screen.findByRole('button', { name: es['music-on'] })).toBeInTheDocument()
+    fireEvent.focus(window)
+    expect(await screen.findByRole('button', { name: es['music-off'] })).toBeInTheDocument()
+  })
+
+  it('silences the music while the page is hidden or the screen is locked', async () => {
+    renderAt('/')
+    await screen.findByRole('button', { name: es['music-off'] })
+    setHidden(true)
+    expect(pausedElements()).toContain(bgm())
+    expect(await screen.findByRole('button', { name: es['music-on'] })).toBeInTheDocument()
+    setHidden(false)
+    expect(await screen.findByRole('button', { name: es['music-off'] })).toBeInTheDocument()
+  })
+
+  it('does not start music the visitor had turned off', async () => {
+    renderAt('/')
+    await userEvent.click(await screen.findByRole('button', { name: es['music-off'] }))
+    fireEvent.blur(window)
+    fireEvent.focus(window)
+    await new Promise((r) => setTimeout(r, 20))
+    expect(screen.getByRole('button', { name: es['music-on'] })).toBeInTheDocument()
+  })
+
+  it('pauses a playing video or track and resumes it on return', async () => {
+    renderAt('/projects/agami')
+    await screen.findByRole('button', { name: es['music-off'] })
+    const video = document.querySelector('video[data-media]')
+    Object.defineProperty(video, 'paused', { configurable: true, get: () => false })
+    await userEvent.click(video.closest('.vplayer').querySelector('.pbtn'))
+    fireEvent.blur(window)
+    expect(pausedElements()).toContain(video)
+    play().mockClear()
+    fireEvent.pause(video)
+    await new Promise((r) => setTimeout(r, 20))
+    expect(play()).not.toHaveBeenCalled()
+    fireEvent.focus(window)
+    expect(playedElements()).toContain(video)
+    expect(playedElements()).not.toContain(bgm())
+  })
+})

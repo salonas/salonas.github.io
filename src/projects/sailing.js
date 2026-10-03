@@ -3,7 +3,7 @@ export default {
   title: 'Sailing the Seas of Cheese',
   type: { es: 'JUEGO', en: 'GAME' },
   status: 'failed',
-  state: { es: 'FALLIDO', en: 'FAILED' },
+  state: { es: 'DEMO TÉCNICA · NO CONFORME', en: 'TECH DEMO · FELL SHORT' },
   year: 2026,
   cover: 'cover.jpg',
   coverAlt: {
@@ -14,17 +14,17 @@ export default {
   tools: 'Unity 6 · C# · Blender',
   code: { es: 'No público', en: 'Not public' },
   summary: {
-    es: 'Boss rush en los Mares de Queso: controlas un barco con físicas para sobrevivir al asedio de un jefe. Lo considero un proyecto fallido.',
-    en: 'Boss rush in the Seas of Cheese: you steer a physics-driven ship to survive a boss. I consider it a failed project.'
+    es: 'Boss rush en los Mares de Queso: controlas un barco con físicas para sobrevivir al asedio de un jefe. Quedó como demo técnica, sin el pulido que buscaba.',
+    en: 'Boss rush in the Seas of Cheese: you steer a physics-driven ship to survive a boss. It stayed a tech demo, short of the polish I was after.'
   },
   sections: [
     { kind: 'video', title: { es: 'Gameplay', en: 'Gameplay' }, src: 'gameplay.mp4' },
     {
       kind: 'text',
-      title: { es: 'Qué falló', en: 'What went wrong' },
+      title: { es: 'Qué faltó', en: 'What was missing' },
       body: {
-        es: 'Era una evaluación con poco plazo de entrega y, la verdad, no me alcanzó el tiempo para sentirme cómodo con el 3D ni para sumar más jefes, más mecánicas y pulido.',
-        en: 'It was a graded assignment with a short deadline, and honestly I did not have enough time to get comfortable with 3D or to add more bosses, more mechanics and polish.'
+        es: 'Fue una evaluación con poco plazo de entrega. Ese tiempo no alcanzó para desarrollar el modelado 3D como quería ni para sumar más jefes y mecánicas, así que quedó sin el pulido que tenía como objetivo.',
+        en: 'It was a graded assignment with a short deadline. That time was not enough to develop the 3D modeling the way I wanted or to add more bosses and mechanics, so it ended up without the polish I was aiming for.'
       }
     },
     {
