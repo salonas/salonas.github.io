@@ -143,6 +143,11 @@ video.cover{background:var(--ink)}
 .zframe{padding:16px;gap:0}
 .zframe img{max-width:min(100%,1100px);max-height:calc(100vh - 270px);width:auto;height:auto}
 .zframe.sketch img{mix-blend-mode:multiply;border:0}
+.zpane{overflow:auto;max-width:100%}
+.zpane img{cursor:zoom-in;user-select:none;-webkit-user-drag:none}
+.zpane.zoomed img{cursor:grab}
+.zpane.zoomed img:active{cursor:grabbing}
+.btn:disabled{opacity:.45;pointer-events:none}
 .zcap{color:var(--paper);text-align:center;text-shadow:2px 2px 0 var(--ink);max-width:60ch}
 .zbar{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.7rem;color:var(--paper);font-variant-numeric:tabular-nums}
 .zbar .btn{padding:.45em 1em}

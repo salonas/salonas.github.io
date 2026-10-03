@@ -65,3 +65,49 @@ it('covers the whole page, outside any scrolling container', () => {
   )
   expect(screen.getByRole('dialog').parentElement.parentElement).toBe(document.body)
 })
+
+const zoomIn = () => screen.getByRole('button', { name: es['zoom-in'] })
+const zoomOut = () => screen.getByRole('button', { name: es['zoom-out'] })
+
+it('starts fitted to the screen and cannot zoom out further', () => {
+  render(<Harness images={three} />)
+  expect(screen.getByText('100%')).toBeInTheDocument()
+  expect(zoomOut()).toBeDisabled()
+})
+
+it('zooms in and out in steps, up to 400%', async () => {
+  render(<Harness images={three} />)
+  await userEvent.click(zoomIn())
+  expect(screen.getByText('150%')).toBeInTheDocument()
+  await userEvent.click(zoomIn())
+  await userEvent.click(zoomIn())
+  await userEvent.click(zoomIn())
+  expect(screen.getByText('400%')).toBeInTheDocument()
+  expect(zoomIn()).toBeDisabled()
+  await userEvent.click(zoomOut())
+  expect(screen.getByText('300%')).toBeInTheDocument()
+})
+
+it('toggles the zoom by clicking the image, without changing image', async () => {
+  render(<Harness images={three} />)
+  await userEvent.click(screen.getByRole('img', { name: 'Primera' }))
+  expect(screen.getByText('200%')).toBeInTheDocument()
+  expect(screen.getByText('1 / 3')).toBeInTheDocument()
+  await userEvent.click(screen.getByRole('img', { name: 'Primera' }))
+  expect(screen.getByText('100%')).toBeInTheDocument()
+})
+
+it('zooms with the keyboard', async () => {
+  render(<Harness images={three} />)
+  await userEvent.keyboard('+')
+  expect(screen.getByText('150%')).toBeInTheDocument()
+  await userEvent.keyboard('-')
+  expect(screen.getByText('100%')).toBeInTheDocument()
+})
+
+it('goes back to fitted when the image changes', async () => {
+  render(<Harness images={three} />)
+  await userEvent.click(zoomIn())
+  await userEvent.click(screen.getByRole('button', { name: es['next'] }))
+  expect(screen.getByText('100%')).toBeInTheDocument()
+})
