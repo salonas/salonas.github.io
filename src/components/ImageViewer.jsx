@@ -112,14 +112,14 @@ export default function ImageViewer({ images, index, onIndex, onClose }) {
         <div className="zbar">
           {many && (
             <>
-              <button type="button" className="btn" aria-label={t('prev')} onClick={() => step(-1)}>
-                ←
+              <button type="button" className="btn" onClick={() => step(-1)}>
+                {t('prev')}
               </button>
               <span>
                 {index + 1} / {images.length}
               </span>
-              <button type="button" className="btn" aria-label={t('next')} onClick={() => step(1)}>
-                →
+              <button type="button" className="btn" onClick={() => step(1)}>
+                {t('next')}
               </button>
             </>
           )}
