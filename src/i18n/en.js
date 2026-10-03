@@ -29,6 +29,8 @@ export default {
   "community-2": "My DMs are always open, whether you want to collaborate, chat, or just say hi!",
   "tools-title": "What I work with",
   "tools-lead": "What I use, and where I've used it.",
+  "zoom-in": "Zoom in",
+  "zoom-out": "Zoom out",
   "zoom": "Enlarge",
   "prev": "Previous",
   "next": "Next",
