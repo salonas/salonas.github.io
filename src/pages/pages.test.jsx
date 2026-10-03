@@ -51,10 +51,7 @@ it.each(['/', '/toolbox', '/projects'])('%s does not mention school or a CV', (p
   expect(document.body.textContent).not.toMatch(/cursando|En la carrera|\bCV\b|videojuegos/i)
 })
 
-it('explains what each label border means', () => {
+it('gives every status label the same look', () => {
   renderAt('/projects')
-  expect(within(main()).getByText(es['state-legend'])).toBeInTheDocument()
-  for (const status of ['done', 'paused', 'failed']) {
-    expect(within(main()).getByText(es['state-' + status])).toHaveClass('state', status)
-  }
+  for (const p of projects) expect(within(main()).getByText(p.state.es).className).toBe('state')
 })

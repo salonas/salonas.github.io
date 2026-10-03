@@ -28,7 +28,7 @@ export function Tags({ project }) {
   return (
     <div className="tags">
       <span className="tag">{L(project.type)}</span>
-      <span className={`state ${project.status}`}>{L(project.state)}</span>
+      <span className="state">{L(project.state)}</span>
     </div>
   )
 }
