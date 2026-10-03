@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# salonas.github.io
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mi página personal: quién soy, con qué trabajo, mis proyectos y cómo contactarme.
+Los dibujos y la música son míos.
 
-## Available Scripts
+Sitio: https://salonas.github.io
 
-In the project directory, you can run:
+Hecha con React y Vite. Está en español e inglés, y parte en el idioma del navegador.
 
-### `npm start`
+## Correrla en local
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npm install
+npm run dev
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Otros comandos:
 
-### `npm test`
+```bash
+npm test         # pruebas
+npm run build    # genera dist/
+npm run preview  # sirve dist/ tal como queda publicado
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Formulario de contacto
 
-### `npm run build`
+Usa [EmailJS](https://www.emailjs.com/). Para que envíe en local, copia `.env.example` como
+`.env` y completa las tres variables `VITE_EMAILJS_*`. En GitHub van como variables del
+repositorio (Settings → Secrets and variables → Actions → Variables). Sin ellas el formulario
+muestra un error en vez de enviar.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Agregar un proyecto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Crear `src/projects/<slug>.js`, copiando la forma de uno que ya exista.
+2. Sumarlo a la lista de `src/projects/index.js`.
+3. Dejar sus imágenes, video y audio en `public/media/<slug>/`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Cada proyecto se arma con bloques (`video`, `loops`, `shots`, `text`, `list`, `items`, `audio`)
+en el orden en que aparecen en su archivo. Los textos van en los dos idiomas.
 
-### `npm run eject`
+`npm test` avisa si falta un texto en algún idioma o si un archivo citado no existe.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Publicación
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Cada push a `master` corre las pruebas, construye el sitio y lo publica en GitHub Pages
+(`.github/workflows/deploy.yml`).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Créditos
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Fuentes: MGPixel y Notepen.
+- Íconos de contacto: [Simple Icons](https://simpleicons.org/), licencia CC0.
+- Cursores: dibujados para este sitio.

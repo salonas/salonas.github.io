@@ -32,6 +32,7 @@ Old/contact.js
 
 # Archivos de configuración con API keys
 *config*.js
+!vite.config.js
 *config*.json
 *secrets*.js
 *secrets*.json
@@ -225,3 +226,8 @@ gh-pages
 # Backup files
 *.backup
 *.bck
+
+# Redesign
+/dist
+/.claude
+/.superpowers

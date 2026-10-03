@@ -1,48 +1,28 @@
 {
   "name": "salonas.github.io",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
+  "type": "module",
   "homepage": "https://salonas.github.io",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/copy-404.mjs",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.3",
-    "react-scripts": "5.0.1",
-    "sass": "^1.89.2",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "jsdom": "^30.1.1",
+    "vite": "^8.3.2",
+    "vitest": "^5.0.3"
   }
 }
