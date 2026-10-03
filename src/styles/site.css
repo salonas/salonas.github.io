@@ -6,6 +6,8 @@ html{font-size:20px}
 body{margin:0;background:var(--wall);color:var(--ink);font-family:var(--display);font-size:1rem;line-height:1.5;cursor:var(--cur)}
 a,button,summary,label[for]{cursor:var(--cur-link)}
 a{color:var(--ink)}
+a:not(.btn):not(.paper){text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.15em;transition:background .15s,box-shadow .15s}
+a:not(.btn):not(.paper):hover,a:not(.btn):not(.paper):focus-visible,a.paper:hover .more{background:var(--tan);box-shadow:0 0 0 .15em var(--tan);text-decoration-thickness:3px}
 h1,h2,h3,h4,p,figure{margin:0;font-weight:400}
 h1,h2,h3{text-wrap:balance;line-height:1.15}
 h1,h2,h3,h4,p,li,span,small,a,label{overflow-wrap:anywhere}
@@ -102,7 +104,7 @@ video.cover{background:var(--ink)}
 
 /* tools */
 .tool{display:flex;flex-direction:column}
-.tool a{font-size:var(--small)}
+.tool a{font-size:var(--small);align-self:flex-start}
 .paper img.doodle{align-self:center;width:min(100%,220px);aspect-ratio:auto;object-fit:contain;border:0;mix-blend-mode:multiply}
 .paper h3.rule{border-bottom:3px solid var(--ink);padding-bottom:.3rem}
 
