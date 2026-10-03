@@ -6,12 +6,21 @@ import { useLanguage } from '../i18n/LanguageProvider'
 import { findProject } from '../projects'
 
 function Tool({ tool }) {
-  const { L } = useLanguage()
+  const { t, L } = useLanguage()
+  const project = tool.to && findProject(tool.to)
   return (
     <div className="tool">
       <span>{L(tool.name)}</span>
-      {tool.to && <Link to={`/projects/${tool.to}`}>→ {findProject(tool.to).shortTitle ?? findProject(tool.to).title}</Link>}
-      {tool.href && <a href={tool.href} {...outside}>→ {L(tool.label)}</a>}
+      {project && (
+        <Link to={`/projects/${tool.to}`}>
+          {t('used-in')} {project.shortTitle ?? project.title}
+        </Link>
+      )}
+      {tool.href && (
+        <a href={tool.href} {...outside}>
+          {L(tool.label)}
+        </a>
+      )}
     </div>
   )
 }
