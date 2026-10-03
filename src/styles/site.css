@@ -85,6 +85,7 @@ a.paper{text-decoration:none}
 .state{padding:.05rem .55rem;border:2px solid var(--ink)}
 .state.paused{border-style:dashed}
 .state.failed{border-style:double;border-width:4px;padding-block:0}
+.legend{align-items:center}
 .ph{width:100%;aspect-ratio:16/9;display:grid;place-items:center;text-align:center;border:3px dashed var(--tan-dark);color:var(--brown);font-size:var(--small);background:var(--card)}
 .ph.cover{flex:1 1 400px;border-width:4px}
 .card{flex:1 1 340px}
