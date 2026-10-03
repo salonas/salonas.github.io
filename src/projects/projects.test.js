@@ -45,8 +45,8 @@ it('never carries an API key', () => {
 })
 
 it('puts the sforzando note on Agami, not on Sailing', () => {
-  expect(JSON.stringify(findProject('agami'))).toMatch(/sforzando/)
-  expect(JSON.stringify(findProject('sailing'))).not.toMatch(/sforzando/)
+  expect(JSON.stringify(findProject('agami'))).toMatch(/sforzando/i)
+  expect(JSON.stringify(findProject('sailing'))).not.toMatch(/sforzando/i)
 })
 
 it('says the Sailing video has no audio', () => {

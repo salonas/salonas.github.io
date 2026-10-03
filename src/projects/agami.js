@@ -13,7 +13,7 @@ export default {
     en: "Agami's Alley cover: a grey cat with a red scarf and two balloons"
   },
   roles: { es: 'Código · Arte · Música', en: 'Code · Art · Music' },
-  tools: 'Unity 6 · C# · Aseprite · sforzando',
+  tools: 'Unity 6 · C# · Aseprite · FL Studio',
   code: { es: 'No público', en: 'Not public' },
   summary: {
     es: 'Action-survival en perspectiva top-down. Controlas a un felino que defiende su territorio en un callejón urbano hostil.',
@@ -56,11 +56,31 @@ export default {
       ]
     },
     {
+      kind: 'items',
+      title: { es: 'Inspiración', en: 'Inspiration' },
+      items: [
+        {
+          name: 'The Legend of Zelda: A Link to the Past',
+          text: {
+            es: 'La perspectiva, el diseño del mundo y la claridad visual de los sprites de 16 bits.',
+            en: 'The perspective, the world design and the visual clarity of 16-bit sprites.'
+          }
+        },
+        {
+          name: 'The Binding of Isaac',
+          text: {
+            es: 'La fórmula viene del primer The Legend of Zelda de NES, pero este estilo de juego lo popularizó The Binding of Isaac. De ahí tomé la vista top-down, con una interfaz más limpia.',
+            en: 'The formula comes from the first The Legend of Zelda on NES, but this style of play was popularised by The Binding of Isaac. I took the top-down view from it, with a cleaner interface.'
+          }
+        }
+      ]
+    },
+    {
       kind: 'text',
       title: { es: 'Música', en: 'Music' },
       body: {
-        es: 'La música es mía. La compuse con sforzando y la soundfont de Rockman & Forte de SNES (Mega Man & Bass).',
-        en: 'The music is mine. I composed it with sforzando and the soundfont from Rockman & Forte on SNES (Mega Man & Bass).'
+        es: 'La música es mía. La compuse en FL Studio con Sforzando 2 y la soundfont de Rockman & Forte de SNES (Mega Man & Bass).',
+        en: 'The music is mine. I composed it in FL Studio with Sforzando 2 and the soundfont from Rockman & Forte on SNES (Mega Man & Bass).'
       }
     },
     {

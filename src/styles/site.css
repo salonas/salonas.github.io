@@ -130,6 +130,8 @@ video.cover{background:var(--ink)}
 .player input[type=range]::-moz-range-thumb{width:8px;height:22px;border-radius:0;background:var(--paper);border:3px solid var(--ink)}
 .player time{font-size:var(--small);font-variant-numeric:tabular-nums;white-space:nowrap}
 .vwrap video{width:100%;display:block;cursor:var(--cur-link);background:var(--ink)}
+.vplayer{display:flex;flex-direction:column;gap:1rem}
+.vplayer:fullscreen{gap:0}
 .paper:not(.track)>.player{flex:none}
 .track>.player{flex:1 1 260px;max-width:100%}
 .player{flex-wrap:wrap}
