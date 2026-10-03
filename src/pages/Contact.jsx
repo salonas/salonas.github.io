@@ -2,6 +2,7 @@ import { useState } from 'react'
 import emailjs from '@emailjs/browser'
 import Icon from '../components/Icon'
 import Modal from '../components/Modal'
+import { outside } from '../components/outside'
 import Paper from '../components/Paper'
 import { useLanguage } from '../i18n/LanguageProvider'
 
@@ -100,14 +101,14 @@ export default function Contact() {
               </span>
               <CopyButton text={EMAIL} />
             </Paper>
-            <Paper as="a" tilt="r" className="contact" href="https://github.com/salonas">
+            <Paper as="a" tilt="r" className="contact" href="https://github.com/salonas" {...outside}>
               <Icon name="github" />
               <span className="who">
                 <span>GitHub</span>
                 <small>salonas</small>
               </span>
             </Paper>
-            <Paper as="a" tilt="l" className="contact" href="https://www.linkedin.com/in/joaqu%C3%ADn-salinas-enr%C3%ADquez-590637300/">
+            <Paper as="a" tilt="l" className="contact" href="https://www.linkedin.com/in/joaqu%C3%ADn-salinas-enr%C3%ADquez-590637300/" {...outside}>
               <Icon name="linkedin" />
               <span className="who">
                 <span>LinkedIn</span>
@@ -119,7 +120,7 @@ export default function Contact() {
               <span className="who">
                 <span>Discord</span>
                 <small>{DISCORD_NAME}</small>
-                <a href={`https://discord.com/users/${DISCORD_USER_ID}`}>{t('discord-open')}</a>
+                <a href={`https://discord.com/users/${DISCORD_USER_ID}`} {...outside}>{t('discord-open')}</a>
               </span>
               <CopyButton text={DISCORD_NAME} />
             </Paper>

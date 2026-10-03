@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
 import es from '../i18n/es'
@@ -51,4 +51,30 @@ it('keeps keyboard focus on a sidebar button after it is pressed with Enter', as
   button.focus()
   await userEvent.keyboard('{Enter}')
   expect(screen.getByRole('button', { name: en['lang-btn'] })).toHaveFocus()
+})
+
+const bgm = () => document.querySelector('audio[src="/music/meh.mp3"]')
+
+it('shows the music as off when the browser pauses it', async () => {
+  renderAt('/')
+  await screen.findByRole('button', { name: es['music-off'] })
+  fireEvent.pause(bgm())
+  expect(await screen.findByRole('button', { name: es['music-on'] })).toBeInTheDocument()
+})
+
+it('resumes the music when the visitor comes back to the page', async () => {
+  renderAt('/')
+  await screen.findByRole('button', { name: es['music-off'] })
+  fireEvent.pause(bgm())
+  await screen.findByRole('button', { name: es['music-on'] })
+  fireEvent(window, new PageTransitionEvent('pageshow', { persisted: true }))
+  expect(await screen.findByRole('button', { name: es['music-off'] })).toBeInTheDocument()
+})
+
+it('does not resume music the visitor turned off before leaving', async () => {
+  renderAt('/')
+  await userEvent.click(await screen.findByRole('button', { name: es['music-off'] }))
+  fireEvent(window, new PageTransitionEvent('pageshow', { persisted: true }))
+  await new Promise((r) => setTimeout(r, 20))
+  expect(screen.getByRole('button', { name: es['music-on'] })).toBeInTheDocument()
 })

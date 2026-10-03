@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { outside } from '../components/outside'
 import Paper from '../components/Paper'
 import { toolbox } from '../data/toolbox'
 import { useLanguage } from '../i18n/LanguageProvider'
@@ -10,7 +11,7 @@ function Tool({ tool }) {
     <div className="tool">
       <span>{L(tool.name)}</span>
       {tool.to && <Link to={`/projects/${tool.to}`}>→ {findProject(tool.to).shortTitle ?? findProject(tool.to).title}</Link>}
-      {tool.href && <a href={tool.href}>→ {L(tool.label)}</a>}
+      {tool.href && <a href={tool.href} {...outside}>→ {L(tool.label)}</a>}
     </div>
   )
 }
