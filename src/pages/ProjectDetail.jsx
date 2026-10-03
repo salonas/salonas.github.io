@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import ImageViewer from '../components/ImageViewer'
+import { outside } from '../components/outside'
 import Paper from '../components/Paper'
 import { Cover, Tags } from '../components/ProjectCard'
 import Section from '../components/sections/Section'
@@ -67,7 +68,7 @@ export default function ProjectDetail() {
           )}
           <div>
             <small>{t('code')}</small>
-            {project.repo ? <a href={project.repo}>{t('repo')}</a> : L(project.code)}
+            {project.repo ? <a href={project.repo} {...outside}>{t('repo')}</a> : L(project.code)}
           </div>
         </Paper>
 

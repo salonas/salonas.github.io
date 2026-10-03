@@ -71,6 +71,7 @@ main{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:3rem 4.5rem
 .paper{position:relative;background:var(--paper);border:3px solid var(--ink);outline:2px dashed var(--tan);outline-offset:-9px;box-shadow:6px 6px 0 var(--tan-dark);padding:1.4rem 1.3rem 1.3rem;display:flex;flex-direction:column;gap:.7rem;transition:transform .2s}
 .paper::before{content:"";position:absolute;top:-14px;left:50%;width:22px;height:22px;margin-left:-11px;background:url(/img/pin.png) center/100% 100% no-repeat;image-rendering:pixelated;filter:drop-shadow(2px 2px 0 rgba(58,45,26,.35));z-index:2}
 .tl{transform:rotate(-1.3deg)} .tr{transform:rotate(1.3deg)}
+.tl,.tr{will-change:transform}
 a.paper{text-decoration:none}
 .paper.tl:hover,.paper.tr:hover,.paper.tl:focus-within,.paper.tr:focus-within{transform:rotate(0) translateY(-4px)}
 .paper img,.paper video{border:3px solid var(--ink)}
