@@ -49,3 +49,9 @@ it('puts the video and its own controls in full screen together', async () => {
   expect(frame.requestFullscreen).toHaveBeenCalled()
   expect(within(frame).getByRole('button', { name: `${es['play']}: Gameplay` })).toBeInTheDocument()
 })
+
+it('loops the tracks but not the video', async () => {
+  await openAgamiWithMusic()
+  for (const audio of main().querySelectorAll('audio[data-media]')) expect(audio.loop).toBe(true)
+  expect(main().querySelector('video[data-media]').loop).toBe(false)
+})

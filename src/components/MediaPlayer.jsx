@@ -137,7 +137,7 @@ export default function MediaPlayer({ kind, src, label }) {
   if (kind === 'audio') {
     return (
       <>
-        <audio {...mediaProps} />
+        <audio loop {...mediaProps} />
         {controls}
       </>
     )
