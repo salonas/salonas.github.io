@@ -1,0 +1,7 @@
+:root{
+  --ink:#3a2d1a; --brown:#5b4d37; --tan-dark:#7c6a4a; --tan:#b6a077; --wall:#cfbc96; --card:#f2e5cc; --paper:#fff6e0;
+  --display:'MGPixel','Courier New',monospace; --hand:'Notepen','Comic Sans MS',cursive;
+  --t1:2.2rem; --t2:1.5rem; --t3:1.25rem; --t4:1rem; --small:.85rem;
+  --cur:url(/cursors/arrow.png) 0 0,auto; --cur-link:url(/cursors/pointer.png) 7 0,pointer; --cur-text:url(/cursors/text.png) 5 10,text;
+  color-scheme:light;
+}
