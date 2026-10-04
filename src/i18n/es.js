@@ -51,7 +51,7 @@ export default {
   "play": "Reproducir",
   "seek": "Posición",
   "proj-hint": "Haz clic en cada proyecto para verlo a fondo.",
-  "proj-soon": "Pronto más proyectos",
+  "proj-soon": "Mantente al tanto, vienen más proyectos",
   "filter-label": "Filtrar por tipo",
   "filter-all": "TODOS",
   "filter-reset": "¿Muy pocos? Reinicia los filtros",
