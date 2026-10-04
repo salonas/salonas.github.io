@@ -46,3 +46,9 @@ it('draws every face symbol with the bundled pixel font', () => {
   for (const symbol of '≽≼⩊ω˵◕╰￣˶˃ᆺ˂٩ˊᗜˋو・') expect(covered).toContain(symbol.codePointAt(0))
   expect(readFileSync('src/styles/tokens.css', 'utf8')).toMatch(/--display:'MGPixel','Unifont'/)
 })
+
+it('sizes the viewer image without percentages, so the sheet hugs wide images', () => {
+  const css = readFileSync('src/styles/site.css', 'utf8')
+  const [, width] = css.match(/\.zframe img\{max-width:([^;]+);/)
+  expect(width).not.toContain('%')
+})
