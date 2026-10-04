@@ -32,8 +32,8 @@ export default {
       kind: 'text',
       title: { es: 'Sobre el proyecto', en: 'About the project' },
       body: {
-        es: 'Es mi primer proyecto de IoT, hecho en equipo para el curso de Internet de las Cosas. Yo me encargué del diseño del sistema y de los dibujos de la web. [[Venjyy|https://github.com/Venjyy]] se encargó de los sensores, su recepción y lectura. El servidor ya no está en línea, así que las capturas usan datos de ejemplo.',
-        en: 'It is my first IoT project, built as a team for the Internet of Things course. I handled the system design and the drawings for the web app. [[Venjyy|https://github.com/Venjyy]] handled the sensors, receiving and reading them. The server is no longer online, so the screens use sample data.'
+        es: 'Es mi primer proyecto de IoT, hecho en equipo para el curso de Internet de las Cosas. Yo me encargué del diseño del sistema y de los dibujos de la web. [[Venjyy|https://github.com/Venjyy]] se encargó de los sensores, su recepción y lectura, y Benjamín Conejeros aportó la planta. El servidor ya no está en línea, así que las capturas usan datos de ejemplo.',
+        en: 'It is my first IoT project, built as a team for the Internet of Things course. I handled the system design and the drawings for the web app. [[Venjyy|https://github.com/Venjyy]] handled the sensors, receiving and reading them, and Benjamín Conejeros provided the plant. The server is no longer online, so the screens use sample data.'
       }
     },
     {
