@@ -2,7 +2,7 @@ export default {
   slug: 'plantochi',
   title: 'Plantochi',
   type: { es: 'IOT', en: 'IOT' },
-  alsoIn: ['WEB'],
+  alsoIn: [{ es: 'WEB', en: 'WEB' }],
   status: 'done',
   state: { es: 'PROYECTO DE CURSO · COMPLETADO', en: 'COURSE PROJECT · COMPLETE' },
   year: 2025,

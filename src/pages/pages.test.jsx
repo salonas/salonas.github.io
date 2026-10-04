@@ -91,3 +91,9 @@ it('always offers the filter reset, centred when the row is full', async () => {
   await userEvent.click(within(main()).getByRole('button', { name: 'IOT' }))
   expect(within(main()).getByRole('button', { name: es['filter-reset'] })).not.toHaveClass('alone')
 })
+
+it('tags a project with every type it belongs to', () => {
+  renderAt('/projects')
+  const card = within(main()).getByRole('link', { name: /Plantochi/ })
+  expect([...card.querySelectorAll('.tag')].map((x) => x.textContent)).toEqual(['IOT', 'WEB'])
+})

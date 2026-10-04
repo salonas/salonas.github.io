@@ -28,6 +28,11 @@ export function Tags({ project }) {
   return (
     <div className="tags">
       <span className="tag">{L(project.type)}</span>
+      {project.alsoIn?.map((type) => (
+        <span key={type.es} className="tag">
+          {L(type)}
+        </span>
+      ))}
       <span className="state">{L(project.state)}</span>
     </div>
   )
