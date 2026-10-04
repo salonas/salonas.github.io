@@ -37,3 +37,12 @@ it('uses the cat drawing as the site icon, with every icon file in place', () =>
   }
   expect(existsSync('public/favicon.svg')).toBe(false)
 })
+
+it('draws every face symbol with the bundled pixel font', () => {
+  const css = readFileSync('src/styles/site.css', 'utf8')
+  const [, file, range] = css.match(/font-family:'Unifont';src:url\(\/fonts\/([^)]+)\)[^}]*unicode-range:([^;}]+)/) ?? []
+  expect(existsSync('public/fonts/' + file)).toBe(true)
+  const covered = range.split(',').map((u) => parseInt(u.replace('U+', ''), 16))
+  for (const symbol of '≽≼⩊ω˵◕╰￣˶˃ᆺ˂٩ˊᗜˋو') expect(covered).toContain(symbol.codePointAt(0))
+  expect(readFileSync('src/styles/tokens.css', 'utf8')).toMatch(/--display:'MGPixel','Unifont'/)
+})

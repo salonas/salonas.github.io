@@ -1,4 +1,5 @@
 @font-face{font-family:'MGPixel';src:url(/fonts/MGPixel.otf) format('opentype');font-display:swap}
+@font-face{font-family:'Unifont';src:url(/fonts/Unifont-faces.otf) format('opentype');font-display:swap;size-adjust:125%;unicode-range:U+227D,U+227C,U+2A4A,U+03C9,U+02F5,U+25D5,U+2570,U+FFE3,U+02F6,U+02C3,U+11BA,U+02C2,U+0669,U+02CA,U+15DC,U+02CB,U+0648}
 @font-face{font-family:'Notepen';src:url(/fonts/Notepen.ttf) format('truetype');font-display:swap}
 *{box-sizing:border-box}
 [hidden]{display:none!important}

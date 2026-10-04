@@ -47,6 +47,6 @@ Cada push a `master` corre las pruebas, construye el sitio y lo publica en GitHu
 
 ## Créditos
 
-- Fuentes: MGPixel y Notepen.
+- Fuentes: MGPixel y Notepen. Los símbolos de las caritas usan [GNU Unifont](https://unifoundry.com/unifont/), licencia SIL Open Font License 1.1.
 - Íconos de contacto: [Simple Icons](https://simpleicons.org/), licencia CC0.
 - Cursores: dibujados para este sitio.
