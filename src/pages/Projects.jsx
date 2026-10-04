@@ -40,9 +40,9 @@ export default function Projects() {
           {type && shown.length % 2 === 1 && <div className="card" aria-hidden="true" />}
           {!type && shown.length % 2 === 1 && (
             <Paper tilt={tiltOf(shown.length)} className="card soon">
-              <svg className="fold" viewBox="0 0 16 16" shapeRendering="crispEdges" aria-hidden="true">
-                <path className="flap" d="M0 0h2v2h2v2h2v2h2v2h2v2h2v2h2v2h2v2H0z" />
-                <path d="M0 0h1v16H0zM0 15h16v1H0zM0 0h2v2h-1v-1h-1zM2 2h2v2h-1v-1h-1zM4 4h2v2h-1v-1h-1zM6 6h2v2h-1v-1h-1zM8 8h2v2h-1v-1h-1zM10 10h2v2h-1v-1h-1zM12 12h2v2h-1v-1h-1zM14 14h2v2h-1v-1h-1z" />
+              <svg className="fold" viewBox="0 0 10 10" shapeRendering="crispEdges" aria-hidden="true">
+                <path className="flap" d="M0 0h2v2h2v2h2v2h2v2h2v2H0z" />
+                <path d="M0 0h1v10H0zM0 9h10v1H0zM0 0h2v2h-1v-1h-1zM2 2h2v2h-1v-1h-1zM4 4h2v2h-1v-1h-1zM6 6h2v2h-1v-1h-1zM8 8h2v2h-1v-1h-1z" />
               </svg>
               <span aria-hidden="true">{SOON_FACE}</span>
               <p>{t('proj-soon')}</p>

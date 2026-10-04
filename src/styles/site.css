@@ -88,9 +88,9 @@ a.paper{text-decoration:none}
 .ph.cover{flex:1 1 400px;border-width:4px}
 .card{flex:1 1 340px}
 .soon{align-items:center;justify-content:center;text-align:center;min-height:14rem;background:color-mix(in srgb,var(--tan) 40%,var(--paper));font-size:var(--t2);line-height:1.3}
-.soon{clip-path:polygon(-12px -20px,calc(100% - 48px) -20px,calc(100% - 48px) 0,calc(100% - 42px) 0,calc(100% - 42px) 6px,calc(100% - 36px) 6px,calc(100% - 36px) 12px,calc(100% - 30px) 12px,calc(100% - 30px) 18px,calc(100% - 24px) 18px,calc(100% - 24px) 24px,calc(100% - 18px) 24px,calc(100% - 18px) 30px,calc(100% - 12px) 30px,calc(100% - 12px) 36px,calc(100% - 6px) 36px,calc(100% - 6px) 42px,100% 42px,100% 48px,calc(100% + 12px) 48px,calc(100% + 12px) calc(100% + 12px),-12px calc(100% + 12px))}
-.fold{position:absolute;top:-3px;right:-3px;width:48px;height:48px;fill:var(--ink)}
-.fold .flap{fill:var(--tan)}
+.soon{clip-path:polygon(-12px -20px,calc(100% - 30px) -20px,calc(100% - 30px) 0,calc(100% - 24px) 0,calc(100% - 24px) 6px,calc(100% - 18px) 6px,calc(100% - 18px) 12px,calc(100% - 12px) 12px,calc(100% - 12px) 18px,calc(100% - 6px) 18px,calc(100% - 6px) 24px,100% 24px,100% 30px,calc(100% + 12px) 30px,calc(100% + 12px) calc(100% + 12px),-12px calc(100% + 12px))}
+.fold{position:absolute;top:-3px;right:-3px;width:30px;height:30px;fill:var(--ink)}
+.fold .flap{fill:var(--wall)}
 .soon span{font-size:var(--t1);white-space:nowrap}
 .filters{display:flex;flex-wrap:wrap;gap:.6rem}
 .filters .btn{padding:.3em 1em;font-size:var(--small)}
