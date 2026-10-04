@@ -10,7 +10,7 @@ export default {
   "nav-contact": "Contact",
   "lang-btn": "Español",
   "music-on": "Turn on tha radio?",
-  "music-off": "Nah, Fuck it turn it off!",
+  "music-off": "Nah, F##k it turn it off!",
   "hero-title": "Hi! I'm Salonas",
   "hero-lead": "I build software from Concepción, Chile. The art and music in my projects are mine too.",
   "cta-projects": "See projects",

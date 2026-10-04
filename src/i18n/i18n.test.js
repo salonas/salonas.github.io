@@ -16,5 +16,5 @@ it('has the same keys in both languages', () => {
 
 it('keeps the original music strings', () => {
   expect(es['music-on']).toBe('¿Música de fondo? Eww')
-  expect(en['music-off']).toBe('Nah, Fuck it turn it off!')
+  expect(en['music-off']).toBe('Nah, F##k it turn it off!')
 })
