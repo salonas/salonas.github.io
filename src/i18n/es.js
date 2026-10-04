@@ -54,6 +54,7 @@ export default {
   "proj-soon": "Pronto más proyectos",
   "filter-label": "Filtrar por tipo",
   "filter-all": "TODOS",
+  "filter-reset": "¿Muy pocos? Reinicia los filtros",
   "fs": "Pantalla completa",
   "shot": "CAPTURA PENDIENTE",
   "m-music-title": "Música",

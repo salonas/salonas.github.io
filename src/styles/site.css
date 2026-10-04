@@ -92,6 +92,7 @@ a.paper{text-decoration:none}
 .soon{clip-path:polygon(-12px -20px,calc(100% - 30px) -20px,calc(100% - 30px) 0,calc(100% - 24px) 0,calc(100% - 24px) 6px,calc(100% - 18px) 6px,calc(100% - 18px) 12px,calc(100% - 12px) 12px,calc(100% - 12px) 18px,calc(100% - 6px) 18px,calc(100% - 6px) 24px,100% 24px,100% 30px,calc(100% + 12px) 30px,calc(100% + 12px) calc(100% + 12px),-12px calc(100% + 12px))}
 .fold{position:absolute;top:-3px;right:-3px;width:30px;height:30px;fill:var(--ink)}
 .fold .flap{fill:var(--wall)}
+button.soon{font-family:inherit;color:inherit}
 .soon span{font-size:var(--t1);white-space:nowrap}
 .filters{display:flex;flex-wrap:wrap;gap:.6rem}
 .filters .btn{padding:.3em 1em;font-size:var(--small)}
@@ -112,7 +113,7 @@ video.cover{background:var(--ink)}
 /* tools */
 .tool{display:flex;flex-direction:column}
 .tool a{font-size:var(--small);align-self:flex-start}
-.paper img.doodle{align-self:center;width:min(100%,220px);aspect-ratio:auto;object-fit:contain;border:0;mix-blend-mode:multiply}
+.paper img.doodle{align-self:center;width:min(100%,180px);aspect-ratio:8/7;object-fit:cover;object-position:top;border:0;mix-blend-mode:multiply}
 .paper h3.rule{border-bottom:3px solid var(--ink);padding-bottom:.3rem}
 
 /* project page */

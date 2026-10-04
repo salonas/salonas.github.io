@@ -6,6 +6,13 @@ import { projects } from '../projects'
 
 const types = projects.map((p) => p.type).filter((type, i, all) => all.findIndex((x) => x.es === type.es) === i)
 const SOON_FACE = '≽(•⩊ •)≼'
+const RESET_FACE = '(˶˃ᆺ˂˶)'
+const FOLD = (
+  <svg className="fold" viewBox="0 0 10 10" shapeRendering="crispEdges" aria-hidden="true">
+    <path className="flap" d="M0 0h2v2h2v2h2v2h2v2h2v2H0z" />
+    <path d="M0 0h1v10H0zM0 9h10v1H0zM0 0h2v2h-1v-1h-1zM2 2h2v2h-1v-1h-1zM4 4h2v2h-1v-1h-1zM6 6h2v2h-1v-1h-1zM8 8h2v2h-1v-1h-1z" />
+  </svg>
+)
 const tiltOf = (i) => (i % 2 ? 'r' : 'l')
 
 export default function Projects() {
@@ -37,13 +44,16 @@ export default function Projects() {
           {shown.map((p, i) => (
             <ProjectCard key={p.slug} project={p} tilt={tiltOf(i)} />
           ))}
-          {type && shown.length % 2 === 1 && <div className="card" aria-hidden="true" />}
+          {type && shown.length % 2 === 1 && (
+            <Paper as="button" type="button" tilt={tiltOf(shown.length)} className="card soon" onClick={() => setType(null)}>
+              {FOLD}
+              <span aria-hidden="true">{RESET_FACE}</span>
+              <p>{t('filter-reset')}</p>
+            </Paper>
+          )}
           {!type && shown.length % 2 === 1 && (
             <Paper tilt={tiltOf(shown.length)} className="card soon">
-              <svg className="fold" viewBox="0 0 10 10" shapeRendering="crispEdges" aria-hidden="true">
-                <path className="flap" d="M0 0h2v2h2v2h2v2h2v2h2v2H0z" />
-                <path d="M0 0h1v10H0zM0 9h10v1H0zM0 0h2v2h-1v-1h-1zM2 2h2v2h-1v-1h-1zM4 4h2v2h-1v-1h-1zM6 6h2v2h-1v-1h-1zM8 8h2v2h-1v-1h-1z" />
-              </svg>
+              {FOLD}
               <span aria-hidden="true">{SOON_FACE}</span>
               <p>{t('proj-soon')}</p>
             </Paper>
