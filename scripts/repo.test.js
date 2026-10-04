@@ -43,6 +43,6 @@ it('draws every face symbol with the bundled pixel font', () => {
   const faces = [...css.matchAll(/font-family:'Unifont';src:url\(\/fonts\/([^)]+)\)[^}]*unicode-range:([^;}]+)/g)]
   for (const [, file] of faces) expect(existsSync('public/fonts/' + file)).toBe(true)
   const covered = faces.flatMap(([, , range]) => range.split(',').map((u) => parseInt(u.replace('U+', ''), 16)))
-  for (const symbol of '≽≼⩊ω˵◕╰￣˶˃ᆺ˂٩ˊᗜˋو') expect(covered).toContain(symbol.codePointAt(0))
+  for (const symbol of '≽≼⩊ω˵◕╰￣˶˃ᆺ˂٩ˊᗜˋو・') expect(covered).toContain(symbol.codePointAt(0))
   expect(readFileSync('src/styles/tokens.css', 'utf8')).toMatch(/--display:'MGPixel','Unifont'/)
 })

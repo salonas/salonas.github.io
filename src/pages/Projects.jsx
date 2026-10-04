@@ -6,7 +6,7 @@ import { projects } from '../projects'
 
 const types = projects.map((p) => p.type).filter((type, i, all) => all.findIndex((x) => x.es === type.es) === i)
 const SOON_FACE = '≽(•⩊ •)≼'
-const RESET_FACE = '(O_•)?'
+const RESET_FACE = '(・_・?)'
 const FOLD = (
   <svg className="fold" viewBox="0 0 10 10" shapeRendering="crispEdges" aria-hidden="true">
     <path className="flap" d="M0 0h2v2h2v2h2v2h2v2h2v2H0z" />
