@@ -75,6 +75,8 @@ export default {
   "proj-missing": "That project does not exist.",
   "f-error": "The message could not be sent. Please try again later.",
   "f-sending": "Sending...",
+  "f-required": "(!) This field is still empty",
+  "f-bad-mail": "(!) That email does not look valid",
   "nf-title": "This page does not exist.",
   "nf-back": "Back to home",
   "discord-open": "Open profile",

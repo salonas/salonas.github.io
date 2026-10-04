@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import Icon from '../components/Icon'
 import Modal from '../components/Modal'
@@ -33,15 +33,41 @@ function CopyButton({ text }) {
   )
 }
 
+const FIELDS = [
+  { id: 'f-name', name: 'name', label: 'f-name', type: 'text', autoComplete: 'name' },
+  { id: 'f-mail', name: 'email', label: 'f-mail', type: 'email', autoComplete: 'email' },
+  { id: 'f-msg', name: 'message', label: 'f-msg', rows: 5 },
+]
+
 function ContactForm() {
   const { t } = useLanguage()
   const [fields, setFields] = useState(EMPTY)
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
-  const change = (e) => setFields((f) => ({ ...f, [e.target.name]: e.target.value }))
+  const [problems, setProblems] = useState({})
+
+  const change = (e) => {
+    const { name, value } = e.target
+    setFields((f) => ({ ...f, [name]: value }))
+    setProblems((p) => ({ ...p, [name]: undefined }))
+  }
+
+  const check = () => {
+    const found = {}
+    for (const name of Object.keys(EMPTY)) if (!fields[name].trim()) found[name] = 'f-required'
+    if (!found.email && !/^\S+@\S+\.\S+$/.test(fields.email.trim())) found.email = 'f-bad-mail'
+    return found
+  }
 
   const submit = async (e) => {
     e.preventDefault()
+    const found = check()
+    setProblems(found)
+    const first = Object.keys(EMPTY).find((name) => found[name])
+    if (first) {
+      e.currentTarget.elements[first].focus()
+      return
+    }
     const { VITE_EMAILJS_PUBLIC_KEY: key, VITE_EMAILJS_SERVICE_ID: service, VITE_EMAILJS_TEMPLATE_ID: template } = import.meta.env
     if (!key || !service || !template) {
       setStatus('error')
@@ -62,14 +88,32 @@ function ContactForm() {
   }
 
   return (
-    <Paper as="form" style={{ flex: '1 1 340px' }} onSubmit={submit}>
-      <h3>{t('form-title')}</h3>
-      <label htmlFor="f-name">{t('f-name')}</label>
-      <input id="f-name" name="name" type="text" autoComplete="name" required value={fields.name} onChange={change} />
-      <label htmlFor="f-mail">{t('f-mail')}</label>
-      <input id="f-mail" name="email" type="email" autoComplete="email" required value={fields.email} onChange={change} />
-      <label htmlFor="f-msg">{t('f-msg')}</label>
-      <textarea id="f-msg" name="message" rows="5" required value={fields.message} onChange={change} />
+    <Paper as="form" style={{ flex: '1 1 340px' }} noValidate aria-labelledby="form-title" onSubmit={submit}>
+      <h3 id="form-title">{t('form-title')}</h3>
+      {FIELDS.map(({ id, name, label, ...input }) => {
+        const Tag = name === 'message' ? 'textarea' : 'input'
+        const problem = problems[name]
+        return (
+          <Fragment key={name}>
+            <label htmlFor={id}>{t(label)}</label>
+            <Tag
+              id={id}
+              name={name}
+              required
+              aria-invalid={problem ? 'true' : undefined}
+              aria-describedby={problem ? `${id}-problem` : undefined}
+              value={fields[name]}
+              onChange={change}
+              {...input}
+            />
+            {problem && (
+              <p className="field-problem" id={`${id}-problem`}>
+                {t(problem)}
+              </p>
+            )}
+          </Fragment>
+        )
+      })}
       <button type="submit" className="btn dark" style={{ alignSelf: 'flex-start' }} disabled={status === 'sending'}>
         {t(status === 'sending' ? 'f-sending' : 'f-send')}
       </button>

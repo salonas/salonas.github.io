@@ -235,6 +235,8 @@ form.paper input:focus,form.paper textarea:focus{background:var(--paper);outline
 @container (max-width:620px){
   .paper h4{font-size:var(--t3)}
 }
+.field-problem{margin:-.7rem 0 0;padding:.3em .7em;background:var(--tan);border:3px solid var(--ink);border-top:0;font-size:var(--small)}
+form.paper [aria-invalid]{border-style:dashed}
 .form-error{color:var(--ink);background:var(--card);border:3px dashed var(--ink);padding:.5em .8em;font-size:var(--small)}
 .contact .who a{font-size:var(--small)}
 .contact{flex-wrap:wrap}
