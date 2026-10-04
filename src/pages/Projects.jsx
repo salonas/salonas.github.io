@@ -18,7 +18,7 @@ const tiltOf = (i) => (i % 2 ? 'r' : 'l')
 export default function Projects() {
   const { t, L } = useLanguage()
   const [type, setType] = useState(null)
-  const shown = type ? projects.filter((p) => p.type.es === type || p.alsoIn?.includes(type)) : projects
+  const shown = type ? projects.filter((p) => p.type.es === type || p.alsoIn?.some((x) => x.es === type)) : projects
   return (
     <section className="page">
       <div className="stack">
