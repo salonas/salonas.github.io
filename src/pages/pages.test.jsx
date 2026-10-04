@@ -1,4 +1,5 @@
 import { screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import es from '../i18n/es'
 import { projects } from '../projects'
 import { renderAt } from '../test/render'
@@ -54,4 +55,23 @@ it.each(['/', '/toolbox', '/projects'])('%s does not mention school or a CV', (p
 it('gives every status label the same look', () => {
   renderAt('/projects')
   for (const p of projects) expect(within(main()).getByText(p.state.es).className).toBe('state')
+})
+
+it('filters the projects by type', async () => {
+  renderAt('/projects')
+  await userEvent.click(within(main()).getByRole('button', { name: 'JUEGO' }))
+  expect(projectLinks()).toEqual(['/projects/agami', '/projects/sailing'])
+  expect(within(main()).getByRole('button', { name: 'JUEGO' })).toHaveAttribute('aria-pressed', 'true')
+  await userEvent.click(within(main()).getByRole('button', { name: es['filter-all'] }))
+  expect(projectLinks()).toEqual(projects.map((p) => '/projects/' + p.slug))
+})
+
+it('fills the empty spot with a note when the count is odd', async () => {
+  renderAt('/projects')
+  const odd = projects.length % 2 === 1
+  expect(within(main()).queryAllByText(es['proj-soon'])).toHaveLength(odd ? 1 : 0)
+  await userEvent.click(within(main()).getByRole('button', { name: 'JUEGO' }))
+  expect(within(main()).queryByText(es['proj-soon'])).not.toBeInTheDocument()
+  await userEvent.click(within(main()).getByRole('button', { name: 'WEB' }))
+  expect(within(main()).getByText(es['proj-soon'])).toBeInTheDocument()
 })

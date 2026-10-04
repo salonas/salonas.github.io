@@ -10,7 +10,7 @@ export default {
     es: 'Pantalla de Plantochi con la planta feliz y sus lecturas',
     en: 'Plantochi screen with the happy plant and its readings'
   },
-  roles: { es: 'Desarrollo en dupla', en: 'Two-person development' },
+  roles: { es: 'Diseño del sistema IoT · Pixel art', en: 'IoT system design · Pixel art' },
   tools: 'ESP8266 · MQTT · Node-RED · React',
   repo: 'https://github.com/salonas/Plantochi',
   summary: {
@@ -24,22 +24,15 @@ export default {
       items: [
         { src: 'happy.png', alt: { es: 'Planta feliz, con el suelo húmedo', en: 'Happy plant, with moist soil' } },
         { src: 'thirsty.png', alt: { es: 'Planta sedienta, con el suelo muy seco', en: 'Thirsty plant, with very dry soil' } },
-        { src: 'drowning.png', alt: { es: 'Planta ahogada, con el suelo encharcado', en: 'Drowned plant, with waterlogged soil' } },
-        {
-          src: 'empty.png',
-          alt: {
-            es: 'Alerta de tanque vacío, con el botón de riego bloqueado',
-            en: 'Empty tank alert, with the watering button locked'
-          }
-        }
+        { src: 'drowning.png', alt: { es: 'Planta ahogada, con el suelo encharcado', en: 'Drowned plant, with waterlogged soil' } }
       ]
     },
     {
       kind: 'text',
       title: { es: 'Sobre el proyecto', en: 'About the project' },
       body: {
-        es: 'Es mi primer proyecto de IoT. Lo hicimos con [[Venjy|https://github.com/Venjyy]] para el curso de Internet de las Cosas. No soy experto en electrónica, pero lo más entretenido fueron los visuales: una planta con cara y ánimo. El servidor del curso ya no está en línea, así que las capturas usan datos de ejemplo.',
-        en: 'It is my first IoT project. I built it with [[Venjy|https://github.com/Venjyy]] for the Internet of Things course. I am no electronics expert, but the most fun part was the visuals: a plant with a face and a mood. The course server is no longer online, so the screens use sample data.'
+        es: 'Es mi primer proyecto de IoT, hecho en equipo para el curso de Internet de las Cosas. Yo me encargué del diseño del sistema y de los dibujos de la web. [[Venjyy|https://github.com/Venjyy]] se encargó de los sensores, su recepción y lectura. El servidor ya no está en línea, así que las capturas usan datos de ejemplo.',
+        en: 'It is my first IoT project, built as a team for the Internet of Things course. I handled the system design and the drawings for the web app. [[Venjyy|https://github.com/Venjyy]] handled the sensors, receiving and reading them. The server is no longer online, so the screens use sample data.'
       }
     },
     {
@@ -62,10 +55,10 @@ export default {
           }
         },
         {
-          name: { es: 'Riego doble', en: 'Two ways to water' },
+          name: { es: 'Riego a distancia', en: 'Remote watering' },
           text: {
-            es: 'Automático cuando el suelo se seca y manual desde la web.',
-            en: 'Automatic when the soil dries out and manual from the web.'
+            es: 'Desde la web o con un botón físico en el circuito.',
+            en: 'From the web or with a physical button on the circuit.'
           }
         },
         {
@@ -79,8 +72,28 @@ export default {
     },
     {
       kind: 'shots',
+      title: { es: 'Sprites', en: 'Sprites' },
+      items: [
+        {
+          src: 'sprites.png',
+          alt: {
+            es: 'Los cuatro dibujos de la planta: feliz, sedienta, ahogada y crítica',
+            en: 'The four drawings of the plant: happy, thirsty, drowned and critical'
+          }
+        }
+      ]
+    },
+    {
+      kind: 'shots',
       title: { es: 'Circuito', en: 'Circuit' },
       items: [
+        {
+          src: 'prototype.jpg',
+          alt: {
+            es: 'El prototipo armado: protoboard, sensores, relay, bomba y manguera',
+            en: 'The assembled prototype: breadboard, sensors, relay, pump and hose'
+          }
+        },
         {
           src: 'circuit.jpg',
           alt: {
