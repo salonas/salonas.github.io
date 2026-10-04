@@ -10,6 +10,7 @@ export const toolbox = [
       { name: 'Java + Android', to: 'guide' },
       { name: 'Firebase', to: 'guide' },
       { name: 'Gemini API', to: 'guide' },
+      { name: 'ESP8266 + MQTT', to: 'plantochi' },
       { name: 'Python' },
     ],
   },

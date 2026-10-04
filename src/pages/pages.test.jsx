@@ -1,4 +1,5 @@
 import { screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import es from '../i18n/es'
 import { projects } from '../projects'
 import { renderAt } from '../test/render'
@@ -54,4 +55,39 @@ it.each(['/', '/toolbox', '/projects'])('%s does not mention school or a CV', (p
 it('gives every status label the same look', () => {
   renderAt('/projects')
   for (const p of projects) expect(within(main()).getByText(p.state.es).className).toBe('state')
+})
+
+it('filters the projects by type', async () => {
+  renderAt('/projects')
+  await userEvent.click(within(main()).getByRole('button', { name: 'JUEGO' }))
+  expect(projectLinks()).toEqual(['/projects/agami', '/projects/sailing'])
+  expect(within(main()).getByRole('button', { name: 'JUEGO' })).toHaveAttribute('aria-pressed', 'true')
+  await userEvent.click(within(main()).getByRole('button', { name: es['filter-all'] }))
+  expect(projectLinks()).toEqual(projects.map((p) => '/projects/' + p.slug))
+})
+
+it('lists a project under every type it belongs to', async () => {
+  renderAt('/projects')
+  await userEvent.click(within(main()).getByRole('button', { name: 'WEB' }))
+  expect(projectLinks()).toEqual(['/projects/orquesta', '/projects/plantochi'])
+})
+
+it('fills the empty spot with a note only when every project is shown', async () => {
+  renderAt('/projects')
+  const odd = projects.length % 2 === 1
+  expect(within(main()).queryAllByText(es['proj-soon'])).toHaveLength(odd ? 1 : 0)
+  await userEvent.click(within(main()).getByRole('button', { name: 'IOT' }))
+  expect(projectLinks()).toHaveLength(1)
+  expect(main().querySelectorAll('.row > .card')).toHaveLength(2)
+  expect(within(main()).queryByText(es['proj-soon'])).not.toBeInTheDocument()
+  await userEvent.click(within(main()).getByRole('button', { name: es['filter-reset'] }))
+  expect(projectLinks()).toEqual(projects.map((p) => '/projects/' + p.slug))
+})
+
+it('always offers the filter reset, centred when the row is full', async () => {
+  renderAt('/projects')
+  await userEvent.click(within(main()).getByRole('button', { name: 'JUEGO' }))
+  expect(within(main()).getByRole('button', { name: es['filter-reset'] })).toHaveClass('alone')
+  await userEvent.click(within(main()).getByRole('button', { name: 'IOT' }))
+  expect(within(main()).getByRole('button', { name: es['filter-reset'] })).not.toHaveClass('alone')
 })

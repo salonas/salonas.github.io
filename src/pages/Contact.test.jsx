@@ -113,3 +113,30 @@ it('copies the email address', async () => {
   expect(await navigator.clipboard.readText()).toBe('jsalonas2003@gmail.com')
   expect(within(main()).getByRole('button', { name: es['copied'] })).toBeInTheDocument()
 })
+
+it('points out the empty fields in its own words instead of sending', async () => {
+  await openContact()
+  await userEvent.click(screen.getByRole('button', { name: es['f-send'] }))
+  expect(within(main()).getAllByText(es['f-required'])).toHaveLength(3)
+  expect(screen.getByLabelText(es['f-name'])).toHaveAttribute('aria-invalid', 'true')
+  expect(screen.getByLabelText(es['f-name'])).toHaveFocus()
+  expect(screen.getByRole('form', { name: es['form-title'] })).toHaveAttribute('novalidate')
+  expect(emailjs.send).not.toHaveBeenCalled()
+})
+
+it('asks for a valid email address', async () => {
+  await openContact()
+  await userEvent.type(screen.getByLabelText(es['f-name']), 'Ana')
+  await userEvent.type(screen.getByLabelText(es['f-mail']), 'ana@')
+  await userEvent.type(screen.getByLabelText(es['f-msg']), 'Hola')
+  await userEvent.click(screen.getByRole('button', { name: es['f-send'] }))
+  expect(within(main()).getByText(es['f-bad-mail'])).toBeInTheDocument()
+  expect(emailjs.send).not.toHaveBeenCalled()
+})
+
+it('drops a field warning once the visitor types in it', async () => {
+  await openContact()
+  await userEvent.click(screen.getByRole('button', { name: es['f-send'] }))
+  await userEvent.type(screen.getByLabelText(es['f-name']), 'A')
+  expect(within(main()).getAllByText(es['f-required'])).toHaveLength(2)
+})
