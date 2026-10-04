@@ -66,12 +66,17 @@ it('filters the projects by type', async () => {
   expect(projectLinks()).toEqual(projects.map((p) => '/projects/' + p.slug))
 })
 
-it('fills the empty spot with a note when the count is odd', async () => {
+it('lists a project under every type it belongs to', async () => {
+  renderAt('/projects')
+  await userEvent.click(within(main()).getByRole('button', { name: 'WEB' }))
+  expect(projectLinks()).toEqual(['/projects/orquesta', '/projects/plantochi'])
+})
+
+it('fills the empty spot with a note only when every project is shown', async () => {
   renderAt('/projects')
   const odd = projects.length % 2 === 1
   expect(within(main()).queryAllByText(es['proj-soon'])).toHaveLength(odd ? 1 : 0)
-  await userEvent.click(within(main()).getByRole('button', { name: 'JUEGO' }))
+  await userEvent.click(within(main()).getByRole('button', { name: 'IOT' }))
+  expect(projectLinks()).toHaveLength(1)
   expect(within(main()).queryByText(es['proj-soon'])).not.toBeInTheDocument()
-  await userEvent.click(within(main()).getByRole('button', { name: 'WEB' }))
-  expect(within(main()).getByText(es['proj-soon'])).toBeInTheDocument()
 })
