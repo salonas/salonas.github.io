@@ -86,7 +86,7 @@ export default {
     },
     {
       kind: 'shots',
-      title: { es: 'Circuito', en: 'Circuit' },
+      title: { es: 'Prototipo y diagrama preliminar', en: 'Prototype and preliminary diagram' },
       items: [
         {
           src: 'prototype.jpg',
@@ -98,8 +98,8 @@ export default {
         {
           src: 'circuit.jpg',
           alt: {
-            es: 'Diagrama del circuito: NodeMCU, sensores, relay, bomba y baterías',
-            en: 'Circuit diagram: NodeMCU, sensors, relay, pump and batteries'
+            es: 'Diagrama preliminar del circuito: NodeMCU, sensores, relay, bomba y baterías',
+            en: 'Preliminary circuit diagram: NodeMCU, sensors, relay, pump and batteries'
           }
         }
       ]

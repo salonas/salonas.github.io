@@ -37,6 +37,7 @@ export default function Projects() {
           {shown.map((p, i) => (
             <ProjectCard key={p.slug} project={p} tilt={tiltOf(i)} />
           ))}
+          {type && shown.length % 2 === 1 && <div className="card" aria-hidden="true" />}
           {!type && shown.length % 2 === 1 && (
             <Paper tilt={tiltOf(shown.length)} className="card soon">
               <span aria-hidden="true">{SOON_FACE}</span>
