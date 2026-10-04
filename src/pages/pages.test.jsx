@@ -83,3 +83,11 @@ it('fills the empty spot with a note only when every project is shown', async ()
   await userEvent.click(within(main()).getByRole('button', { name: es['filter-reset'] }))
   expect(projectLinks()).toEqual(projects.map((p) => '/projects/' + p.slug))
 })
+
+it('always offers the filter reset, centred when the row is full', async () => {
+  renderAt('/projects')
+  await userEvent.click(within(main()).getByRole('button', { name: 'JUEGO' }))
+  expect(within(main()).getByRole('button', { name: es['filter-reset'] })).toHaveClass('alone')
+  await userEvent.click(within(main()).getByRole('button', { name: 'IOT' }))
+  expect(within(main()).getByRole('button', { name: es['filter-reset'] })).not.toHaveClass('alone')
+})

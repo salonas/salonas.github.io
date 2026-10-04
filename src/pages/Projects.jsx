@@ -44,8 +44,14 @@ export default function Projects() {
           {shown.map((p, i) => (
             <ProjectCard key={p.slug} project={p} tilt={tiltOf(i)} />
           ))}
-          {type && shown.length % 2 === 1 && (
-            <Paper as="button" type="button" tilt={tiltOf(shown.length)} className="card soon" onClick={() => setType(null)}>
+          {type && (
+            <Paper
+              as="button"
+              type="button"
+              tilt={tiltOf(shown.length)}
+              className={`card soon ${shown.length % 2 ? '' : 'alone'}`}
+              onClick={() => setType(null)}
+            >
               {FOLD}
               <span aria-hidden="true">{RESET_FACE}</span>
               <p>{t('filter-reset')}</p>
