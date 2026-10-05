@@ -74,12 +74,12 @@ it('stops the game when the visitor leaves the page', async () => {
 })
 
 it('closes the demo when the game quits from its own Exit button', async () => {
-  const instance = { Module: {}, Quit: vi.fn(() => Promise.resolve()) }
+  const instance = { Quit: vi.fn(() => Promise.resolve()) }
   startGame.mockResolvedValue(instance)
   await openAgami()
   await userEvent.click(within(main()).getByRole('button', { name: new RegExp(es['demo-play']) }))
   await within(main()).findByRole('button', { name: es['demo-close'] })
-  instance.Module.onQuit()
+  instance.onClosed()
   expect(await within(main()).findByRole('button', { name: new RegExp(es['demo-play']) })).toBeInTheDocument()
   expect(instance.Quit).not.toHaveBeenCalled()
 })

@@ -85,8 +85,8 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
       const instance = await startGame(build, canvasRef.current, (p) => alive.current && setProgress(p), volume / 100)
       game.current = instance
       if (!alive.current) return stop()
-      // The game's own Exit button shuts the player down and reports it here.
-      if (instance.Module) instance.Module.onQuit = () => game.current === instance && closed()
+      // The game's own Exit button shuts the player down, and the page follows.
+      instance.onClosed = () => game.current === instance && closed()
       setStatus('running')
     } catch {
       if (!alive.current) return

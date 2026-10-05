@@ -72,6 +72,35 @@ function quietAudio(volume) {
   }
 }
 
+const STALLED_AFTER = 90
+
+// Once the game quits by itself it stops asking for frames while the page keeps drawing.
+// Counting page frames instead of seconds keeps a slow or hidden tab from looking like a quit.
+function watchFrames(onStall) {
+  const real = window.requestAnimationFrame
+  let missed = 0
+  let watching = true
+  window.requestAnimationFrame = (callback) => {
+    if (callback?.name === 'Browser_mainLoop_runner') missed = 0
+    return real.call(window, callback)
+  }
+  const stop = () => {
+    watching = false
+    window.requestAnimationFrame = real
+  }
+  const beat = () => {
+    if (!watching) return
+    if (++missed > STALLED_AFTER) {
+      stop()
+      onStall()
+      return
+    }
+    real.call(window, beat)
+  }
+  real.call(window, beat)
+  return stop
+}
+
 export async function startGame(build, canvas, onProgress, volume = 1) {
   const base = `/games/${build}/${build}`
   const responses = await Promise.all(
@@ -108,6 +137,21 @@ export async function startGame(build, canvas, onProgress, volume = 1) {
       (progress) => onProgress(DOWNLOAD_SHARE + progress * (1 - DOWNLOAD_SHARE)),
     )
     instance.setVolume = audio.setVolume
+    let open = true
+    const closed = () => {
+      if (!open) return
+      open = false
+      unwatch()
+      instance.onClosed?.()
+    }
+    const unwatch = watchFrames(closed)
+    instance.Module.onQuit = closed
+    const quit = instance.Quit.bind(instance)
+    instance.Quit = () => {
+      open = false
+      unwatch()
+      return quit()
+    }
     return instance
   } finally {
     audio.restore()
