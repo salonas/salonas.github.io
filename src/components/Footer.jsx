@@ -19,7 +19,7 @@ export default function Footer() {
           </svg>
           <span className="bubble">
             <b>{BUBBLE[0]}</b>
-            {BUBBLE[1]}
+            <small>{BUBBLE[1]}</small>
           </span>
         </div>
         <h2>{t('foot-title')}</h2>
