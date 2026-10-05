@@ -30,7 +30,7 @@ it('uses its own cursors, none taken from a game', () => {
 it('uses the cat drawing as the site icon, with every icon file in place', () => {
   const html = readFileSync('index.html', 'utf8')
   const manifest = JSON.parse(readFileSync('public/site.webmanifest', 'utf8'))
-  const icons = [...html.matchAll(/href="\/([^"]+\.(?:png|ico|svg))"/g)].map((m) => m[1])
+  const icons = [...html.matchAll(/rel="(?:icon|apple-touch-icon)" href="\/([^"]+\.(?:png|ico|svg))"/g)].map((m) => m[1])
   expect(icons).toEqual(['favicon.ico', 'favicon-96x96.png', 'apple-touch-icon.png'])
   for (const file of [...icons, ...manifest.icons.map((i) => i.src.slice(1))]) {
     expect(existsSync('public/' + file)).toBe(true)
@@ -63,4 +63,12 @@ it('keeps the switched-off screen black, away from the paper browns', () => {
   const css = readFileSync('src/styles/site.css', 'utf8')
   const [off] = css.match(/\.gcover\.off\{[^}]+\}/)
   expect(off).not.toMatch(/--ink|--brown/)
+})
+
+it('fetches the display font early and never paints text in a stand-in font', () => {
+  const html = readFileSync('index.html', 'utf8')
+  expect(html).toMatch(/<link rel="preload" href="\/fonts\/MGPixel\.otf" as="font" type="font\/otf" crossorigin \/>/)
+  const css = readFileSync('src/styles/site.css', 'utf8')
+  const faces = css.match(/@font-face\{[^}]+\}/g)
+  for (const face of faces) expect(face).toContain('font-display:block')
 })
