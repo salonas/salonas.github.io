@@ -20,6 +20,7 @@ export default {
     en: 'Top-down action-survival. You play a cat trying to survive in a hostile urban alley.'
   },
   sections: [
+    { kind: 'game', title: { es: 'Demo jugable', en: 'Playable demo' }, build: 'agami', size: '20 MB' },
     { kind: 'video', title: { es: 'Gameplay', en: 'Gameplay' }, src: 'gameplay.mp4' },
     {
       kind: 'items',

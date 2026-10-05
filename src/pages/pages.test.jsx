@@ -104,3 +104,9 @@ it('shows type and status on the featured cards too', () => {
   expect(within(card).getByText('JUEGO')).toHaveClass('tag')
   expect(card.querySelector('.state')).toBeInTheDocument()
 })
+
+it.each(['/', '/projects'])('stamps the playable demo on its card at %s', (path) => {
+  renderAt(path)
+  expect(within(within(main()).getByRole('link', { name: /Agami/ })).getByText(es['demo-badge'])).toHaveClass('stamp')
+  expect(within(main()).getAllByText(es['demo-badge'])).toHaveLength(1)
+})

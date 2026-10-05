@@ -1,7 +1,8 @@
+import GameDemo from '../GameDemo'
 import MediaPlayer from '../MediaPlayer'
 import Paper from '../Paper'
 import { useLanguage } from '../../i18n/LanguageProvider'
-import { mediaUrl } from '../../projects'
+import { mediaUrl, sectionId } from '../../projects'
 import { outside } from '../outside'
 
 // Project texts may carry links written as [[label|url]].
@@ -25,6 +26,16 @@ export default function Section({ id, project, section, onZoom }) {
   const url = (file) => mediaUrl(project.slug, file)
 
   const body = {
+    game: () => (
+      <Paper className="media">
+        <GameDemo
+          build={section.build}
+          size={section.size}
+          label={L(section.title)}
+          videoId={sectionId(project.sections.findIndex((s) => s.kind === 'video'))}
+        />
+      </Paper>
+    ),
     video: () => (
       <Paper className="media">
         <MediaPlayer kind="video" src={url(section.src)} label={L(section.title)} />

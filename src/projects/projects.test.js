@@ -60,6 +60,7 @@ it('links every toolbox entry to a project that exists', () => {
 })
 
 const ORDER = [
+  ['Demo jugable'],
   ['Gameplay', 'Capturas'],
   ['Sobre el proyecto', 'Descripción', 'Qué faltó', 'Cómo funciona'],
   ['Mecánicas', 'Qué hace', 'Características principales', 'Comportamiento del jefe'],

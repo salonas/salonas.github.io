@@ -10,6 +10,8 @@ export function findProject(slug) {
   return projects.find((p) => p.slug === slug)
 }
 
+export const sectionId = (i) => 'section-' + i
+
 export function mediaUrl(slug, file) {
   return `/media/${slug}/${file}`
 }
