@@ -82,6 +82,19 @@ describe('on a touch screen', () => {
     expect(track().muted).toBe(true)
   })
 
+  it('goes back to the seek bar once muted, and the next tap brings the sound and its slider back', async () => {
+    await openAgamiWithMusic()
+    const bar = within(player())
+    await userEvent.click(bar.getByRole('button', { name: new RegExp('^' + es['vol']) }))
+    await userEvent.click(bar.getByRole('button', { name: new RegExp('^' + es['mute']) }))
+    expect(bar.getByRole('slider', { name: new RegExp('^' + es['seek']) })).toBeInTheDocument()
+    expect(bar.queryByRole('slider', { name: new RegExp('^' + es['vol']) })).toBeNull()
+
+    await userEvent.click(bar.getByRole('button', { name: new RegExp('^' + es['vol']) }))
+    expect(track().muted).toBe(false)
+    expect(bar.getByRole('slider', { name: new RegExp('^' + es['vol']) })).not.toHaveValue('0')
+  })
+
   it('puts the seek bar back when the visitor taps elsewhere', async () => {
     await openAgamiWithMusic()
     const bar = within(player())

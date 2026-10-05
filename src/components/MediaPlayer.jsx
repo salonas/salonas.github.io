@@ -106,8 +106,13 @@ export default function MediaPlayer({ kind, src, label }) {
   const ratio = duration ? time / duration : 0
   const silent = muted || volume === 0
 
-  // A phone has no room for both sliders: the sound button swaps the seek bar for the volume, then mutes.
+  // A phone has no room for both sliders: the sound button swaps the seek bar for the volume, then mutes and swaps back.
   const opens = touch && !mixing
+  const pressSound = () => {
+    if (!touch) return setMuted((m) => !m)
+    setMuted(mixing)
+    setMixing(!mixing)
+  }
   const volumeSlider = (
     <input
       className="vol"
@@ -152,7 +157,7 @@ export default function MediaPlayer({ kind, src, label }) {
         aria-label={`${t(opens ? 'vol' : 'mute')}: ${label}`}
         aria-pressed={silent}
         aria-expanded={touch ? mixing : undefined}
-        onClick={() => (opens ? setMixing(true) : setMuted((m) => !m))}
+        onClick={pressSound}
       >
         <PixelIcon name={silent ? 'muted' : 'sound'} />
       </button>
