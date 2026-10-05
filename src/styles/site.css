@@ -307,9 +307,12 @@ form.paper [aria-invalid]{border-style:dashed}
 }
 .sign{position:relative;transform-origin:50% -90px;animation:sway 2.8s ease-in-out infinite alternate}
 .sign:hover{animation-duration:1.4s}
-.rope{position:absolute;left:0;bottom:calc(100% - 4px);width:100%;height:94px;overflow:visible;pointer-events:none}
-.rope line{stroke:var(--ink);stroke-width:9}
-.rope .twist{stroke:var(--tan-dark);stroke-width:5;stroke-dasharray:6 3}
+.rope{position:absolute;bottom:calc(100% - 4px);pointer-events:none}
+.rope.left{left:14px}
+.rope.right{right:14px;transform:scaleX(-1)}
+.rope .edge{fill:var(--ink)}
+.rope .light{fill:var(--tan)}
+.rope .dark{fill:var(--tan-dark)}
 .plaque{position:relative;transform:none;transition:background .2s,color .2s,scale .25s}
 .plaque::before,.plaque::after{content:"";position:absolute;top:50%;width:21px;height:21px;margin-top:-10px;background:var(--stud) center/100% 100% no-repeat}
 .plaque::before{left:10px}
