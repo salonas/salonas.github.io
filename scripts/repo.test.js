@@ -67,8 +67,17 @@ it('keeps the switched-off screen black, away from the paper browns', () => {
 
 it('fetches the display font early and never paints text in a stand-in font', () => {
   const html = readFileSync('index.html', 'utf8')
-  expect(html).toMatch(/<link rel="preload" href="\/fonts\/MGPixel\.otf" as="font" type="font\/otf" crossorigin \/>/)
+  expect(html).toMatch(/<link rel="preload" href="\/fonts\/MGPixel\.woff2" as="font" type="font\/woff2" crossorigin \/>/)
   const css = readFileSync('src/styles/site.css', 'utf8')
   const faces = css.match(/@font-face\{[^}]+\}/g)
   for (const face of faces) expect(face).toContain('font-display:block')
+})
+
+it('ships the two big fonts compressed, with nothing pointing at a missing file', () => {
+  const css = readFileSync('src/styles/site.css', 'utf8')
+  const files = [...css.matchAll(/url\(\/fonts\/([^)]+)\)/g)].map((m) => m[1])
+  expect(files).toContain('MGPixel.woff2')
+  expect(files).toContain('Notepen.woff2')
+  for (const file of files) expect(existsSync('public/fonts/' + file)).toBe(true)
+  expect(readdirSync('public/fonts').sort()).toEqual([...new Set(files)].sort())
 })
