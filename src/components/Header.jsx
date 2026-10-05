@@ -14,7 +14,15 @@ export default function Header() {
 
   return (
     <header className="banner">
-      <h1 className="plaque">{t(titleKey(pathname))}</h1>
+      <div className="sign">
+        <svg className="rope" shapeRendering="crispEdges" aria-hidden="true">
+          <line x1="18" y1="100%" x2="50%" y2="0" />
+          <line className="twist" x1="18" y1="100%" x2="50%" y2="0" />
+          <line x1="100%" y1="100%" x2="50%" y2="0" transform="translate(-18 0)" />
+          <line className="twist" x1="100%" y1="100%" x2="50%" y2="0" transform="translate(-18 0)" />
+        </svg>
+        <h1 className="plaque">{t(titleKey(pathname))}</h1>
+      </div>
       <nav className="nav" aria-label={t('nav-label')}>
         <NavLink className="btn" to="/" end>
           {t('nav-home')}

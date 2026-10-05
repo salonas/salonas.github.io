@@ -32,11 +32,11 @@ html,.scroll{scrollbar-color:var(--brown) var(--card)}
 
 /* header */
 .banner{background:var(--card) url(/img/header.png) center/cover;border-bottom:4px solid var(--ink);padding:2rem 16px 1.5rem;display:flex;flex-direction:column;align-items:center;gap:1.2rem}
-.plaque{background:var(--tan);border:4px solid var(--ink);outline:2px solid var(--paper);outline-offset:-8px;padding:.6rem 1.6rem;font-size:var(--t1);transform:rotate(-1deg);text-align:center}
+.plaque{background:var(--tan);border:4px solid var(--ink);outline:2px solid var(--paper);outline-offset:-8px;padding:.6rem 2.6rem;font-size:var(--t1);text-align:center}
 .nav{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem}
-.btn{display:inline-block;font:inherit;color:var(--ink);text-align:center;text-decoration:none;letter-spacing:.3px;padding:.7em 2em;min-height:44px;background:var(--tan);border:4px solid var(--ink);outline:2px solid var(--paper);outline-offset:-6px;box-shadow:0 2px 0 var(--tan-dark);transition:all .2s}
-.btn:hover{background:var(--tan-dark);color:var(--paper);transform:translateY(-2px) scale(1.05);animation:bounce .35s cubic-bezier(.68,-.55,.27,1.55)}
-.btn:active{transform:translate(2px,2px);box-shadow:none}
+.btn{display:inline-block;font:inherit;color:var(--ink);text-align:center;text-decoration:none;letter-spacing:.3px;padding:.7em 2em;min-height:44px;background:var(--tan);border:4px solid var(--ink);outline:2px solid var(--paper);outline-offset:-6px;box-shadow:0 2px 0 var(--tan-dark);transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .25s,background .2s,color .2s}
+.btn:hover{background:var(--tan-dark);color:var(--paper);transform:translateY(-4px) scale(1.03);box-shadow:0 6px 0 var(--tan-dark);animation:hop .45s ease-out}
+.btn:active{transform:translateY(2px) scale(.98);box-shadow:0 0 0 var(--tan-dark);animation:none;transition-duration:.06s}
 .btn.dark,.nav .btn[aria-current="page"]{background:var(--brown);color:var(--paper)}
 .nav .btn{min-width:8rem;padding:.6em 1.2em}
 
@@ -73,12 +73,14 @@ main{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:3rem 4.5rem
 .label{align-self:flex-start;background:var(--brown);color:var(--paper);border:3px solid var(--ink);padding:.3rem 1rem;font-size:var(--t2)}
 
 /* paper */
-.paper{position:relative;background:var(--paper);border:3px solid var(--ink);outline:2px dashed var(--tan);outline-offset:-9px;box-shadow:6px 6px 0 var(--tan-dark);padding:1.4rem 1.3rem 1.3rem;display:flex;flex-direction:column;gap:.7rem;transition:transform .2s}
+.paper{position:relative;background:var(--paper);border:3px solid var(--ink);outline:2px dashed var(--tan);outline-offset:-9px;box-shadow:6px 6px 0 var(--tan-dark);padding:1.4rem 1.3rem 1.3rem;display:flex;flex-direction:column;gap:.7rem;transition:transform .5s cubic-bezier(.3,.7,.3,1),box-shadow .5s}
 .paper::before{content:"";position:absolute;top:-14px;left:50%;width:22px;height:22px;margin-left:-11px;background:url(/img/pin.png) center/100% 100% no-repeat;image-rendering:pixelated;filter:drop-shadow(2px 2px 0 rgba(58,45,26,.35));z-index:2}
 .tl{transform:rotate(-1.3deg)} .tr{transform:rotate(1.3deg)}
 .tl,.tr{will-change:transform}
 a.paper{text-decoration:none}
-.paper.tl:hover,.paper.tr:hover,.paper.tl:focus-within,.paper.tr:focus-within{transform:rotate(0) translateY(-4px)}
+.paper.tl:hover,.paper.tl:focus-within{transform:rotate(.6deg) translate(-2px,-7px) scale(1.02)}
+.paper.tr:hover,.paper.tr:focus-within{transform:rotate(-.6deg) translate(2px,-7px) scale(1.02)}
+.paper.tl:hover,.paper.tr:hover,.paper.tl:focus-within,.paper.tr:focus-within{box-shadow:10px 14px 0 var(--tan-dark);transition:transform .3s cubic-bezier(.2,.9,.3,1.2),box-shadow .3s;animation:hold 1.9s ease-in-out .3s infinite}
 .paper img,.paper video{border:3px solid var(--ink)}
 .paper h3{font-size:var(--t2)}
 .paper .lead{font-size:var(--t4)}
@@ -235,11 +237,12 @@ form.paper input:focus,form.paper textarea:focus{background:var(--paper);outline
 .foot p{background:var(--brown);color:var(--paper);padding:.5em 1.5em;border:2px solid var(--paper);outline:4px solid var(--ink);text-shadow:2px 2px 0 var(--ink)}
 .foot .btn{margin-top:1.5em;font-size:1rem}
 .copyright{background:var(--brown);border-top:8px solid #1a1a1a;padding:.4em 2em;color:var(--paper);text-shadow:2px 2px 0 var(--ink);text-align:center}
-@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+@keyframes hop{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-8px) scale(1.08)}60%{transform:translateY(-2px) scale(1.01)}80%{transform:translateY(-5px) scale(1.04)}100%{transform:translateY(-4px) scale(1.03)}}
+@keyframes hold{0%,100%{rotate:0deg;translate:0 0}22%{rotate:.35deg;translate:.6px -.5px}47%{rotate:-.3deg;translate:-.5px .5px}71%{rotate:.2deg;translate:.4px .6px}}
 
 @container (max-width:620px){
 .shots{justify-content:center}
-  .plaque{font-size:1.4rem;padding:.5rem 1rem}
+  .plaque{font-size:1.4rem;padding:.5rem 2.1rem}
   .nav .btn{min-width:0;flex:1 1 40%;padding:.5rem .4rem}
   .hero h2,.phead h2{font-size:1.6rem}
   .foot h2{font-size:1.4em}
@@ -294,8 +297,16 @@ form.paper [aria-invalid]{border-style:dashed}
   .bubble{left:auto;top:32px;right:46px;transform:translate(50%,-50%)}
   .bubble b{font-size:1.7rem}
 }
-.plaque{transform-origin:50% -60px;animation:sway 2.8s ease-in-out infinite alternate;transition:background .2s,color .2s,scale .25s}
-.plaque:hover{background:var(--tan-dark);color:var(--paper);text-shadow:2px 2px 0 var(--ink);scale:1.05;animation-duration:1.4s}
+.sign{position:relative;transform-origin:50% -90px;animation:sway 2.8s ease-in-out infinite alternate}
+.sign:hover{animation-duration:1.4s}
+.rope{position:absolute;left:0;bottom:calc(100% - 4px);width:100%;height:94px;overflow:visible;pointer-events:none}
+.rope line{stroke:#1a1a1a;stroke-width:5}
+.rope .twist{stroke:var(--tan);stroke-width:2;stroke-dasharray:4 4}
+.plaque{position:relative;transform:none;transition:background .2s,color .2s,scale .25s}
+.plaque::before,.plaque::after{content:"";position:absolute;top:50%;width:9px;height:9px;margin-top:-5px;background:linear-gradient(135deg,var(--paper) 0 3px,var(--tan-dark) 3px);border:3px solid #1a1a1a;box-sizing:content-box}
+.plaque::before{left:10px}
+.plaque::after{right:10px}
+.plaque:hover{background:var(--tan-dark);color:var(--paper);text-shadow:2px 2px 0 var(--ink);scale:1.04}
 @keyframes sway{from{transform:rotate(-2.2deg)}to{transform:rotate(2.2deg)}}
 .index .tabs{display:flex;flex-wrap:wrap;gap:.6rem}
 .ititle{display:none}
