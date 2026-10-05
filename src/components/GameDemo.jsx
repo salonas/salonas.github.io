@@ -162,38 +162,42 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
           )}
         </div>
         <div className="player gbar">
-          {status === 'running' && (
-            <button type="button" className="pbtn wide" onClick={close}>
-              <PixelIcon name="close" />
-              {t('demo-close')}
-            </button>
-          )}
-          <span className="grille" aria-hidden="true" />
+          <div className="gside">
+            {status === 'running' && (
+              <button type="button" className="pbtn wide" onClick={close}>
+                <PixelIcon name="close" />
+                {t('demo-close')}
+              </button>
+            )}
+            <span className="grille" aria-hidden="true" />
+          </div>
           <span className="brand">{BRAND}</span>
-          {status !== 'running' && <span className="grille" aria-hidden="true" />}
-          {status === 'running' && (
-            <>
-              <button type="button" className="pbtn" aria-label={`${t('mute')}: ${label}`} aria-pressed={silent} onClick={() => setMuted((m) => !m)}>
-                <PixelIcon name={silent ? 'muted' : 'sound'} />
-              </button>
-              <input
-                className="vol"
-                type="range"
-                min="0"
-                max="100"
-                value={silent ? 0 : volume}
-                style={{ '--p': `${silent ? 0 : volume}%` }}
-                aria-label={`${t('vol')}: ${label}`}
-                onChange={(e) => {
-                  setVolume(Number(e.target.value))
-                  setMuted(false)
-                }}
-              />
-              <button type="button" className="pbtn" aria-label={`${t('fs')}: ${label}`} onClick={() => game.current?.SetFullscreen(1)}>
-                <PixelIcon name="fullscreen" />
-              </button>
-            </>
-          )}
+          <div className="gside">
+            <span className="grille" aria-hidden="true" />
+            {status === 'running' && (
+              <>
+                <button type="button" className="pbtn" aria-label={`${t('mute')}: ${label}`} aria-pressed={silent} onClick={() => setMuted((m) => !m)}>
+                  <PixelIcon name={silent ? 'muted' : 'sound'} />
+                </button>
+                <input
+                  className="vol"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={silent ? 0 : volume}
+                  style={{ '--p': `${silent ? 0 : volume}%` }}
+                  aria-label={`${t('vol')}: ${label}`}
+                  onChange={(e) => {
+                    setVolume(Number(e.target.value))
+                    setMuted(false)
+                  }}
+                />
+                <button type="button" className="pbtn" aria-label={`${t('fs')}: ${label}`} onClick={() => game.current?.SetFullscreen(1)}>
+                  <PixelIcon name="fullscreen" />
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
       {status === 'error' && (

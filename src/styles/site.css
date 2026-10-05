@@ -114,13 +114,15 @@ button.soon{font-family:inherit;color:inherit}
 .gcover .btn{font-size:var(--t3);padding:.8em 2em}
 .gcover p{background:var(--ink);padding:.6em 1em;max-width:32ch}
 .gload{position:absolute;inset:0;display:grid;place-items:center;color:var(--paper);font-size:var(--t3)}
-.game .gbar{flex:none;flex-wrap:nowrap;min-height:44px}
-.grille{flex:1 1 auto;align-self:stretch;margin-inline:.4rem;background:repeating-linear-gradient(90deg,var(--ink) 0 3px,transparent 3px 9px);opacity:.5}
+.game .gbar{flex:none;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:stretch;gap:.8rem;min-height:44px}
+.gside{min-width:0;display:flex;align-items:center;gap:.8rem}
+.grille{flex:1 1 0;min-width:0;align-self:stretch;background:repeating-linear-gradient(90deg,var(--ink) 0 3px,transparent 3px 9px);opacity:.5}
 .brand{flex:none;padding:.1em .7em;background:var(--ink);color:var(--paper);border:2px solid var(--tan-dark);font-family:'Unifont Brand',var(--display);font-size:1.2rem;line-height:1.2;letter-spacing:1px;white-space:nowrap}
 .pbtn.wide{flex:none;display:flex;align-items:center;gap:.5rem;padding:0 .8rem;font:inherit;font-size:var(--small);color:var(--ink)}
 .gpart{display:flex;flex-direction:column;gap:.8rem;padding-top:1rem;border-top:2px dashed var(--tan-dark)}
 .gpart h4{font-size:var(--t4)}
-.game .gbar input.vol{flex:0 1 140px}
+.game .gbar input.vol{flex:0 1 140px;min-width:48px}
+.brand{align-self:center}
 .controls{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.7rem 1.4rem;font-size:var(--small)}
 .controls li{display:flex;align-items:center;gap:.7rem;min-height:36px}
 .keys{flex:none;display:flex;gap:.25rem;min-width:5.6rem}
