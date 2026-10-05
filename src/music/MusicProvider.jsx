@@ -10,6 +10,7 @@ export function MusicProvider({ children }) {
   const interrupted = useRef(false)
   const wanted = useRef(false)
   const away = useRef(false)
+  const holds = useRef(0)
   const held = useRef([])
   const [playing, setPlaying] = useState(false)
 
@@ -46,9 +47,20 @@ export function MusicProvider({ children }) {
   }, [playing])
 
   const resumeAfterMedia = useCallback(() => {
-    if (away.current || !interrupted.current || projectMedia().some((m) => !m.paused)) return
+    if (away.current || holds.current || !interrupted.current || projectMedia().some((m) => !m.paused)) return
     start()
   }, [start])
+
+  // A running game keeps the music off until it closes, whatever else stops in the meantime.
+  const holdMusic = useCallback(() => {
+    holds.current += 1
+    pauseForMedia()
+  }, [pauseForMedia])
+
+  const releaseMusic = useCallback(() => {
+    holds.current = Math.max(0, holds.current - 1)
+    resumeAfterMedia()
+  }, [resumeAfterMedia])
 
   // Nothing sounds while the page is in the background: another tab or window, or a locked phone.
   useEffect(() => {
@@ -66,7 +78,7 @@ export function MusicProvider({ children }) {
       const media = held.current.filter((m) => m.isConnected)
       held.current = []
       if (media.length) media.forEach((m) => m.play()?.catch(() => {}))
-      else if (wanted.current) start()
+      else if (wanted.current && !interrupted.current && !holds.current) start()
     }
     const onVisibility = () => (document.hidden ? leave() : comeBack())
     document.addEventListener('visibilitychange', onVisibility)
@@ -93,8 +105,8 @@ export function MusicProvider({ children }) {
   }, [start])
 
   const value = useMemo(
-    () => ({ playing, start, toggle, pauseForMedia, resumeAfterMedia }),
-    [playing, start, toggle, pauseForMedia, resumeAfterMedia],
+    () => ({ playing, start, toggle, pauseForMedia, resumeAfterMedia, holdMusic, releaseMusic }),
+    [playing, start, toggle, pauseForMedia, resumeAfterMedia, holdMusic, releaseMusic],
   )
 
   return (

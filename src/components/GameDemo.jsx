@@ -42,7 +42,14 @@ function Controls({ controls }) {
 
 export default function GameDemo({ build, size, label, poster, controls, videoId }) {
   const { t } = useLanguage()
-  const { pauseForMedia, resumeAfterMedia } = useMusic()
+  const { holdMusic, releaseMusic } = useMusic()
+  const holding = useRef(false)
+
+  const release = () => {
+    if (!holding.current) return
+    holding.current = false
+    releaseMusic()
+  }
   const canvasRef = useRef(null)
   const game = useRef(null)
   const alive = useRef(true)
@@ -67,22 +74,41 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
   }, [])
 
   // Leaving the page mid-game counts as closing it.
-  useEffect(() => resumeAfterMedia, [resumeAfterMedia])
+  const releaseRef = useRef(release)
+  releaseRef.current = release
+  useEffect(() => () => releaseRef.current(), [])
 
   useEffect(() => {
     if (status === 'running') game.current?.setVolume?.(level)
+  }, [status, level])
+
+  // The game goes quiet with the rest of the page while another window has the focus.
+  useEffect(() => {
+    if (status !== 'running') return
+    const hush = () => game.current?.setVolume?.(0)
+    const restore = () => !document.hidden && game.current?.setVolume?.(level)
+    const onVisibility = () => (document.hidden ? hush() : restore())
+    window.addEventListener('blur', hush)
+    window.addEventListener('focus', restore)
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      window.removeEventListener('blur', hush)
+      window.removeEventListener('focus', restore)
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
   }, [status, level])
 
   const closed = () => {
     game.current = null
     if (!alive.current) return
     setStatus('idle')
-    resumeAfterMedia()
+    release()
   }
 
   const play = async () => {
     document.querySelectorAll('[data-media]').forEach((m) => m.pause())
-    pauseForMedia()
+    holding.current = true
+    holdMusic()
     setProgress(0)
     setStatus('loading')
     try {
@@ -95,7 +121,7 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
     } catch {
       if (!alive.current) return
       setStatus('error')
-      resumeAfterMedia()
+      release()
     }
   }
 
@@ -109,59 +135,71 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
 
   return (
     <div className="game">
-      <div className="gframe">
-        <canvas ref={canvasRef} id={`game-${build}`} tabIndex={-1} aria-label={label} />
-        {!open && (
-          <div className="gcover">
-            {poster && <img src={poster} alt="" />}
-            {hasMouse() ? (
-              <button type="button" className="btn dark" onClick={play}>
-                {t('demo-play')} ({size})
-              </button>
-            ) : (
-              <p>{t('demo-desktop')}</p>
-            )}
-          </div>
-        )}
-        {status === 'loading' && (
-          <p className="gload" role="status">
-            {t('demo-loading')} {Math.round(progress * 100)}%
-          </p>
-        )}
-      </div>
-      {status === 'running' && (
-        <div className="player gbar">
-          <button type="button" className="pbtn" aria-label={t('demo-close')} onClick={close}>
-            <PixelIcon name="close" />
-          </button>
-          <span className="gap" />
-          <button type="button" className="pbtn" aria-label={`${t('mute')}: ${label}`} aria-pressed={silent} onClick={() => setMuted((m) => !m)}>
-            <PixelIcon name={silent ? 'muted' : 'sound'} />
-          </button>
-          <input
-            className="vol"
-            type="range"
-            min="0"
-            max="100"
-            value={silent ? 0 : volume}
-            style={{ '--p': `${silent ? 0 : volume}%` }}
-            aria-label={`${t('vol')}: ${label}`}
-            onChange={(e) => {
-              setVolume(Number(e.target.value))
-              setMuted(false)
-            }}
-          />
-          <button type="button" className="pbtn" aria-label={`${t('fs')}: ${label}`} onClick={() => game.current?.SetFullscreen(1)}>
-            <PixelIcon name="fullscreen" />
-          </button>
+      <div className="tv">
+        <div className="gframe">
+          <canvas ref={canvasRef} id={`game-${build}`} tabIndex={-1} aria-label={label} />
+          {!open && (
+            <div className="gcover">
+              {poster && <img src={poster} alt="" />}
+              {hasMouse() ? (
+                <button type="button" className="btn dark" onClick={play}>
+                  {t('demo-play')} ({size})
+                </button>
+              ) : (
+                <p>{t('demo-desktop')}</p>
+              )}
+            </div>
+          )}
+          {status === 'loading' && (
+            <p className="gload" role="status">
+              {t('demo-loading')} {Math.round(progress * 100)}%
+            </p>
+          )}
         </div>
-      )}
+        <div className="player gbar">
+          {status === 'running' && (
+            <button type="button" className="pbtn wide" onClick={close}>
+              <PixelIcon name="close" />
+              {t('demo-close')}
+            </button>
+          )}
+          <span className="grille" aria-hidden="true" />
+          {status === 'running' && (
+            <>
+              <button type="button" className="pbtn" aria-label={`${t('mute')}: ${label}`} aria-pressed={silent} onClick={() => setMuted((m) => !m)}>
+                <PixelIcon name={silent ? 'muted' : 'sound'} />
+              </button>
+              <input
+                className="vol"
+                type="range"
+                min="0"
+                max="100"
+                value={silent ? 0 : volume}
+                style={{ '--p': `${silent ? 0 : volume}%` }}
+                aria-label={`${t('vol')}: ${label}`}
+                onChange={(e) => {
+                  setVolume(Number(e.target.value))
+                  setMuted(false)
+                }}
+              />
+              <button type="button" className="pbtn" aria-label={`${t('fs')}: ${label}`} onClick={() => game.current?.SetFullscreen(1)}>
+                <PixelIcon name="fullscreen" />
+              </button>
+            </>
+          )}
+        </div>
+      </div>
       {status === 'error' && (
         <p className="form-error" role="alert">
           {t('demo-error')}
         </p>
       )}
-      {controls && <Controls controls={controls} />}
+      {controls && (
+        <div className="gpart">
+          <h4>{t('demo-controls')}</h4>
+          <Controls controls={controls} />
+        </div>
+      )}
       {videoId && (
         <p className="gnote">
           {t('demo-fallback')}{' '}
