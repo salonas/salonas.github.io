@@ -49,6 +49,6 @@ it('draws every face symbol with the bundled pixel font', () => {
 
 it('sizes the viewer image without percentages, so the sheet hugs wide images', () => {
   const css = readFileSync('src/styles/site.css', 'utf8')
-  const [, width] = css.match(/\.zframe img\{max-width:([^;]+);/)
+  const [, width] = css.match(/\.zframe img,\.zframe video\{max-width:([^;]+);/)
   expect(width).not.toContain('%')
 })

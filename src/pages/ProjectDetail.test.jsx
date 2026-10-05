@@ -112,3 +112,14 @@ it('turns links inside item texts into real links', () => {
   renderAt('/projects/agami')
   expect(within(main()).getByRole('link', { name: /Tommy the Cat/ })).toHaveAttribute('href', 'https://www.youtube.com/watch?v=r4OhIU-PmB8')
 })
+
+it('opens the looping clips in the viewer too', async () => {
+  renderAt('/projects/orquesta')
+  await userEvent.click(await screen.findByRole('button', { name: es['m-music-close'] }))
+  const zoomButtons = within(main()).getAllByRole('button', { name: new RegExp('^' + es['zoom']) })
+  expect(zoomButtons).toHaveLength(2)
+  await userEvent.click(zoomButtons[1])
+  const viewer = screen.getByRole('dialog')
+  expect(within(viewer).getByText('2 / 2')).toBeInTheDocument()
+  expect(viewer.querySelector('video')).toHaveAttribute('src', '/media/orquesta/screen-2.mp4')
+})

@@ -2,7 +2,7 @@ import GameDemo from '../GameDemo'
 import MediaPlayer from '../MediaPlayer'
 import Paper from '../Paper'
 import { useLanguage } from '../../i18n/LanguageProvider'
-import { mediaUrl, sectionId } from '../../projects'
+import { loopCaption, mediaUrl, sectionId } from '../../projects'
 import { outside } from '../outside'
 
 // Project texts may carry links written as [[label|url]].
@@ -47,7 +47,14 @@ export default function Section({ id, project, section, onZoom }) {
       <div className="loops">
         {section.items.map((file, i) => (
           <Paper key={file} tilt={tiltOf(i)}>
-            <video autoPlay muted loop playsInline src={url(file)} />
+            <button
+              type="button"
+              className="zbtn"
+              aria-label={`${t('zoom')}: ${loopCaption(L(section.title), i)}`}
+              onClick={() => onZoom(file)}
+            >
+              <video autoPlay muted loop playsInline src={url(file)} />
+            </button>
           </Paper>
         ))}
       </div>

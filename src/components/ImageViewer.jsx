@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { useLanguage } from '../i18n/LanguageProvider'
 
 const ZOOMS = [1, 1.5, 2, 3, 4]
+const VIDEO_PROPS = { autoPlay: true, muted: true, loop: true, playsInline: true }
 
 export default function ImageViewer({ images, index, onIndex, onClose }) {
   const { t } = useLanguage()
@@ -16,6 +17,7 @@ export default function ImageViewer({ images, index, onIndex, onClose }) {
   const image = images[index]
   const many = images.length > 1
   const zoom = ZOOMS[level]
+  const Media = image.video ? 'video' : 'img'
 
   const step = (d) => onIndex((index + d + images.length) % images.length)
 
@@ -89,10 +91,10 @@ export default function ImageViewer({ images, index, onIndex, onClose }) {
       <div className="zbox" role="dialog" aria-modal="true" aria-labelledby={captionId}>
         <div className={`paper zframe ${image.sketch ? 'sketch' : ''}`}>
           <div className={`zpane ${zoom > 1 ? 'zoomed' : ''}`} ref={paneRef} style={paneStyle}>
-            <img
+            <Media
               ref={imgRef}
               src={image.src}
-              alt={image.alt}
+              {...(image.video ? VIDEO_PROPS : { alt: image.alt })}
               style={imgStyle}
               draggable="false"
               onPointerDown={onPointerDown}

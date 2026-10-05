@@ -6,14 +6,20 @@ import Paper from '../components/Paper'
 import { Cover, Tags } from '../components/ProjectCard'
 import Section from '../components/sections/Section'
 import { useLanguage } from '../i18n/LanguageProvider'
-import { findProject, mediaUrl, sectionId } from '../projects'
+import { findProject, loopCaption, mediaUrl, sectionId } from '../projects'
 
 const INDEX_FROM = 2
 
 function viewerImages(project, L) {
-  return project.sections
-    .filter((s) => s.kind === 'shots')
-    .flatMap((s) => s.items.map((x) => ({ key: x.src, src: mediaUrl(project.slug, x.src), alt: L(x.alt), sketch: !!s.sketch })))
+  return project.sections.flatMap((s) => {
+    if (s.kind === 'shots') {
+      return s.items.map((x) => ({ key: x.src, src: mediaUrl(project.slug, x.src), alt: L(x.alt), sketch: !!s.sketch }))
+    }
+    if (s.kind === 'loops') {
+      return s.items.map((file, i) => ({ key: file, src: mediaUrl(project.slug, file), alt: loopCaption(L(s.title), i), video: true }))
+    }
+    return []
+  })
 }
 
 export default function ProjectDetail() {
