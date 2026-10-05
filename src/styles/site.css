@@ -209,6 +209,18 @@ video.cover{background:var(--ink)}
 .zcap{color:var(--paper);text-align:center;text-shadow:2px 2px 0 var(--ink);max-width:60ch}
 .zbar{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.7rem;color:var(--paper);font-variant-numeric:tabular-nums}
 .zbar .btn{padding:.45em 1em}
+.zbar .btn svg{display:none;width:16px;height:16px;fill:currentColor}
+@media (max-width:599px){
+  #zoom{padding:10px}
+  .zbox{gap:.6rem}
+  .zframe{padding:8px}
+  .zframe img,.zframe video{max-width:calc(100vw - 52px);max-height:calc(100vh - 190px);max-height:calc(100dvh - 190px)}
+  .zcap{margin:0;font-size:var(--small)}
+  .zbar{flex-wrap:nowrap;gap:.5rem}
+  .zbar .btn{flex:none;width:44px;height:44px;padding:0;display:grid;place-items:center}
+  .zbar .btn svg{display:block}
+  .zbar .word,.zlevel{display:none}
+}
 .shots .sketch img{mix-blend-mode:multiply;border:0}
 .loops{display:flex;flex-wrap:wrap;gap:1.6rem}
 .loops .paper{flex:1 1 320px}
@@ -231,7 +243,7 @@ form.paper input:hover,form.paper textarea:hover{background:var(--paper)}
 form.paper input:focus,form.paper textarea:focus{background:var(--paper);outline:0;box-shadow:0 0 0 3px var(--tan),4px 4px 0 3px var(--tan-dark)}
 
 /* modal */
-.modal{position:fixed;inset:0;z-index:99;display:flex;justify-content:center;align-items:center;background:rgba(58,45,26,.85);padding:16px;animation:fade .3s ease-out}
+.modal{position:fixed;inset:0;z-index:99;box-shadow:0 0 0 100vmax rgba(58,45,26,.85);display:flex;justify-content:center;align-items:center;background:rgba(58,45,26,.85);padding:16px;animation:fade .3s ease-out}
 .modal-box{background:#f5ecd6;border:6px solid var(--ink);outline:4px dashed var(--tan);outline-offset:-14px;padding:2.5em 2em;text-align:center;max-width:400px;width:90%;display:flex;flex-direction:column;align-items:center;gap:1.4em;animation:pop .4s cubic-bezier(.34,1.56,.64,1)}
 .modal-box h3{font-size:1.4em;background:var(--tan);color:#f5ecd6;padding:.4em 1em;letter-spacing:1px;text-shadow:2px 2px 0 var(--ink);border:4px solid #523f25;outline:2px solid var(--paper);outline-offset:-6px}
 .modal-box p{font-size:1.1em;line-height:1.6;letter-spacing:.5px}

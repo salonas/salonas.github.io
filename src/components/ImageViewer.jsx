@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useLanguage } from '../i18n/LanguageProvider'
+import { PixelIcon } from './MediaPlayer'
 
 const ZOOMS = [1, 1.5, 2, 3, 4]
 const VIDEO_PROPS = { autoPlay: true, muted: true, loop: true, playsInline: true }
@@ -32,6 +33,16 @@ export default function ImageViewer({ images, index, onIndex, onClose }) {
 
   useEffect(() => {
     closeRef.current?.focus()
+  }, [])
+
+  // Without this a phone scrolls the page behind, its toolbar slides away and the veil stops short of the edge.
+  useEffect(() => {
+    const root = document.documentElement
+    const before = root.style.overflow
+    root.style.overflow = 'hidden'
+    return () => {
+      root.style.overflow = before
+    }
   }, [])
 
   useEffect(() => {
@@ -114,21 +125,23 @@ export default function ImageViewer({ images, index, onIndex, onClose }) {
         <div className="zbar">
           {many && (
             <>
-              <button type="button" className="btn" onClick={() => step(-1)}>
-                {t('prev')}
+              <button type="button" className="btn" aria-label={t('prev')} onClick={() => step(-1)}>
+                <span className="word">{t('prev')}</span>
+                <PixelIcon name="prev" />
               </button>
               <span>
                 {index + 1} / {images.length}
               </span>
-              <button type="button" className="btn" onClick={() => step(1)}>
-                {t('next')}
+              <button type="button" className="btn" aria-label={t('next')} onClick={() => step(1)}>
+                <span className="word">{t('next')}</span>
+                <PixelIcon name="next" />
               </button>
             </>
           )}
           <button type="button" className="btn" aria-label={t('zoom-out')} disabled={level === 0} onClick={() => zoomTo(level - 1)}>
             −
           </button>
-          <span>{Math.round(zoom * 100)}%</span>
+          <span className="zlevel">{Math.round(zoom * 100)}%</span>
           <button
             type="button"
             className="btn"
@@ -138,8 +151,9 @@ export default function ImageViewer({ images, index, onIndex, onClose }) {
           >
             +
           </button>
-          <button type="button" className="btn dark" ref={closeRef} onClick={onClose}>
-            {t('m-sent-close')}
+          <button type="button" className="btn dark" aria-label={t('m-sent-close')} ref={closeRef} onClick={onClose}>
+            <span className="word">{t('m-sent-close')}</span>
+            <PixelIcon name="close" />
           </button>
         </div>
       </div>
