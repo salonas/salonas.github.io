@@ -262,10 +262,11 @@ form.paper input:focus,form.paper textarea:focus{background:var(--paper);outline
   main{padding-block:2rem 3rem}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.foot-art svg{position:absolute}
 .foot-art{position:absolute;inset:0;background:url(/img/footer-empty.png) no-repeat center/100% 100%;image-rendering:pixelated;pointer-events:none}
 .foot>h2,.foot>p,.foot>.btn{position:relative;z-index:1}
-.bubble{position:absolute;left:94.4%;top:17.5%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:.4em;font-size:clamp(.45rem,1.02cqw,1rem);line-height:1;white-space:nowrap;text-align:center;color:#1a1a1a;pointer-events:none}
-.bubble b{font-size:2.7em;font-weight:normal}
+.bubble{position:absolute;left:95%;top:16%;transform:translate(-50%,-50%);transform:translate(round(-50%,1px),round(-50%,1px));display:flex;flex-direction:column;align-items:center;gap:.4em;font-size:clamp(.45rem,1.02cqw,1rem);font-size:clamp(9px,round(1.02cqw,1px),20px);line-height:1;white-space:nowrap;text-align:center;color:#1a1a1a;filter:url(#hard-edge);pointer-events:none}
+.bubble b{font-size:2.7em;font-size:round(2.7em,1px);font-weight:normal}
 @container (max-width:620px){
 }
 .label.sub{font-size:var(--t3)}
