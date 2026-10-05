@@ -294,10 +294,9 @@ form.paper [aria-invalid]{border-style:dashed}
   .bubble{left:auto;top:32px;right:46px;transform:translate(50%,-50%)}
   .bubble b{font-size:1.7rem}
 }
-.plaque{animation:slowSwing 3.5s infinite ease-in-out;transition:background .2s,color .2s}
-.plaque:hover{background:var(--tan-dark);color:var(--paper);text-shadow:2px 2px 0 var(--ink);animation-name:swingPulse}
-@keyframes slowSwing{0%,100%{transform:rotate(0)}20%{transform:rotate(-2deg)}40%{transform:rotate(2deg)}60%{transform:rotate(-1.5deg)}80%{transform:rotate(1.5deg)}}
-@keyframes swingPulse{0%,100%{transform:rotate(0) scale(1)}10%{transform:rotate(-2deg) scale(1.02)}20%{transform:rotate(-2deg) scale(1.05)}30%{transform:rotate(2deg) scale(1.02)}40%{transform:rotate(2deg) scale(1)}50%{transform:rotate(-1.5deg) scale(1.02)}60%{transform:rotate(-1.5deg) scale(1.05)}70%{transform:rotate(1.5deg) scale(1.02)}80%{transform:rotate(1.5deg) scale(1)}90%{transform:rotate(0) scale(1.02)}}
+.plaque{transform-origin:50% -60px;animation:sway 2.8s ease-in-out infinite alternate;transition:background .2s,color .2s,scale .25s}
+.plaque:hover{background:var(--tan-dark);color:var(--paper);text-shadow:2px 2px 0 var(--ink);scale:1.05;animation-duration:1.4s}
+@keyframes sway{from{transform:rotate(-2.2deg)}to{transform:rotate(2.2deg)}}
 .index .tabs{display:flex;flex-wrap:wrap;gap:.6rem}
 .ititle{display:none}
 .index .btn{padding:.3em 1em;font-size:var(--small)}
