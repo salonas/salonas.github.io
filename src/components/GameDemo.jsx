@@ -4,6 +4,7 @@ import { useLanguage } from '../i18n/LanguageProvider'
 import { useMusic } from '../music/MusicProvider'
 import { PixelIcon } from './MediaPlayer'
 
+const BRAND = 'SalonasTV'
 const START_VOLUME = 25
 const MOUSE_LABELS = { left: 'mouse-left', right: 'mouse-right', move: 'mouse-move' }
 
@@ -164,6 +165,8 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
             </button>
           )}
           <span className="grille" aria-hidden="true" />
+          <span className="brand">{BRAND}</span>
+          {status !== 'running' && <span className="grille" aria-hidden="true" />}
           {status === 'running' && (
             <>
               <button type="button" className="pbtn" aria-label={`${t('mute')}: ${label}`} aria-pressed={silent} onClick={() => setMuted((m) => !m)}>

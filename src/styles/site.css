@@ -114,6 +114,7 @@ button.soon{font-family:inherit;color:inherit}
 .gload{position:absolute;inset:0;display:grid;place-items:center;color:var(--paper);font-size:var(--t3)}
 .game .gbar{flex:none;flex-wrap:nowrap;min-height:44px}
 .grille{flex:1 1 auto;align-self:stretch;margin-inline:.4rem;background:repeating-linear-gradient(90deg,var(--ink) 0 3px,transparent 3px 9px);opacity:.5}
+.brand{flex:none;padding:.15em .8em;background:var(--ink);color:var(--tan);border:2px solid var(--tan-dark);font-size:var(--small);letter-spacing:1px;white-space:nowrap}
 .pbtn.wide{flex:none;display:flex;align-items:center;gap:.5rem;padding:0 .8rem;font:inherit;font-size:var(--small);color:var(--ink)}
 .gpart{display:flex;flex-direction:column;gap:.8rem;padding-top:1rem;border-top:2px dashed var(--tan-dark)}
 .gpart h4{font-size:var(--t4)}

@@ -148,3 +148,8 @@ it('does not bring the music back when a video stops under a running game', asyn
   await userEvent.click(within(main()).getByRole('button', { name: es['demo-close'] }))
   await waitFor(() => expect(window.HTMLMediaElement.prototype.play).toHaveBeenCalled())
 })
+
+it('carries the brand of the TV set', async () => {
+  await openAgami()
+  expect(main().querySelector('.tv .brand')).toHaveTextContent('SalonasTV')
+})
