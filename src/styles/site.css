@@ -108,17 +108,17 @@ button.soon{font-family:inherit;color:inherit}
 .gcover .btn{font-size:var(--t3);padding:.8em 2em}
 .gcover p{background:var(--ink);padding:.6em 1em;max-width:32ch}
 .gload{position:absolute;inset:0;display:grid;place-items:center;color:var(--paper);font-size:var(--t3)}
-.game .gbar{flex:none;flex-wrap:wrap;font-size:var(--small)}
-.gbar .btn{padding:.45em 1em}
-.game .gbar input.vol{flex:0 1 160px}
+.game .gbar{flex:none;flex-wrap:nowrap}
+.gbar .gap{flex:1 1 auto}
+.game .gbar input.vol{flex:0 1 140px}
 .controls{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.7rem 1.4rem;font-size:var(--small)}
 .controls li{display:flex;align-items:center;gap:.7rem;min-height:36px}
 .keys{flex:none;display:flex;gap:.25rem;min-width:5.6rem}
 kbd{display:inline-grid;place-items:center;min-width:1.9em;padding:.05em .4em;font:inherit;background:var(--paper);border:3px solid var(--ink);border-bottom-width:6px}
 .mouse{width:27px;height:36px;fill:var(--ink)}
 .mouse .shell{fill:var(--paper)}
-.gnote{font-size:var(--small)}
-.gnote .copy{margin-left:.4rem}
+.gnote{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .8rem;margin:0;padding:.6em .9em;font-size:var(--small);background:var(--card);border:3px dashed var(--tan-dark)}
+.gnote .copy{margin-left:auto;background:var(--paper)}
 .filters{display:flex;flex-wrap:wrap;gap:.6rem}
 .filters .btn{padding:.3em 1em;font-size:var(--small)}
 .card img{width:100%;aspect-ratio:16/9;object-fit:cover}

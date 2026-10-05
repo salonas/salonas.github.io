@@ -107,3 +107,15 @@ it('lists the controls of the game', async () => {
   expect(within(controls).getAllByRole('listitem')).toHaveLength(6)
   expect(within(controls).getByText(/Slash/)).toBeInTheDocument()
 })
+
+it('mutes and restores the game from the control bar', async () => {
+  const setVolume = vi.fn()
+  startGame.mockResolvedValue({ Quit: vi.fn(() => Promise.resolve()), setVolume })
+  await openAgami()
+  await userEvent.click(within(main()).getByRole('button', { name: new RegExp(es['demo-play']) }))
+  const bar = within(await waitFor(() => main().querySelector('.gbar') ?? Promise.reject(new Error('no bar'))))
+  await userEvent.click(bar.getByRole('button', { name: new RegExp(es['mute']) }))
+  expect(setVolume).toHaveBeenLastCalledWith(0)
+  await userEvent.click(bar.getByRole('button', { name: new RegExp(es['mute']) }))
+  expect(setVolume).toHaveBeenLastCalledWith(0.25)
+})

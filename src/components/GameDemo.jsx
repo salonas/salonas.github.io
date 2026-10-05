@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { startGame } from '../game/unity'
 import { useLanguage } from '../i18n/LanguageProvider'
 import { useMusic } from '../music/MusicProvider'
+import { PixelIcon } from './MediaPlayer'
 
 const START_VOLUME = 25
 const MOUSE_LABELS = { left: 'mouse-left', right: 'mouse-right', move: 'mouse-move' }
@@ -48,6 +49,9 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
   const [status, setStatus] = useState('idle') // idle | loading | running | error
   const [progress, setProgress] = useState(0)
   const [volume, setVolume] = useState(START_VOLUME)
+  const [muted, setMuted] = useState(false)
+  const silent = muted || volume === 0
+  const level = silent ? 0 : volume / 100
 
   const stop = () => {
     game.current?.Quit().catch(() => {})
@@ -66,8 +70,8 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
   useEffect(() => resumeAfterMedia, [resumeAfterMedia])
 
   useEffect(() => {
-    if (status === 'running') game.current?.setVolume?.(volume / 100)
-  }, [status, volume])
+    if (status === 'running') game.current?.setVolume?.(level)
+  }, [status, level])
 
   const closed = () => {
     game.current = null
@@ -82,7 +86,7 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
     setProgress(0)
     setStatus('loading')
     try {
-      const instance = await startGame(build, canvasRef.current, (p) => alive.current && setProgress(p), volume / 100)
+      const instance = await startGame(build, canvasRef.current, (p) => alive.current && setProgress(p), level)
       game.current = instance
       if (!alive.current) return stop()
       // The game's own Exit button shuts the player down, and the page follows.
@@ -127,22 +131,28 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
       </div>
       {status === 'running' && (
         <div className="player gbar">
-          <span>{t('vol')}</span>
+          <button type="button" className="pbtn" aria-label={t('demo-close')} onClick={close}>
+            <PixelIcon name="close" />
+          </button>
+          <span className="gap" />
+          <button type="button" className="pbtn" aria-label={`${t('mute')}: ${label}`} aria-pressed={silent} onClick={() => setMuted((m) => !m)}>
+            <PixelIcon name={silent ? 'muted' : 'sound'} />
+          </button>
           <input
             className="vol"
             type="range"
             min="0"
             max="100"
-            value={volume}
-            style={{ '--p': `${volume}%` }}
+            value={silent ? 0 : volume}
+            style={{ '--p': `${silent ? 0 : volume}%` }}
             aria-label={`${t('vol')}: ${label}`}
-            onChange={(e) => setVolume(Number(e.target.value))}
+            onChange={(e) => {
+              setVolume(Number(e.target.value))
+              setMuted(false)
+            }}
           />
-          <button type="button" className="btn" onClick={() => game.current?.SetFullscreen(1)}>
-            {t('fs')}
-          </button>
-          <button type="button" className="btn dark" onClick={close}>
-            {t('demo-close')}
+          <button type="button" className="pbtn" aria-label={`${t('fs')}: ${label}`} onClick={() => game.current?.SetFullscreen(1)}>
+            <PixelIcon name="fullscreen" />
           </button>
         </div>
       )}
