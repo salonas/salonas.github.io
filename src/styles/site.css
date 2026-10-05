@@ -112,12 +112,11 @@ button.soon{font-family:inherit;color:inherit}
 .gbar .btn{padding:.45em 1em}
 .game .gbar input.vol{flex:0 1 160px}
 .controls{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.7rem 1.4rem;font-size:var(--small)}
-.controls li{display:flex;align-items:center;gap:.7rem}
+.controls li{display:flex;align-items:center;gap:.7rem;min-height:36px}
 .keys{flex:none;display:flex;gap:.25rem;min-width:5.6rem}
 kbd{display:inline-grid;place-items:center;min-width:1.9em;padding:.05em .4em;font:inherit;background:var(--paper);border:3px solid var(--ink);border-bottom-width:6px}
-.mouse{width:22px;height:30px;fill:var(--ink)}
+.mouse{width:27px;height:36px;fill:var(--ink)}
 .mouse .shell{fill:var(--paper)}
-.mouse .held{fill:var(--brown)}
 .gnote{font-size:var(--small)}
 .gnote .copy{margin-left:.4rem}
 .filters{display:flex;flex-wrap:wrap;gap:.6rem}
@@ -287,4 +286,10 @@ form.paper [aria-invalid]{border-style:dashed}
 .index .btn{min-height:0;padding:.3em .3em;text-align:left;font-family:var(--hand);font-size:1.15rem;line-height:1.2;color:var(--brown);background:none;border:0;border-bottom:2px solid var(--tan);outline:0;box-shadow:none}
 .index .btn:last-child{border-bottom:0}
 .index .btn:hover,.index .btn:focus-visible{background:var(--tan);color:var(--ink);transform:none;animation:none}
+.index .tabs::before{content:"";position:absolute;top:-14px;left:50%;width:22px;height:22px;margin-left:-11px;background:url(/img/pin.png) center/100% 100% no-repeat;image-rendering:pixelated;filter:drop-shadow(2px 2px 0 rgba(58,45,26,.35))}
+}
+@container (min-width:1700px){
+.index{left:calc(100% + 2.2rem);width:230px}
+.index .tabs{padding:1.3rem 1rem 1.2rem}
+.index .btn{font-size:1.35rem;padding:.35em .4em}
 }

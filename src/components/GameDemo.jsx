@@ -10,12 +10,12 @@ const hasMouse = () => window.matchMedia?.('(pointer: fine)').matches ?? true
 
 function MouseIcon({ button, label }) {
   return (
-    <svg className="mouse" viewBox="0 0 11 15" shapeRendering="crispEdges" role="img" aria-label={label}>
-      <path d="M2 0h7v1h1v1h1v10h-1v1h-1v1H2v-1H1v-1H0V2h1V1h1z" />
-      <path className="shell" d="M2 1h7v1h1v10h-1v1H2v-1H1V2h1z" />
-      {button === 'left' && <path className="held" d="M1 2h4v4H1z" />}
-      {button === 'right' && <path className="held" d="M6 2h4v4H6z" />}
-      <path d="M1 6h9v1H1zM5 1h1v5H5z" />
+    <svg className="mouse" viewBox="0 0 9 12" shapeRendering="crispEdges" role="img" aria-label={label}>
+      <path d="M2 0h5v1h1v1h1v8H8v1H7v1H2v-1H1v-1H0V2h1V1h1z" />
+      <path className="shell" d="M2 1h5v1h1v8H7v1H2v-1H1V2h1z" />
+      {button === 'left' && <path d="M2 1h2v1H2zM1 2h3v3H1z" />}
+      {button === 'right' && <path d="M5 1h2v1H5zM5 2h3v3H5z" />}
+      <path d="M1 5h7v1H1zM4 1h1v4H4z" />
     </svg>
   )
 }
