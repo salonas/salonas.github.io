@@ -189,7 +189,10 @@ video.cover{background:var(--ink)}
 .player{flex-wrap:wrap}
 .player .seek{flex:1 1 140px}
 .player input.vol{flex:0 0 76px}
-.player.touch .seek,.player.touch input.vol{flex:1 1 60px}
+.player.touch .seek{flex:1 1 60px}
+.player .volbox{position:relative;flex:none;display:flex}
+.volpop{position:absolute;z-index:5;bottom:calc(100% - 4px);left:0;width:44px;height:132px;background:var(--paper);border:4px solid var(--ink)}
+.player .volpop input.vol{position:absolute;top:50%;left:50%;width:108px;flex:none;transform:translate(-50%,-50%) rotate(-90deg)}
 .shots{display:flex;flex-wrap:wrap;gap:1.6rem;align-items:flex-start}
 .shots .paper{flex:0 1 300px}
 .shots img{width:100%}

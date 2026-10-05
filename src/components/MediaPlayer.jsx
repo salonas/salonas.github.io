@@ -28,7 +28,7 @@ export default function MediaPlayer({ kind, src, label }) {
   const { pauseForMedia, resumeAfterMedia } = useMusic()
   const ref = useRef(null)
   const frameRef = useRef(null)
-  const barRef = useRef(null)
+  const boxRef = useRef(null)
   const [touch] = useState(() => window.matchMedia?.(TOUCH).matches ?? false)
   const [mixing, setMixing] = useState(false)
   const [on, setOn] = useState(false)
@@ -56,7 +56,7 @@ export default function MediaPlayer({ kind, src, label }) {
   useEffect(() => {
     if (!mixing) return
     const onClick = (e) => {
-      if (!barRef.current?.contains(e.target)) setMixing(false)
+      if (!boxRef.current?.contains(e.target)) setMixing(false)
     }
     document.addEventListener('click', onClick)
     return () => document.removeEventListener('click', onClick)
@@ -106,13 +106,8 @@ export default function MediaPlayer({ kind, src, label }) {
   const ratio = duration ? time / duration : 0
   const silent = muted || volume === 0
 
-  // A phone has no room for both sliders: the sound button swaps the seek bar for the volume, then mutes and swaps back.
+  // A phone has no room for both sliders: the first tap on the sound button opens the volume in a box above it, later taps mute.
   const opens = touch && !mixing
-  const pressSound = () => {
-    if (!touch) return setMuted((m) => !m)
-    setMuted(mixing)
-    setMixing(!mixing)
-  }
   const volumeSlider = (
     <input
       className="vol"
@@ -130,37 +125,36 @@ export default function MediaPlayer({ kind, src, label }) {
   )
 
   const controls = (
-    <div className={touch ? 'player touch' : 'player'} ref={barRef}>
+    <div className={touch ? 'player touch' : 'player'}>
       <button type="button" className="pbtn" aria-label={`${t(on ? 'pause' : 'play')}: ${label}`} onClick={toggle}>
         <PixelIcon name={on ? 'pause' : 'play'} />
       </button>
-      {touch && mixing ? (
-        volumeSlider
-      ) : (
-        <input
-          className="seek"
-          type="range"
-          min="0"
-          max="1000"
-          value={Math.round(ratio * 1000)}
-          style={fill(ratio)}
-          aria-label={`${t('seek')}: ${label}`}
-          onChange={seek}
-        />
-      )}
+      <input
+        className="seek"
+        type="range"
+        min="0"
+        max="1000"
+        value={Math.round(ratio * 1000)}
+        style={fill(ratio)}
+        aria-label={`${t('seek')}: ${label}`}
+        onChange={seek}
+      />
       <time>
         {clock(time)} / {clock(duration)}
       </time>
-      <button
-        type="button"
-        className="pbtn"
-        aria-label={`${t(opens ? 'vol' : 'mute')}: ${label}`}
-        aria-pressed={silent}
-        aria-expanded={touch ? mixing : undefined}
-        onClick={pressSound}
-      >
-        <PixelIcon name={silent ? 'muted' : 'sound'} />
-      </button>
+      <span className="volbox" ref={boxRef}>
+        {touch && mixing && <span className="volpop">{volumeSlider}</span>}
+        <button
+          type="button"
+          className="pbtn"
+          aria-label={`${t(opens ? 'vol' : 'mute')}: ${label}`}
+          aria-pressed={silent}
+          aria-expanded={touch ? mixing : undefined}
+          onClick={() => (opens ? setMixing(true) : setMuted((m) => !m))}
+        >
+          <PixelIcon name={silent ? 'muted' : 'sound'} />
+        </button>
+      </span>
       {!touch && volumeSlider}
       {kind === 'video' && (
         <button type="button" className="pbtn" aria-label={`${t('fs')}: ${label}`} onClick={fullscreen}>

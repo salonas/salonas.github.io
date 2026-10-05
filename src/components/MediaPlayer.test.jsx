@@ -67,40 +67,44 @@ describe('on a touch screen', () => {
 
   const player = () => main().querySelector('audio[data-media]').nextElementSibling
 
-  it('keeps the volume slider behind the sound button, which mutes on the second tap', async () => {
+  const seekBar = (bar) => bar.queryByRole('slider', { name: new RegExp('^' + es['seek']) })
+  const volumeBar = (bar) => bar.queryByRole('slider', { name: new RegExp('^' + es['vol']) })
+  const sound = (bar, key) => bar.getByRole('button', { name: new RegExp('^' + es[key]) })
+
+  it('opens the volume in its own box by the sound button and leaves the seek bar alone', async () => {
     await openAgamiWithMusic()
     const bar = within(player())
-    expect(bar.queryByRole('slider', { name: new RegExp('^' + es['vol']) })).toBeNull()
-    expect(bar.getByRole('slider', { name: new RegExp('^' + es['seek']) })).toBeInTheDocument()
+    expect(volumeBar(bar)).toBeNull()
 
-    await userEvent.click(bar.getByRole('button', { name: new RegExp('^' + es['vol']) }))
-    expect(bar.getByRole('slider', { name: new RegExp('^' + es['vol']) })).toBeInTheDocument()
-    expect(bar.queryByRole('slider', { name: new RegExp('^' + es['seek']) })).toBeNull()
+    await userEvent.click(sound(bar, 'vol'))
+    expect(volumeBar(bar).closest('.volpop')).not.toBeNull()
+    expect(seekBar(bar)).toBeInTheDocument()
     expect(track().muted).toBe(false)
+  })
 
-    await userEvent.click(bar.getByRole('button', { name: new RegExp('^' + es['mute']) }))
+  it('mutes on the next tap and brings the same volume back on the one after', async () => {
+    await openAgamiWithMusic()
+    const bar = within(player())
+    await userEvent.click(sound(bar, 'vol'))
+    fireEvent.change(volumeBar(bar), { target: { value: '40' } })
+
+    await userEvent.click(sound(bar, 'mute'))
     expect(track().muted).toBe(true)
-  })
+    expect(seekBar(bar)).toBeInTheDocument()
 
-  it('goes back to the seek bar once muted, and the next tap brings the sound and its slider back', async () => {
-    await openAgamiWithMusic()
-    const bar = within(player())
-    await userEvent.click(bar.getByRole('button', { name: new RegExp('^' + es['vol']) }))
-    await userEvent.click(bar.getByRole('button', { name: new RegExp('^' + es['mute']) }))
-    expect(bar.getByRole('slider', { name: new RegExp('^' + es['seek']) })).toBeInTheDocument()
-    expect(bar.queryByRole('slider', { name: new RegExp('^' + es['vol']) })).toBeNull()
-
-    await userEvent.click(bar.getByRole('button', { name: new RegExp('^' + es['vol']) }))
+    await userEvent.click(sound(bar, 'mute'))
     expect(track().muted).toBe(false)
-    expect(bar.getByRole('slider', { name: new RegExp('^' + es['vol']) })).not.toHaveValue('0')
+    expect(track().volume).toBeCloseTo(0.4)
+    expect(volumeBar(bar)).toHaveValue('40')
   })
 
-  it('puts the seek bar back when the visitor taps elsewhere', async () => {
+  it('closes the volume box when the visitor taps elsewhere', async () => {
     await openAgamiWithMusic()
     const bar = within(player())
-    await userEvent.click(bar.getByRole('button', { name: new RegExp('^' + es['vol']) }))
+    await userEvent.click(sound(bar, 'vol'))
     await userEvent.click(main().querySelector('h1,h2'))
-    expect(bar.getByRole('slider', { name: new RegExp('^' + es['seek']) })).toBeInTheDocument()
+    expect(volumeBar(bar)).toBeNull()
+    expect(seekBar(bar)).toBeInTheDocument()
   })
 })
 
