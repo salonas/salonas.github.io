@@ -1,6 +1,7 @@
 @font-face{font-family:'MGPixel';src:url(/fonts/MGPixel.otf) format('opentype');font-display:swap}
 @font-face{font-family:'Unifont';src:url(/fonts/Unifont-faces.otf) format('opentype');font-display:swap;size-adjust:125%;unicode-range:U+30FB,U+227D,U+227C,U+2A4A,U+03C9,U+02F5,U+25D5,U+02F6,U+02C3,U+11BA,U+02C2,U+0669,U+02CA,U+15DC,U+02CB,U+0648}
 @font-face{font-family:'Unifont';src:url(/fonts/Unifont-faces.otf) format('opentype');font-display:swap;unicode-range:U+2570,U+FFE3}
+@font-face{font-family:'Unifont Plain';src:url(/fonts/Unifont-faces.otf) format('opentype');font-display:swap}
 @font-face{font-family:'Notepen';src:url(/fonts/Notepen.ttf) format('truetype');font-display:swap}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -264,7 +265,7 @@ form.paper input:focus,form.paper textarea:focus{background:var(--paper);outline
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 .foot-art{position:absolute;inset:0;background:url(/img/footer-empty.png) no-repeat center/100% 100%;image-rendering:pixelated;pointer-events:none}
 .foot>h2,.foot>p,.foot>.btn{position:relative;z-index:1}
-.bubble{position:absolute;left:95.25%;top:18.75%;transform:translate(-50%,-50%);font-size:clamp(1rem,4cqw,3.8rem);line-height:1;white-space:nowrap;color:var(--ink);pointer-events:none}
+.bubble{position:absolute;left:94.4%;top:18.75%;transform:translate(-50%,-50%);font-family:'Unifont Plain',var(--display);font-size:clamp(32px,4.2cqw,64px);font-size:clamp(32px,round(down,4.2cqw,16px),64px);line-height:1;white-space:nowrap;color:#1a1a1a;text-shadow:.0625em 0 0 currentColor;pointer-events:none}
 @container (max-width:620px){
 }
 .label.sub{font-size:var(--t3)}
@@ -284,7 +285,7 @@ form.paper [aria-invalid]{border-style:dashed}
 .vplayer:fullscreen .player{flex:none;background:var(--paper);border-top:4px solid var(--ink);padding:.6rem 1rem}
 @container (max-width:620px){
   .foot-art{position:relative;inset:auto;order:5;align-self:stretch;height:170px;margin:1.4em -16px 0;border-top:4px solid #1a1a1a;background-size:auto 100%;background-position:right bottom}
-  .bubble{left:auto;top:32px;right:43px;transform:translate(50%,-50%);font-size:1.75rem}
+  .bubble{left:auto;top:32px;right:46px;transform:translate(50%,-50%);font-size:32px}
 }
 .plaque{animation:slowSwing 3.5s infinite ease-in-out;transition:background .2s,color .2s}
 .plaque:hover{background:var(--tan-dark);color:var(--paper);text-shadow:2px 2px 0 var(--ink);animation-name:swingPulse}
