@@ -74,6 +74,7 @@ export default {
   "demo-desktop": "La demo se juega con teclado y mouse, así que solo está disponible en computador.",
   "demo-fallback": "Si la demo no funciona en tu equipo, el video de gameplay muestra el juego completo.",
   "demo-video": "Ver el video",
+  "demo-off": "Sin señal",
   "demo-controls": "Controles",
   "mouse-left": "Clic izquierdo",
   "mouse-right": "Clic derecho",

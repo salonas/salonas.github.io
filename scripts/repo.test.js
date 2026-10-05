@@ -52,3 +52,9 @@ it('sizes the viewer image without percentages, so the sheet hugs wide images', 
   const [, width] = css.match(/\.zframe img,\.zframe video\{max-width:([^;]+);/)
   expect(width).not.toContain('%')
 })
+
+it('writes the footer bubble in the ink of the drawing', () => {
+  const css = readFileSync('src/styles/site.css', 'utf8')
+  const [bubble] = css.match(/\.bubble\{[^}]+\}/)
+  expect(bubble).toContain('color:#1a1a1a')
+})

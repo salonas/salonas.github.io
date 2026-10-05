@@ -41,7 +41,8 @@ it('opens in English for a non-Spanish browser', () => {
 
 it.each(['es', 'en'])('writes the same thought in the footer bubble in %s', (lang) => {
   renderAt('/', lang)
-  expect(screen.getByRole('contentinfo')).toHaveTextContent('404?')
+  expect(screen.getByRole('contentinfo')).toHaveTextContent('404Page not found?')
+  expect(screen.getByRole('contentinfo').querySelector('filter#hard-edge')).toBeInTheDocument()
 })
 
 it('names the browser tab in the current language', () => {
