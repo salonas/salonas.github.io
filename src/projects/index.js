@@ -10,6 +10,10 @@ export function findProject(slug) {
   return projects.find((p) => p.slug === slug)
 }
 
+export const sectionId = (i) => 'section-' + i
+
+export const loopCaption = (title, i) => `${title} ${i + 1}`
+
 export function mediaUrl(slug, file) {
   return `/media/${slug}/${file}`
 }

@@ -6,6 +6,7 @@ function bilingual(value, name) {
 }
 
 const KINDS = {
+  game: (s) => (s.build && s.size ? [] : ['build and size: missing']),
   video: (s) => (s.src ? [] : ['src: missing']),
   loops: (s) => (Array.isArray(s.items) && s.items.length ? [] : ['items: missing']),
   shots: (s) =>

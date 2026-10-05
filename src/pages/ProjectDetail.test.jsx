@@ -1,4 +1,5 @@
 import { screen, within } from '@testing-library/react'
+import { vi } from 'vitest'
 import userEvent from '@testing-library/user-event'
 import es from '../i18n/es'
 import { projects } from '../projects'
@@ -88,4 +89,37 @@ it('says how the music of Agami was made and what inspired the game', () => {
   expect(within(main()).getByText(/FL Studio con Sforzando 2/)).toBeInTheDocument()
   expect(within(main()).getByRole('heading', { level: 4, name: 'The Legend of Zelda: A Link to the Past' })).toBeInTheDocument()
   expect(within(main()).getByRole('heading', { level: 4, name: 'The Binding of Isaac' })).toBeInTheDocument()
+})
+
+it('offers an index that jumps to each section on long pages', async () => {
+  window.HTMLElement.prototype.scrollIntoView = vi.fn()
+  renderAt('/projects/agami')
+  const index = within(main()).getByRole('navigation', { name: es['index-label'] })
+  const agami = projects.find((p) => p.slug === 'agami')
+  expect(within(index).getAllByRole('button').map((b) => b.textContent)).toEqual(agami.sections.map((s) => s.title.es))
+  await userEvent.click(within(index).getByRole('button', { name: 'Bocetos' }))
+  const [target] = window.HTMLElement.prototype.scrollIntoView.mock.contexts
+  expect(within(target).getByRole('heading', { name: 'Bocetos' })).toBeInTheDocument()
+})
+
+it.each(projects)('gives $slug its section index', (p) => {
+  renderAt('/projects/' + p.slug)
+  const index = within(main()).getByRole('navigation', { name: es['index-label'] })
+  expect(within(index).getAllByRole('button')).toHaveLength(p.sections.length)
+})
+
+it('turns links inside item texts into real links', () => {
+  renderAt('/projects/agami')
+  expect(within(main()).getByRole('link', { name: /Tommy the Cat/ })).toHaveAttribute('href', 'https://www.youtube.com/watch?v=r4OhIU-PmB8')
+})
+
+it('opens the looping clips in the viewer too', async () => {
+  renderAt('/projects/orquesta')
+  await userEvent.click(await screen.findByRole('button', { name: es['m-music-close'] }))
+  const zoomButtons = within(main()).getAllByRole('button', { name: new RegExp('^' + es['zoom']) })
+  expect(zoomButtons).toHaveLength(2)
+  await userEvent.click(zoomButtons[1])
+  const viewer = screen.getByRole('dialog')
+  expect(within(viewer).getByText('2 / 2')).toBeInTheDocument()
+  expect(viewer.querySelector('video')).toHaveAttribute('src', '/media/orquesta/screen-2.mp4')
 })

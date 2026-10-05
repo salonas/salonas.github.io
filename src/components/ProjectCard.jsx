@@ -43,7 +43,15 @@ export default function ProjectCard({ project, variant = 'full', tilt }) {
   return (
     <Link className={`paper ${tilt === 'r' ? 'tr' : 'tl'} card`} to={`/projects/${project.slug}`}>
       <Cover project={project} />
-      {variant === 'full' && <Tags project={project} />}
+      {project.sections.some((s) => s.kind === 'game') && (
+        <span className="stamp">
+          <svg viewBox="0 0 8 8" shapeRendering="crispEdges" aria-hidden="true">
+            <path d="M1 0h2v1h2v1h2v1h1v2H7v1H5v1H3v1H1z" />
+          </svg>
+          {t('demo-badge')}
+        </span>
+      )}
+      <Tags project={project} />
       <h3>{project.title}</h3>
       {variant === 'full' && (
         <>

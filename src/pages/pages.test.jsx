@@ -97,3 +97,16 @@ it('tags a project with every type it belongs to', () => {
   const card = within(main()).getByRole('link', { name: /Plantochi/ })
   expect([...card.querySelectorAll('.tag')].map((x) => x.textContent)).toEqual(['IOT', 'WEB'])
 })
+
+it('shows type and status on the featured cards too', () => {
+  renderAt('/')
+  const card = within(main()).getByRole('link', { name: /Agami/ })
+  expect(within(card).getByText('JUEGO')).toHaveClass('tag')
+  expect(card.querySelector('.state')).toBeInTheDocument()
+})
+
+it.each(['/', '/projects'])('stamps the playable demo on its card at %s', (path) => {
+  renderAt(path)
+  expect(within(within(main()).getByRole('link', { name: /Agami/ })).getByText(es['demo-badge'])).toHaveClass('stamp')
+  expect(within(main()).getAllByText(es['demo-badge'])).toHaveLength(1)
+})

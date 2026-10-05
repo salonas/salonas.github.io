@@ -6,12 +6,20 @@ import Paper from '../components/Paper'
 import { Cover, Tags } from '../components/ProjectCard'
 import Section from '../components/sections/Section'
 import { useLanguage } from '../i18n/LanguageProvider'
-import { findProject, mediaUrl } from '../projects'
+import { findProject, loopCaption, mediaUrl, sectionId } from '../projects'
+
+const INDEX_FROM = 2
 
 function viewerImages(project, L) {
-  return project.sections
-    .filter((s) => s.kind === 'shots')
-    .flatMap((s) => s.items.map((x) => ({ key: x.src, src: mediaUrl(project.slug, x.src), alt: L(x.alt), sketch: !!s.sketch })))
+  return project.sections.flatMap((s) => {
+    if (s.kind === 'shots') {
+      return s.items.map((x) => ({ key: x.src, src: mediaUrl(project.slug, x.src), alt: L(x.alt), sketch: !!s.sketch }))
+    }
+    if (s.kind === 'loops') {
+      return s.items.map((file, i) => ({ key: file, src: mediaUrl(project.slug, file), alt: loopCaption(L(s.title), i), video: true }))
+    }
+    return []
+  })
 }
 
 export default function ProjectDetail() {
@@ -36,7 +44,7 @@ export default function ProjectDetail() {
   const images = viewerImages(project, L)
 
   return (
-    <section className="page">
+    <section className="page project">
       <div className="stack" style={{ gap: '2.6rem' }}>
         <Link to="/projects" style={{ alignSelf: 'flex-start' }}>
           {t('back')}
@@ -72,9 +80,30 @@ export default function ProjectDetail() {
           </div>
         </Paper>
 
+        {project.sections.length >= INDEX_FROM && (
+          <nav className="index" aria-label={t('index-label')}>
+            <div className="tabs">
+              <span className="ititle" aria-hidden="true">
+                {t('index-title')}
+              </span>
+              {project.sections.map((section, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className="btn"
+                  onClick={() => document.getElementById(sectionId(i)).scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                >
+                  {L(section.title)}
+                </button>
+              ))}
+            </div>
+          </nav>
+        )}
+
         {project.sections.map((section, i) => (
           <Section
             key={i}
+            id={sectionId(i)}
             project={project}
             section={section}
             onZoom={(file) => setZoom(images.findIndex((x) => x.key === file))}

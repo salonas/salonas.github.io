@@ -8,9 +8,10 @@ const ICONS = {
   sound: 'M0 3h2V2h1V1h1v6H3V6H2V5H0zM5 3h1v2H5zM6 1h1v1h1v4H7v1H6V6h1V2H6z',
   muted: 'M0 3h2V2h1V1h1v6H3V6H2V5H0zM5 2h1v1h1V2h1v1H7v1h1v1H7v1H6V5H5V4h1V3H5z',
   fullscreen: 'M0 0h3v1H1v2H0zM5 0h3v3H7V1H5zM0 5h1v2h2v1H0zM7 5h1v3H5V7h2z',
+  close: 'M0 0h1v1h-1zM1 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM1 1h1v1h-1zM2 1h1v1h-1zM5 1h1v1h-1zM6 1h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM1 5h1v1h-1zM2 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM7 7h1v1h-1z',
 }
 
-function PixelIcon({ name }) {
+export function PixelIcon({ name }) {
   return (
     <svg viewBox="0 0 8 8" shapeRendering="crispEdges" aria-hidden="true">
       <path d={ICONS[name]} />

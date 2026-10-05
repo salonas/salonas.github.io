@@ -58,3 +58,21 @@ it('links every toolbox entry to a project that exists', () => {
   expect(targets.length).toBeGreaterThan(0)
   for (const slug of targets) expect(findProject(slug)).toBeDefined()
 })
+
+const ORDER = [
+  ['Demo jugable'],
+  ['Gameplay', 'Capturas'],
+  ['Sobre el proyecto', 'Descripción', 'Qué faltó', 'Cómo funciona'],
+  ['Mecánicas', 'Qué hace', 'Características principales', 'Comportamiento del jefe'],
+  ['Tecnologías'],
+  ['Música', 'Temas', 'Modelado 3D', 'Sobre el modelo', 'Sprites', 'Prototipo y diagrama preliminar'],
+  ['Inspiración'],
+  ['Bugs conocidos y curiosidades'],
+  ['Bocetos'],
+]
+
+it.each(projects)('keeps the sections of $slug in the shared order', (p) => {
+  const ranks = p.sections.map((s) => ORDER.findIndex((group) => group.includes(s.title.es)))
+  expect(ranks).not.toContain(-1)
+  expect(ranks).toEqual([...ranks].sort((a, b) => a - b))
+})

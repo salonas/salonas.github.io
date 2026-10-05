@@ -1,7 +1,8 @@
+import GameDemo from '../GameDemo'
 import MediaPlayer from '../MediaPlayer'
 import Paper from '../Paper'
 import { useLanguage } from '../../i18n/LanguageProvider'
-import { mediaUrl } from '../../projects'
+import { loopCaption, mediaUrl, sectionId } from '../../projects'
 import { outside } from '../outside'
 
 // Project texts may carry links written as [[label|url]].
@@ -20,11 +21,23 @@ function RichText({ text }) {
 
 const tiltOf = (i) => (i % 2 ? 'r' : 'l')
 
-export default function Section({ project, section, onZoom }) {
+export default function Section({ id, project, section, onZoom }) {
   const { t, L } = useLanguage()
   const url = (file) => mediaUrl(project.slug, file)
 
   const body = {
+    game: () => (
+      <Paper className="media">
+        <GameDemo
+          build={section.build}
+          size={section.size}
+          label={L(section.title)}
+          poster={section.poster && url(section.poster)}
+          controls={section.controls}
+          videoId={sectionId(project.sections.findIndex((s) => s.kind === 'video'))}
+        />
+      </Paper>
+    ),
     video: () => (
       <Paper className="media">
         <MediaPlayer kind="video" src={url(section.src)} label={L(section.title)} />
@@ -34,7 +47,14 @@ export default function Section({ project, section, onZoom }) {
       <div className="loops">
         {section.items.map((file, i) => (
           <Paper key={file} tilt={tiltOf(i)}>
-            <video autoPlay muted loop playsInline src={url(file)} />
+            <button
+              type="button"
+              className="zbtn"
+              aria-label={`${t('zoom')}: ${loopCaption(L(section.title), i)}`}
+              onClick={() => onZoom(file)}
+            >
+              <video autoPlay muted loop playsInline src={url(file)} />
+            </button>
           </Paper>
         ))}
       </div>
@@ -71,7 +91,9 @@ export default function Section({ project, section, onZoom }) {
         {section.items.map((item, i) => (
           <Paper key={L(item.name)} tilt={tiltOf(i)}>
             <h4>{L(item.name)}</h4>
-            <p>{L(item.text)}</p>
+            <p>
+              <RichText text={L(item.text)} />
+            </p>
           </Paper>
         ))}
       </div>
@@ -86,7 +108,7 @@ export default function Section({ project, section, onZoom }) {
   }[section.kind]
 
   return (
-    <div className="stack">
+    <div className="stack section" id={id}>
       <h3 className="label sub">{L(section.title)}</h3>
       {body?.()}
     </div>
