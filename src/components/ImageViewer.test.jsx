@@ -111,3 +111,19 @@ it('goes back to fitted when the image changes', async () => {
   await userEvent.click(screen.getByRole('button', { name: es['next'] }))
   expect(screen.getByText('100%')).toBeInTheDocument()
 })
+
+it('holds the page still behind it and lets it go on closing', () => {
+  const { unmount } = render(<Harness images={three} />)
+  expect(document.documentElement.style.overflow).toBe('hidden')
+  unmount()
+  expect(document.documentElement.style.overflow).toBe('')
+})
+
+it('gives the stepping and closing buttons a drawn icon next to the word, for narrow screens', () => {
+  render(<Harness images={three} />)
+  for (const key of ['prev', 'next', 'm-sent-close']) {
+    const button = screen.getByRole('button', { name: es[key] })
+    expect(button.querySelector('svg')).not.toBeNull()
+    expect(button.querySelector('.word')).toHaveTextContent(es[key])
+  }
+})
