@@ -81,7 +81,7 @@ main{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:3rem 4.5rem
 a.paper{text-decoration:none}
 .paper.tl:hover,.paper.tl:focus-within{transform:rotate(.6deg) translate(-2px,-7px) scale(1.02)}
 .paper.tr:hover,.paper.tr:focus-within{transform:rotate(-.6deg) translate(2px,-7px) scale(1.02)}
-.paper.tl:hover,.paper.tr:hover,.paper.tl:focus-within,.paper.tr:focus-within{box-shadow:10px 14px 0 var(--tan-dark);transition:transform .3s cubic-bezier(.2,.9,.3,1.2),box-shadow .3s;animation:holdTurn 3.7s ease-in-out .3s infinite alternate,holdDrift 5.3s ease-in-out .3s infinite alternate}
+.paper.tl:hover,.paper.tr:hover,.paper.tl:focus-within,.paper.tr:focus-within{box-shadow:10px 14px 0 var(--tan-dark);transition:transform .3s cubic-bezier(.2,.9,.3,1.2),box-shadow .3s;animation:holdTurn 2.9s ease-in-out .25s infinite alternate,holdDrift 4.1s ease-in-out .25s infinite alternate}
 .paper img,.paper video{border:3px solid var(--ink)}
 .paper h3{font-size:var(--t2)}
 .paper .lead{font-size:var(--t4)}
@@ -239,8 +239,8 @@ form.paper input:focus,form.paper textarea:focus{background:var(--paper);outline
 .foot .btn{margin-top:1.5em;font-size:1rem}
 .copyright{background:var(--brown);border-top:8px solid #1a1a1a;padding:.4em 2em;color:var(--paper);text-shadow:2px 2px 0 var(--ink);text-align:center}
 @keyframes hop{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-8px) scale(1.08)}60%{transform:translateY(-2px) scale(1.01)}80%{transform:translateY(-5px) scale(1.04)}100%{transform:translateY(-4px) scale(1.03)}}
-@keyframes holdTurn{from{rotate:-.35deg}to{rotate:.35deg}}
-@keyframes holdDrift{from{translate:-1px .8px}to{translate:1px -1.2px}}
+@keyframes holdTurn{from{rotate:-.9deg}to{rotate:.9deg}}
+@keyframes holdDrift{from{translate:-2.5px 1.5px}to{translate:2.5px -3px}}
 
 @container (max-width:620px){
 .shots{justify-content:center}
