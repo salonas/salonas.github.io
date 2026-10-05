@@ -79,6 +79,7 @@ export default {
   "mouse-right": "Right click",
   "mouse-move": "Mouse",
   "index-label": "Project sections",
+  "index-title": "Index",
   "see": "See project",
   "role": "Role",
   "tools": "Tools",

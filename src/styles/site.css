@@ -290,6 +290,7 @@ form.paper [aria-invalid]{border-style:dashed}
 @keyframes slowSwing{0%,100%{transform:rotate(0)}20%{transform:rotate(-2deg)}40%{transform:rotate(2deg)}60%{transform:rotate(-1.5deg)}80%{transform:rotate(1.5deg)}}
 @keyframes swingPulse{0%,100%{transform:rotate(0) scale(1)}10%{transform:rotate(-2deg) scale(1.02)}20%{transform:rotate(-2deg) scale(1.05)}30%{transform:rotate(2deg) scale(1.02)}40%{transform:rotate(2deg) scale(1)}50%{transform:rotate(-1.5deg) scale(1.02)}60%{transform:rotate(-1.5deg) scale(1.05)}70%{transform:rotate(1.5deg) scale(1.02)}80%{transform:rotate(1.5deg) scale(1)}90%{transform:rotate(0) scale(1.02)}}
 .index .tabs{display:flex;flex-wrap:wrap;gap:.6rem}
+.ititle{display:none}
 .index .btn{padding:.3em 1em;font-size:var(--small)}
 @container (min-width:1320px){
 .project{position:relative}
@@ -297,6 +298,7 @@ form.paper [aria-invalid]{border-style:dashed}
 .index .tabs{position:sticky;top:1.5rem;flex-direction:column;flex-wrap:nowrap;gap:0;padding:.9rem .7rem 1rem;background:var(--paper);border:3px solid var(--ink);outline:2px dashed var(--tan);outline-offset:-7px;box-shadow:5px 5px 0 var(--tan-dark);transform:rotate(1.2deg)}
 .index .btn{min-height:0;padding:.3em .3em;text-align:left;font-family:var(--hand);font-size:1.15rem;line-height:1.2;color:var(--brown);background:none;border:0;border-bottom:2px solid var(--tan);outline:0;box-shadow:none}
 .index .btn:last-child{border-bottom:0}
+.ititle{display:block;margin-bottom:.4rem;padding:0 .2rem .35rem;font-size:var(--t3);border-bottom:3px solid var(--ink)}
 .index .btn:hover,.index .btn:focus-visible{background:var(--tan);color:var(--ink);transform:none;animation:none}
 .index .tabs::before{content:"";position:absolute;top:-14px;left:50%;width:22px;height:22px;margin-left:-11px;background:url(/img/pin.png) center/100% 100% no-repeat;image-rendering:pixelated;filter:drop-shadow(2px 2px 0 rgba(58,45,26,.35))}
 }

@@ -83,6 +83,9 @@ export default function ProjectDetail() {
         {project.sections.length >= INDEX_FROM && (
           <nav className="index" aria-label={t('index-label')}>
             <div className="tabs">
+              <span className="ititle" aria-hidden="true">
+                {t('index-title')}
+              </span>
               {project.sections.map((section, i) => (
                 <button
                   key={i}
