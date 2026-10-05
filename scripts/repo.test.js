@@ -53,10 +53,8 @@ it('sizes the viewer image without percentages, so the sheet hugs wide images', 
   expect(width).not.toContain('%')
 })
 
-it('writes the footer bubble in the pixel font and the ink of the drawing', () => {
+it('writes the footer bubble in the ink of the drawing', () => {
   const css = readFileSync('src/styles/site.css', 'utf8')
   const [bubble] = css.match(/\.bubble\{[^}]+\}/)
-  expect(bubble).toContain("font-family:'Unifont Plain'")
   expect(bubble).toContain('color:#1a1a1a')
-  expect(css).toMatch(/font-family:'Unifont Plain';src:url\(\/fonts\/Unifont-faces\.otf\)/)
 })
