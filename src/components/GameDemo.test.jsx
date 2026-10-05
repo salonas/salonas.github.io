@@ -1,4 +1,4 @@
-import { screen, waitFor, within } from '@testing-library/react'
+import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
 import es from '../i18n/es'
@@ -35,7 +35,7 @@ it('starts the game, silences the site music and closes on request', async () =>
   await openAgami()
   window.HTMLMediaElement.prototype.pause.mockClear()
   await userEvent.click(within(main()).getByRole('button', { name: new RegExp(es['demo-play']) }))
-  expect(startGame).toHaveBeenCalledWith('agami', expect.any(HTMLCanvasElement), expect.any(Function))
+  expect(startGame).toHaveBeenCalledWith('agami', expect.any(HTMLCanvasElement), expect.any(Function), 0.25)
   expect(window.HTMLMediaElement.prototype.pause.mock.contexts).toContain(document.querySelector('audio[src="/music/meh.mp3"]'))
   await userEvent.click(await within(main()).findByRole('button', { name: es['demo-close'] }))
   expect(quit).toHaveBeenCalled()
@@ -82,4 +82,28 @@ it('closes the demo when the game quits from its own Exit button', async () => {
   instance.Module.onQuit()
   expect(await within(main()).findByRole('button', { name: new RegExp(es['demo-play']) })).toBeInTheDocument()
   expect(instance.Quit).not.toHaveBeenCalled()
+})
+
+it('shows a preview of the game behind the play button', async () => {
+  await openAgami()
+  expect(main().querySelector('.gframe img')).toHaveAttribute('src', '/media/agami/demo.jpg')
+})
+
+it('starts quiet and lets the visitor change the volume', async () => {
+  const setVolume = vi.fn()
+  startGame.mockResolvedValue({ Quit: vi.fn(() => Promise.resolve()), setVolume })
+  await openAgami()
+  await userEvent.click(within(main()).getByRole('button', { name: new RegExp(es['demo-play']) }))
+  const slider = await within(main().querySelector('.game')).findByRole('slider', { name: new RegExp(es['vol']) })
+  expect(slider).toHaveValue('25')
+  expect(setVolume).toHaveBeenLastCalledWith(0.25)
+  fireEvent.change(slider, { target: { value: '60' } })
+  expect(setVolume).toHaveBeenLastCalledWith(0.6)
+})
+
+it('lists the controls of the game', async () => {
+  await openAgami()
+  const controls = within(main()).getByRole('list', { name: es['demo-controls'] })
+  expect(within(controls).getAllByRole('listitem')).toHaveLength(6)
+  expect(within(controls).getByText(/Slash/)).toBeInTheDocument()
 })

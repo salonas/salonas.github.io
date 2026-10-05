@@ -43,7 +43,36 @@ async function unpack(response, type, onBytes) {
   return URL.createObjectURL(new Blob([blob], { type }))
 }
 
-export async function startGame(build, canvas, onProgress) {
+// The player wires every sound straight to the speakers. Handing it a gain node instead gives the page a volume control.
+function quietAudio(volume) {
+  const Real = window.AudioContext ?? window.webkitAudioContext
+  if (!Real) return { restore() {}, setVolume() {} }
+  const masters = []
+  let level = volume
+  class GameAudio extends Real {
+    constructor(options) {
+      super(options)
+      const master = this.createGain()
+      master.gain.value = level
+      master.connect(super.destination)
+      masters.push(master)
+      this.master = master
+    }
+    get destination() {
+      return this.master ?? super.destination
+    }
+  }
+  window.AudioContext = GameAudio
+  return {
+    restore: () => (window.AudioContext = Real),
+    setVolume: (value) => {
+      level = value
+      for (const master of masters) master.gain.value = value
+    },
+  }
+}
+
+export async function startGame(build, canvas, onProgress, volume = 1) {
   const base = `/games/${build}/${build}`
   const responses = await Promise.all(
     Object.keys(PARTS).map(async (part) => {
@@ -62,8 +91,9 @@ export async function startGame(build, canvas, onProgress) {
     responses.map((response, i) => unpack(response, Object.values(PARTS)[i], count)),
   )
   await loadScript(`${base}.loader.js`)
+  const audio = quietAudio(volume)
   try {
-    return await window.createUnityInstance(
+    const instance = await window.createUnityInstance(
       canvas,
       {
         dataUrl,
@@ -77,7 +107,10 @@ export async function startGame(build, canvas, onProgress) {
       },
       (progress) => onProgress(DOWNLOAD_SHARE + progress * (1 - DOWNLOAD_SHARE)),
     )
+    instance.setVolume = audio.setVolume
+    return instance
   } finally {
+    audio.restore()
     for (const url of [dataUrl, frameworkUrl, codeUrl]) URL.revokeObjectURL(url)
   }
 }

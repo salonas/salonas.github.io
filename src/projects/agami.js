@@ -20,7 +20,21 @@ export default {
     en: 'Top-down action-survival. You play a cat trying to survive in a hostile urban alley.'
   },
   sections: [
-    { kind: 'game', title: { es: 'Demo jugable', en: 'Playable demo' }, build: 'agami', size: '20 MB' },
+    {
+      kind: 'game',
+      title: { es: 'Demo jugable', en: 'Playable demo' },
+      build: 'agami',
+      size: '20 MB',
+      poster: 'demo.jpg',
+      controls: [
+        { keys: ['W', 'A', 'S', 'D'], text: { es: 'Moverse', en: 'Move' } },
+        { mouse: 'move', text: { es: 'Apuntar', en: 'Aim' } },
+        { mouse: 'left', text: { es: 'Slash: ataque cuerpo a cuerpo', en: 'Slash: melee attack' } },
+        { mouse: 'right', text: { es: 'Growl: empuje para los globos', en: 'Growl: pushes balloons away' } },
+        { keys: [{ es: 'Espacio', en: 'Space' }], text: { es: 'Dash: impulso y ataque cuerpo a cuerpo', en: 'Dash: dash and melee attack' } },
+        { keys: ['Esc'], text: { es: 'Salir de pantalla completa', en: 'Leave full screen' } }
+      ]
+    },
     { kind: 'video', title: { es: 'Gameplay', en: 'Gameplay' }, src: 'gameplay.mp4' },
     {
       kind: 'items',

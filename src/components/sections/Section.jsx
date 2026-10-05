@@ -32,6 +32,8 @@ export default function Section({ id, project, section, onZoom }) {
           build={section.build}
           size={section.size}
           label={L(section.title)}
+          poster={section.poster && url(section.poster)}
+          controls={section.controls}
           videoId={sectionId(project.sections.findIndex((s) => s.kind === 'video'))}
         />
       </Paper>
