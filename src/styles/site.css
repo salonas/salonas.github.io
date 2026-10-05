@@ -1,7 +1,6 @@
 @font-face{font-family:'MGPixel';src:url(/fonts/MGPixel.otf) format('opentype');font-display:swap}
 @font-face{font-family:'Unifont';src:url(/fonts/Unifont-faces.otf) format('opentype');font-display:swap;size-adjust:125%;unicode-range:U+30FB,U+227D,U+227C,U+2A4A,U+03C9,U+02F5,U+25D5,U+02F6,U+02C3,U+11BA,U+02C2,U+0669,U+02CA,U+15DC,U+02CB,U+0648}
 @font-face{font-family:'Unifont';src:url(/fonts/Unifont-faces.otf) format('opentype');font-display:swap;unicode-range:U+2570,U+FFE3}
-@font-face{font-family:'Unifont Brand';src:url(/fonts/Unifont-brand.otf) format('opentype');font-display:swap}
 @font-face{font-family:'Notepen';src:url(/fonts/Notepen.ttf) format('truetype');font-display:swap}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -117,7 +116,7 @@ button.soon{font-family:inherit;color:inherit}
 .game .gbar{flex:none;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:stretch;gap:.8rem;min-height:44px}
 .gside{min-width:0;display:flex;align-items:center;gap:.8rem}
 .grille{flex:1 1 0;min-width:0;align-self:stretch;background:repeating-linear-gradient(90deg,var(--ink) 0 3px,transparent 3px 9px);opacity:.5}
-.brand{flex:none;padding:.1em .7em;background:var(--ink);color:var(--paper);border:2px solid var(--tan-dark);font-family:'Unifont Brand',var(--display);font-size:1.2rem;line-height:1.2;letter-spacing:1px;white-space:nowrap}
+.brand{flex:none;padding:.1em .7em;background:var(--ink);color:var(--paper);border:2px solid var(--tan-dark);font-family:var(--hand);font-size:1.5rem;line-height:1.2;white-space:nowrap}
 .pbtn.wide{flex:none;display:flex;align-items:center;gap:.5rem;padding:0 .8rem;font:inherit;font-size:var(--small);color:var(--ink)}
 .gpart{display:flex;flex-direction:column;gap:.8rem;padding-top:1rem;border-top:2px dashed var(--tan-dark)}
 .gpart h4{font-size:var(--t4)}
