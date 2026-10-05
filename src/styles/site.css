@@ -81,7 +81,8 @@ main{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:3rem 4.5rem
 a.paper{text-decoration:none}
 .paper.tl:hover,.paper.tl:focus-within{transform:rotate(.6deg) translate(-2px,-7px) scale(1.02)}
 .paper.tr:hover,.paper.tr:focus-within{transform:rotate(-.6deg) translate(2px,-7px) scale(1.02)}
-.paper.tl:hover,.paper.tr:hover,.paper.tl:focus-within,.paper.tr:focus-within{box-shadow:10px 14px 0 var(--tan-dark);transition:transform .45s cubic-bezier(.3,.8,.3,1),box-shadow .45s;animation:holdTurn 3.6s ease-in-out -1.8s infinite alternate,holdDrift 5s ease-in-out -2.5s infinite alternate}
+.paper.tl:hover,.paper.tr:hover,.paper.tl:focus-within,.paper.tr:focus-within{box-shadow:10px 14px 0 var(--tan-dark);transition:transform .45s cubic-bezier(.3,.8,.3,1),box-shadow .45s;animation:holdTurn 4.8s ease-in-out -2.4s infinite alternate,holdDrift 6.6s ease-in-out -3.3s infinite alternate-reverse}
+.paper.tr:hover,.paper.tr:focus-within{animation-direction:alternate-reverse,alternate}
 .paper img,.paper video{border:3px solid var(--ink)}
 .paper h3{font-size:var(--t2)}
 .paper .lead{font-size:var(--t4)}
