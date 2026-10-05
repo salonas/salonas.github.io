@@ -116,7 +116,8 @@ button.soon{font-family:inherit;color:inherit}
 .gcover .btn,.gcover p{position:relative}
 .gcover .btn{font-size:var(--t3);padding:.8em 2em}
 .gcover p{margin:0;background:var(--ink);padding:.3em .9em;border:3px solid var(--paper);font-size:var(--t3)}
-.gcover.off{background:repeating-conic-gradient(var(--ink) 0 25%,var(--brown) 0 50%) 0 0/8px 8px}
+.gcover.off{background:repeating-conic-gradient(#0c0c0c 0 25%,#1a1a1a 0 50%) 0 0/8px 8px}
+.gcover.off p{background:#0c0c0c}
 .gload{position:absolute;inset:0;display:grid;place-items:center;color:var(--paper);font-size:var(--t3)}
 .game .gbar{flex:none;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:stretch;gap:.8rem;min-height:44px}
 .gside{min-width:0;display:flex;align-items:center;gap:.8rem}
@@ -188,6 +189,7 @@ video.cover{background:var(--ink)}
 .player{flex-wrap:wrap}
 .player .seek{flex:1 1 140px}
 .player input.vol{flex:0 0 76px}
+.player.touch .seek,.player.touch input.vol{flex:1 1 60px}
 .shots{display:flex;flex-wrap:wrap;gap:1.6rem;align-items:flex-start}
 .shots .paper{flex:0 1 300px}
 .shots img{width:100%}

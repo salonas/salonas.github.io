@@ -58,3 +58,9 @@ it('writes the footer bubble in the ink of the drawing', () => {
   const [bubble] = css.match(/\.bubble\{[^}]+\}/)
   expect(bubble).toContain('color:#1a1a1a')
 })
+
+it('keeps the switched-off screen black, away from the paper browns', () => {
+  const css = readFileSync('src/styles/site.css', 'utf8')
+  const [off] = css.match(/\.gcover\.off\{[^}]+\}/)
+  expect(off).not.toMatch(/--ink|--brown/)
+})
