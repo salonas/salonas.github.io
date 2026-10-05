@@ -20,7 +20,7 @@ function RichText({ text }) {
 
 const tiltOf = (i) => (i % 2 ? 'r' : 'l')
 
-export default function Section({ project, section, onZoom }) {
+export default function Section({ id, project, section, onZoom }) {
   const { t, L } = useLanguage()
   const url = (file) => mediaUrl(project.slug, file)
 
@@ -71,7 +71,9 @@ export default function Section({ project, section, onZoom }) {
         {section.items.map((item, i) => (
           <Paper key={L(item.name)} tilt={tiltOf(i)}>
             <h4>{L(item.name)}</h4>
-            <p>{L(item.text)}</p>
+            <p>
+              <RichText text={L(item.text)} />
+            </p>
           </Paper>
         ))}
       </div>
@@ -86,7 +88,7 @@ export default function Section({ project, section, onZoom }) {
   }[section.kind]
 
   return (
-    <div className="stack">
+    <div className="stack section" id={id}>
       <h3 className="label sub">{L(section.title)}</h3>
       {body?.()}
     </div>

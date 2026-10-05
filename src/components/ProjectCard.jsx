@@ -43,7 +43,7 @@ export default function ProjectCard({ project, variant = 'full', tilt }) {
   return (
     <Link className={`paper ${tilt === 'r' ? 'tr' : 'tl'} card`} to={`/projects/${project.slug}`}>
       <Cover project={project} />
-      {variant === 'full' && <Tags project={project} />}
+      <Tags project={project} />
       <h3>{project.title}</h3>
       {variant === 'full' && (
         <>

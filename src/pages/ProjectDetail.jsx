@@ -8,6 +8,9 @@ import Section from '../components/sections/Section'
 import { useLanguage } from '../i18n/LanguageProvider'
 import { findProject, mediaUrl } from '../projects'
 
+const INDEX_FROM = 4
+const sectionId = (i) => 'section-' + i
+
 function viewerImages(project, L) {
   return project.sections
     .filter((s) => s.kind === 'shots')
@@ -72,9 +75,25 @@ export default function ProjectDetail() {
           </div>
         </Paper>
 
+        {project.sections.length >= INDEX_FROM && (
+          <nav className="filters" aria-label={t('index-label')}>
+            {project.sections.map((section, i) => (
+              <button
+                key={i}
+                type="button"
+                className="btn"
+                onClick={() => document.getElementById(sectionId(i)).scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              >
+                {L(section.title)}
+              </button>
+            ))}
+          </nav>
+        )}
+
         {project.sections.map((section, i) => (
           <Section
             key={i}
+            id={sectionId(i)}
             project={project}
             section={section}
             onZoom={(file) => setZoom(images.findIndex((x) => x.key === file))}

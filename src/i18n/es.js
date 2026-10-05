@@ -66,6 +66,7 @@ export default {
   "mute": "Silenciar",
   "vol": "Volumen",
   "back": "Volver a todos los proyectos",
+  "index-label": "Secciones del proyecto",
   "see": "Ver proyecto",
   "role": "Rol",
   "tools": "Herramientas",

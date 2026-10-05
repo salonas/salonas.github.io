@@ -72,6 +72,22 @@ export default {
       ]
     },
     {
+      kind: 'list',
+      title: { es: 'Tecnologías', en: 'Tech stack' },
+      items: {
+        es: [
+          'Hardware: NodeMCU (ESP8266), DHT11, sensor de humedad de suelo, sensor de nivel de agua, relay y mini bomba',
+          'Backend: MQTT con Mosquitto, Node-RED y MariaDB, en una máquina virtual de Azure con Docker',
+          'Frontend: React con CSS propio de estilo pixel art'
+        ],
+        en: [
+          'Hardware: NodeMCU (ESP8266), DHT11, soil moisture sensor, water level sensor, relay and mini pump',
+          'Backend: MQTT with Mosquitto, Node-RED and MariaDB, on an Azure virtual machine with Docker',
+          'Frontend: React with custom pixel art CSS'
+        ]
+      }
+    },
+    {
       kind: 'shots',
       title: { es: 'Sprites', en: 'Sprites' },
       items: [
@@ -103,22 +119,6 @@ export default {
           }
         }
       ]
-    },
-    {
-      kind: 'list',
-      title: { es: 'Tecnologías', en: 'Tech stack' },
-      items: {
-        es: [
-          'Hardware: NodeMCU (ESP8266), DHT11, sensor de humedad de suelo, sensor de nivel de agua, relay y mini bomba',
-          'Backend: MQTT con Mosquitto, Node-RED y MariaDB, en una máquina virtual de Azure con Docker',
-          'Frontend: React con CSS propio de estilo pixel art'
-        ],
-        en: [
-          'Hardware: NodeMCU (ESP8266), DHT11, soil moisture sensor, water level sensor, relay and mini pump',
-          'Backend: MQTT with Mosquitto, Node-RED and MariaDB, on an Azure virtual machine with Docker',
-          'Frontend: React with custom pixel art CSS'
-        ]
-      }
     }
   ]
 }

@@ -66,6 +66,7 @@ export default {
   "mute": "Mute",
   "vol": "Volume",
   "back": "Back to all projects",
+  "index-label": "Project sections",
   "see": "See project",
   "role": "Role",
   "tools": "Tools",

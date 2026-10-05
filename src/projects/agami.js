@@ -16,8 +16,8 @@ export default {
   tools: 'Unity 6 · C# · Aseprite · FL Studio',
   code: { es: 'No público', en: 'Not public' },
   summary: {
-    es: 'Action-survival en perspectiva top-down. Controlas a un felino que defiende su territorio en un callejón urbano hostil.',
-    en: 'Top-down action-survival. You play a cat defending its territory in a hostile urban alley.'
+    es: 'Action-survival en perspectiva top-down. Controlas a un felino que intenta sobrevivir en un callejón urbano hostil.',
+    en: 'Top-down action-survival. You play a cat trying to survive in a hostile urban alley.'
   },
   sections: [
     { kind: 'video', title: { es: 'Gameplay', en: 'Gameplay' }, src: 'gameplay.mp4' },
@@ -56,6 +56,22 @@ export default {
       ]
     },
     {
+      kind: 'text',
+      title: { es: 'Música', en: 'Music' },
+      body: {
+        es: 'La música es mía. La compuse en FL Studio con Sforzando 2 y la soundfont de Rockman & Forte de SNES (Mega Man & Bass).',
+        en: 'The music is mine. I composed it in FL Studio with Sforzando 2 and the soundfont from Rockman & Forte on SNES (Mega Man & Bass).'
+      }
+    },
+    {
+      kind: 'audio',
+      title: { es: 'Temas', en: 'Tracks' },
+      tracks: [
+        { title: { es: 'Tema del menú', en: 'Menu theme' }, src: 'menu.mp3' },
+        { title: { es: 'Nivel 1', en: 'Level 1' }, src: 'level1.mp3' }
+      ]
+    },
+    {
       kind: 'items',
       title: { es: 'Inspiración', en: 'Inspiration' },
       items: [
@@ -72,24 +88,38 @@ export default {
             es: 'La fórmula viene del primer The Legend of Zelda de NES, pero este estilo de juego lo popularizó The Binding of Isaac. De ahí tomé la vista top-down, con una interfaz más limpia.',
             en: 'The formula comes from the first The Legend of Zelda on NES, but this style of play was popularised by The Binding of Isaac. I took the top-down view from it, with a cleaner interface.'
           }
+        },
+        {
+          name: 'Primus',
+          text: {
+            es: 'El video de [[«Tommy the Cat»|https://www.youtube.com/watch?v=r4OhIU-PmB8]] es otra de las inspiraciones del juego.',
+            en: 'The video for [["Tommy the Cat"|https://www.youtube.com/watch?v=r4OhIU-PmB8]] is another inspiration for the game.'
+          }
+        },
+        {
+          name: { es: 'Los Aristogatos', en: 'The Aristocats' },
+          text: {
+            es: 'Thomas O’Malley y los gatos callejeros de la película. El callejón del título es una referencia directa a «O’Malley the alley cat».',
+            en: 'Thomas O’Malley and the alley cats from the film. The alley in the title is a direct nod to "O’Malley the alley cat".'
+          }
         }
       ]
     },
     {
-      kind: 'text',
-      title: { es: 'Música', en: 'Music' },
-      body: {
-        es: 'La música es mía. La compuse en FL Studio con Sforzando 2 y la soundfont de Rockman & Forte de SNES (Mega Man & Bass).',
-        en: 'The music is mine. I composed it in FL Studio with Sforzando 2 and the soundfont from Rockman & Forte on SNES (Mega Man & Bass).'
+      kind: 'list',
+      title: { es: 'Bugs conocidos y curiosidades', en: 'Known bugs and fun facts' },
+      items: {
+        es: [
+          'Bug conocido: algunos enemigos pueden aparecer dentro de objetos con colisión y quedar sin poder moverse.',
+          'El nombre Agami mezcla los nombres de cuatro gatos: Agata y Mina, que son míos, y Mila y Gala, de Venjyy.',
+          'La idea inicial era un juego más grande. Terminé desarrollándolo yo solo, porque me gustaba más la idea.'
+        ],
+        en: [
+          'Known bug: some enemies can spawn inside objects with collision and end up unable to move.',
+          'The name Agami blends the names of four cats: Agata and Mina, who are mine, and Mila and Gala, who are Venjyy’s.',
+          'The first idea was a bigger game. I ended up building it on my own, because I liked the idea more.'
+        ]
       }
-    },
-    {
-      kind: 'audio',
-      title: { es: 'Temas', en: 'Tracks' },
-      tracks: [
-        { title: { es: 'Tema del menú', en: 'Menu theme' }, src: 'menu.mp3' },
-        { title: { es: 'Nivel 1', en: 'Level 1' }, src: 'level1.mp3' }
-      ]
     },
     {
       kind: 'shots',

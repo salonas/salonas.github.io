@@ -97,3 +97,10 @@ it('tags a project with every type it belongs to', () => {
   const card = within(main()).getByRole('link', { name: /Plantochi/ })
   expect([...card.querySelectorAll('.tag')].map((x) => x.textContent)).toEqual(['IOT', 'WEB'])
 })
+
+it('shows type and status on the featured cards too', () => {
+  renderAt('/')
+  const card = within(main()).getByRole('link', { name: /Agami/ })
+  expect(within(card).getByText('JUEGO')).toHaveClass('tag')
+  expect(card.querySelector('.state')).toBeInTheDocument()
+})

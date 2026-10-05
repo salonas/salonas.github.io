@@ -96,6 +96,7 @@ a.paper{text-decoration:none}
 .soon.alone{flex:0 1 max(340px,calc(50% - 1rem));margin-inline:auto;min-height:9rem}
 button.soon{font-family:inherit;color:inherit}
 .soon span{font-size:var(--t1);white-space:nowrap}
+.section{scroll-margin-top:1rem}
 .filters{display:flex;flex-wrap:wrap;gap:.6rem}
 .filters .btn{padding:.3em 1em;font-size:var(--small)}
 .card img{width:100%;aspect-ratio:16/9;object-fit:cover}

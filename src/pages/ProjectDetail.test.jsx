@@ -1,4 +1,5 @@
 import { screen, within } from '@testing-library/react'
+import { vi } from 'vitest'
 import userEvent from '@testing-library/user-event'
 import es from '../i18n/es'
 import { projects } from '../projects'
@@ -88,4 +89,25 @@ it('says how the music of Agami was made and what inspired the game', () => {
   expect(within(main()).getByText(/FL Studio con Sforzando 2/)).toBeInTheDocument()
   expect(within(main()).getByRole('heading', { level: 4, name: 'The Legend of Zelda: A Link to the Past' })).toBeInTheDocument()
   expect(within(main()).getByRole('heading', { level: 4, name: 'The Binding of Isaac' })).toBeInTheDocument()
+})
+
+it('offers an index that jumps to each section on long pages', async () => {
+  window.HTMLElement.prototype.scrollIntoView = vi.fn()
+  renderAt('/projects/agami')
+  const index = within(main()).getByRole('navigation', { name: es['index-label'] })
+  const agami = projects.find((p) => p.slug === 'agami')
+  expect(within(index).getAllByRole('button').map((b) => b.textContent)).toEqual(agami.sections.map((s) => s.title.es))
+  await userEvent.click(within(index).getByRole('button', { name: 'Bocetos' }))
+  const [target] = window.HTMLElement.prototype.scrollIntoView.mock.contexts
+  expect(within(target).getByRole('heading', { name: 'Bocetos' })).toBeInTheDocument()
+})
+
+it('skips the index on short pages', () => {
+  renderAt('/projects/guide')
+  expect(within(main()).queryByRole('navigation', { name: es['index-label'] })).not.toBeInTheDocument()
+})
+
+it('turns links inside item texts into real links', () => {
+  renderAt('/projects/agami')
+  expect(within(main()).getByRole('link', { name: /Tommy the Cat/ })).toHaveAttribute('href', 'https://www.youtube.com/watch?v=r4OhIU-PmB8')
 })
