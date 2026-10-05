@@ -8,6 +8,32 @@ function titleKey(pathname) {
   return 'title-home'
 }
 
+const PIXEL = 3
+const BRAID = ['ILLI', 'ILDI', 'IDDI', 'IDLI']
+const ROWS = 32
+const LEAN = 3
+
+// One pixel sideways every LEAN rows, so the braid stays on the grid while it leans.
+const strands = { I: '', L: '', D: '' }
+for (let row = 0; row < ROWS; row++) {
+  const x = Math.floor(row / LEAN)
+  const y = ROWS - 1 - row
+  ;[...BRAID[row % BRAID.length]].forEach((strand, i) => {
+    strands[strand] += `M${(x + i) * PIXEL} ${y * PIXEL}h${PIXEL}v${PIXEL}h-${PIXEL}z`
+  })
+}
+const ROPE_WIDTH = (Math.ceil(ROWS / LEAN) + BRAID[0].length) * PIXEL
+
+function Rope({ side }) {
+  return (
+    <svg className={`rope ${side}`} width={ROPE_WIDTH} height={ROWS * PIXEL} shapeRendering="crispEdges" aria-hidden="true">
+      <path className="edge" d={strands.I} />
+      <path className="light" d={strands.L} />
+      <path className="dark" d={strands.D} />
+    </svg>
+  )
+}
+
 export default function Header() {
   const { t } = useLanguage()
   const { pathname } = useLocation()
@@ -15,12 +41,8 @@ export default function Header() {
   return (
     <header className="banner">
       <div className="sign">
-        <svg className="rope" shapeRendering="crispEdges" aria-hidden="true">
-          <line x1="18" y1="100%" x2="50%" y2="0" />
-          <line className="twist" x1="18" y1="100%" x2="50%" y2="0" />
-          <line x1="100%" y1="100%" x2="50%" y2="0" transform="translate(-18 0)" />
-          <line className="twist" x1="100%" y1="100%" x2="50%" y2="0" transform="translate(-18 0)" />
-        </svg>
+        <Rope side="left" />
+        <Rope side="right" />
         <h1 className="plaque">{t(titleKey(pathname))}</h1>
       </div>
       <nav className="nav" aria-label={t('nav-label')}>
