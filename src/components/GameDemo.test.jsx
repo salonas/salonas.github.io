@@ -151,5 +151,5 @@ it('does not bring the music back when a video stops under a running game', asyn
 
 it('carries the brand of the TV set', async () => {
   await openAgami()
-  expect(main().querySelector('.tv .brand')).toHaveTextContent('SalonasTV')
+  expect(main().querySelector('.tv .brand')).toHaveTextContent('Salonas-TV')
 })

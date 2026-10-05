@@ -4,7 +4,7 @@ import { useLanguage } from '../i18n/LanguageProvider'
 import { useMusic } from '../music/MusicProvider'
 import { PixelIcon } from './MediaPlayer'
 
-const BRAND = 'SalonasTV'
+const BRAND = 'Salonas-TV'
 const START_VOLUME = 25
 const MOUSE_LABELS = { left: 'mouse-left', right: 'mouse-right', move: 'mouse-move' }
 
@@ -137,6 +137,9 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
   return (
     <div className="game">
       <div className="tv">
+        <svg className="antenna" viewBox="0 0 24 11" shapeRendering="crispEdges" aria-hidden="true">
+          <path d="M1 0h1v1h-1zM2 0h1v1h-1zM21 0h1v1h-1zM22 0h1v1h-1zM1 1h1v1h-1zM2 1h1v1h-1zM3 1h1v1h-1zM20 1h1v1h-1zM21 1h1v1h-1zM22 1h1v1h-1zM4 2h1v1h-1zM19 2h1v1h-1zM5 3h1v1h-1zM18 3h1v1h-1zM6 4h1v1h-1zM17 4h1v1h-1zM7 5h1v1h-1zM16 5h1v1h-1zM8 6h1v1h-1zM15 6h1v1h-1zM9 7h1v1h-1zM14 7h1v1h-1zM10 8h1v1h-1zM13 8h1v1h-1zM11 9h1v1h-1zM12 9h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM11 10h1v1h-1zM12 10h1v1h-1zM13 10h1v1h-1zM14 10h1v1h-1z" />
+        </svg>
         <div className="gframe">
           <canvas ref={canvasRef} id={`game-${build}`} tabIndex={-1} aria-label={label} />
           {!open && (
