@@ -134,6 +134,7 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
 
   const watchVideo = () => document.getElementById(videoId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   const open = status === 'loading' || status === 'running'
+  const playable = hasMouse()
 
   return (
     <div className="game">
@@ -143,16 +144,17 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
         </svg>
         <div className="gframe">
           <canvas ref={canvasRef} id={`game-${build}`} tabIndex={-1} aria-label={label} />
-          {!open && (
+          {!open && playable && (
             <div className="gcover">
               {poster && <img src={poster} alt="" />}
-              {hasMouse() ? (
-                <button type="button" className="btn dark" onClick={play}>
-                  {t('demo-play')} ({size})
-                </button>
-              ) : (
-                <p>{t('demo-desktop')}</p>
-              )}
+              <button type="button" className="btn dark" onClick={play}>
+                {t('demo-play')} ({size})
+              </button>
+            </div>
+          )}
+          {!playable && (
+            <div className="gcover off">
+              <p>{t('demo-off')}</p>
             </div>
           )}
           {status === 'loading' && (
@@ -205,7 +207,7 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
           {t('demo-error')}
         </p>
       )}
-      {controls && (
+      {controls && playable && (
         <div className="gpart">
           <h4>{t('demo-controls')}</h4>
           <Controls controls={controls} />
@@ -213,7 +215,7 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
       )}
       {videoId && (
         <p className="gnote">
-          {t('demo-fallback')}{' '}
+          {t(playable ? 'demo-fallback' : 'demo-desktop')}{' '}
           <button type="button" className="copy" onClick={watchVideo}>
             {t('demo-video')}
           </button>

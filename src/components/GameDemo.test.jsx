@@ -56,6 +56,17 @@ it('explains that the demo needs a computer on touch devices', async () => {
   expect(within(main()).queryByRole('button', { name: new RegExp(es['demo-play']) })).not.toBeInTheDocument()
 })
 
+it('shows a switched-off screen with a way to the video on touch devices', async () => {
+  pointer(false)
+  await openAgami()
+  expect(main().querySelector('.gcover.off')).toHaveTextContent(es['demo-off'])
+  expect(main().querySelector('.gframe img')).not.toBeInTheDocument()
+  expect(within(main()).queryByRole('list', { name: es['demo-controls'] })).not.toBeInTheDocument()
+  expect(within(main()).queryByText(es['demo-fallback'])).not.toBeInTheDocument()
+  await userEvent.click(within(main()).getByRole('button', { name: es['demo-video'] }))
+  expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled()
+})
+
 it('points to the gameplay video as a fallback', async () => {
   await openAgami()
   await userEvent.click(within(main()).getByRole('button', { name: es['demo-video'] }))

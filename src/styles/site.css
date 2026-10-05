@@ -111,7 +111,8 @@ button.soon{font-family:inherit;color:inherit}
 .gcover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;opacity:.55;image-rendering:pixelated}
 .gcover .btn,.gcover p{position:relative}
 .gcover .btn{font-size:var(--t3);padding:.8em 2em}
-.gcover p{background:var(--ink);padding:.6em 1em;max-width:32ch}
+.gcover p{margin:0;background:var(--ink);padding:.3em .9em;border:3px solid var(--paper);font-size:var(--t3)}
+.gcover.off{background:repeating-conic-gradient(var(--ink) 0 25%,var(--brown) 0 50%) 0 0/8px 8px}
 .gload{position:absolute;inset:0;display:grid;place-items:center;color:var(--paper);font-size:var(--t3)}
 .game .gbar{flex:none;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:stretch;gap:.8rem;min-height:44px}
 .gside{min-width:0;display:flex;align-items:center;gap:.8rem}
@@ -237,6 +238,7 @@ form.paper input:focus,form.paper textarea:focus{background:var(--paper);outline
 @keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 
 @container (max-width:620px){
+.shots{justify-content:center}
   .plaque{font-size:1.4rem;padding:.5rem 1rem}
   .nav .btn{min-width:0;flex:1 1 40%;padding:.5rem .4rem}
   .hero h2,.phead h2{font-size:1.6rem}
