@@ -318,7 +318,7 @@ form.paper [aria-invalid]{border-style:dashed}
 .project{position:relative}
 .index{position:absolute;top:0;bottom:0;left:calc(100% + 1.4rem);width:160px}
 .index .tabs{position:sticky;top:1.5rem;flex-direction:column;flex-wrap:nowrap;gap:0;padding:.9rem .7rem 1rem;background:var(--paper);border:3px solid var(--ink);outline:2px dashed var(--tan);outline-offset:-7px;box-shadow:5px 5px 0 var(--tan-dark);transform:rotate(1.2deg)}
-.index .btn{min-height:0;padding:.3em .3em;text-align:left;font-family:var(--hand);font-size:1.15rem;line-height:1.2;color:var(--brown);background:none;border:0;border-bottom:2px solid var(--tan);outline:0;box-shadow:none}
+.index .btn{min-height:0;padding:.3em .3em;text-align:left;font-family:var(--hand);font-size:1.15rem;line-height:1.2;color:var(--ink);text-shadow:.5px 0 0 currentColor;background:none;border:0;border-bottom:2px solid var(--tan);outline:0;box-shadow:none}
 .index .btn:last-child{border-bottom:0}
 .ititle{display:block;margin-bottom:.4rem;padding:0 .2rem .35rem;font-size:var(--t3);border-bottom:3px solid var(--ink)}
 .index .btn:hover,.index .btn:focus-visible{background:var(--tan);color:var(--ink);transform:none;animation:none}
