@@ -101,6 +101,7 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
 
   const closed = () => {
     game.current = null
+    if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {})
     if (!alive.current) return
     setStatus('idle')
     release()

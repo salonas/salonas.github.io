@@ -153,3 +153,16 @@ it('carries the brand of the TV set', async () => {
   await openAgami()
   expect(main().querySelector('.tv .brand')).toHaveTextContent('Salonas-TV')
 })
+
+it('leaves full screen when the game quits by itself', async () => {
+  const instance = { Quit: vi.fn(() => Promise.resolve()) }
+  startGame.mockResolvedValue(instance)
+  document.exitFullscreen = vi.fn(() => Promise.resolve())
+  await openAgami()
+  await userEvent.click(within(main()).getByRole('button', { name: new RegExp(es['demo-play']) }))
+  await within(main()).findByRole('button', { name: es['demo-close'] })
+  Object.defineProperty(document, 'fullscreenElement', { configurable: true, get: () => main().querySelector('canvas') })
+  instance.onClosed()
+  expect(document.exitFullscreen).toHaveBeenCalled()
+  Object.defineProperty(document, 'fullscreenElement', { configurable: true, get: () => null })
+})

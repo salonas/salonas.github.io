@@ -102,9 +102,10 @@ it('offers an index that jumps to each section on long pages', async () => {
   expect(within(target).getByRole('heading', { name: 'Bocetos' })).toBeInTheDocument()
 })
 
-it('skips the index on short pages', () => {
-  renderAt('/projects/guide')
-  expect(within(main()).queryByRole('navigation', { name: es['index-label'] })).not.toBeInTheDocument()
+it.each(projects)('gives $slug its section index', (p) => {
+  renderAt('/projects/' + p.slug)
+  const index = within(main()).getByRole('navigation', { name: es['index-label'] })
+  expect(within(index).getAllByRole('button')).toHaveLength(p.sections.length)
 })
 
 it('turns links inside item texts into real links', () => {

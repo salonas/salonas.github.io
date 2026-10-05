@@ -8,7 +8,7 @@ import Section from '../components/sections/Section'
 import { useLanguage } from '../i18n/LanguageProvider'
 import { findProject, mediaUrl, sectionId } from '../projects'
 
-const INDEX_FROM = 4
+const INDEX_FROM = 2
 
 function viewerImages(project, L) {
   return project.sections

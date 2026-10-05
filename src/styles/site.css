@@ -1,6 +1,7 @@
 @font-face{font-family:'MGPixel';src:url(/fonts/MGPixel.otf) format('opentype');font-display:swap}
 @font-face{font-family:'Unifont';src:url(/fonts/Unifont-faces.otf) format('opentype');font-display:swap;size-adjust:125%;unicode-range:U+30FB,U+227D,U+227C,U+2A4A,U+03C9,U+02F5,U+25D5,U+02F6,U+02C3,U+11BA,U+02C2,U+0669,U+02CA,U+15DC,U+02CB,U+0648}
 @font-face{font-family:'Unifont';src:url(/fonts/Unifont-faces.otf) format('opentype');font-display:swap;unicode-range:U+2570,U+FFE3}
+@font-face{font-family:'Unifont Brand';src:url(/fonts/Unifont-brand.otf) format('opentype');font-display:swap}
 @font-face{font-family:'Notepen';src:url(/fonts/Notepen.ttf) format('truetype');font-display:swap}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -115,7 +116,7 @@ button.soon{font-family:inherit;color:inherit}
 .gload{position:absolute;inset:0;display:grid;place-items:center;color:var(--paper);font-size:var(--t3)}
 .game .gbar{flex:none;flex-wrap:nowrap;min-height:44px}
 .grille{flex:1 1 auto;align-self:stretch;margin-inline:.4rem;background:repeating-linear-gradient(90deg,var(--ink) 0 3px,transparent 3px 9px);opacity:.5}
-.brand{flex:none;padding:.15em .8em;background:var(--ink);color:var(--paper);border:2px solid var(--tan-dark);font-size:var(--small);letter-spacing:1px;white-space:nowrap}
+.brand{flex:none;padding:.1em .7em;background:var(--ink);color:var(--paper);border:2px solid var(--tan-dark);font-family:'Unifont Brand',var(--display);font-size:1.2rem;line-height:1.2;letter-spacing:1px;white-space:nowrap}
 .pbtn.wide{flex:none;display:flex;align-items:center;gap:.5rem;padding:0 .8rem;font:inherit;font-size:var(--small);color:var(--ink)}
 .gpart{display:flex;flex-direction:column;gap:.8rem;padding-top:1rem;border-top:2px dashed var(--tan-dark)}
 .gpart h4{font-size:var(--t4)}
