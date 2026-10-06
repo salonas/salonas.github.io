@@ -1,6 +1,5 @@
 export default {
   slug: 'orquesta',
-  featured: true,
   title: 'OrquestaDeCobquecuraWEB',
   shortTitle: 'Orquesta',
   type: { es: 'WEB', en: 'WEB' },
@@ -24,11 +23,15 @@ export default {
     {
       kind: 'loops',
       title: { es: 'Capturas', en: 'Screens' },
-      items: [ 'screen-1.mp4', 'screen-2.mp4' ]
+      items: [ 'screen-1.mp4', 'screen-2.mp4' ],
+      captions: [
+        { es: 'Página principal y noticias', en: 'Home page and news' },
+        { es: 'Panel de administración', en: 'Admin panel' }
+      ]
     },
     {
       kind: 'text',
-      title: { es: 'Descripción', en: 'Description' },
+      title: { es: 'Sobre el proyecto', en: 'About the project' },
       body: {
         es: 'Permite gestionar estudiantes, profesores, instrumentos, eventos y noticias, facilitando el seguimiento académico y el control de inventario. El desarrollo quedó inconcluso y está en pausa.',
         en: 'It manages students, teachers, instruments, events and news, supporting academic tracking and inventory control. Development is unfinished and on hiatus.'
@@ -36,7 +39,7 @@ export default {
     },
     {
       kind: 'list',
-      title: { es: 'Características principales', en: 'Main features' },
+      title: { es: 'Qué hace', en: 'What it does' },
       items: {
         es: [
           'Panel de administración (usuarios, profesores y eventos)',

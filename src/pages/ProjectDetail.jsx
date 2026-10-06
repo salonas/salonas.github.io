@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import ImageViewer from '../components/ImageViewer'
 import { outside } from '../components/outside'
-import Paper from '../components/Paper'
+import Paper, { Holes } from '../components/Paper'
 import { Cover, Tags } from '../components/ProjectCard'
 import Section from '../components/sections/Section'
 import { useLanguage } from '../i18n/LanguageProvider'
@@ -16,7 +16,7 @@ function viewerImages(project, L) {
       return s.items.map((x) => ({ key: x.src, src: mediaUrl(project.slug, x.src), alt: L(x.alt), sketch: !!s.sketch }))
     }
     if (s.kind === 'loops') {
-      return s.items.map((file, i) => ({ key: file, src: mediaUrl(project.slug, file), alt: loopCaption(L(s.title), i), video: true }))
+      return s.items.map((file, i) => ({ key: file, src: mediaUrl(project.slug, file), alt: loopCaption(s, i, L), video: true }))
     }
     return []
   })
@@ -78,11 +78,20 @@ export default function ProjectDetail() {
             <small>{t('code')}</small>
             {project.repo ? <a href={project.repo} {...outside}>{t('repo')}</a> : L(project.code)}
           </div>
+          {project.site && (
+            <div>
+              <small>{t('site')}</small>
+              <a href={project.site} {...outside}>
+                {t('site-open')}
+              </a>
+            </div>
+          )}
         </Paper>
 
         {project.sections.length >= INDEX_FROM && (
           <nav className="index" aria-label={t('index-label')}>
             <div className="tabs">
+              <Holes />
               <span className="ititle" aria-hidden="true">
                 {t('index-title')}
               </span>

@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser'
 import Icon from '../components/Icon'
 import Modal from '../components/Modal'
 import { outside } from '../components/outside'
-import Paper from '../components/Paper'
+import Paper, { cornerOf } from '../components/Paper'
 import { useLanguage } from '../i18n/LanguageProvider'
 
 const EMAIL = 'jsalonas2003@gmail.com'
@@ -88,7 +88,7 @@ function ContactForm() {
   }
 
   return (
-    <Paper as="form" style={{ flex: '1 1 340px' }} noValidate aria-labelledby="form-title" onSubmit={submit}>
+    <Paper as="form" sheet="notebook" style={{ flex: '1 1 340px' }} noValidate aria-labelledby="form-title" onSubmit={submit}>
       <h3 id="form-title">{t('form-title')}</h3>
       {FIELDS.map(({ id, name, label, ...input }) => {
         const Tag = name === 'message' ? 'textarea' : 'input'
@@ -130,14 +130,14 @@ function ContactForm() {
 }
 
 export default function Contact() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   return (
     <section className="page">
       <div className="stack">
         <h2 className="label">{t('contact-title')}</h2>
         <div className="row" style={{ alignItems: 'flex-start' }}>
           <div className="stack" style={{ flex: '1 1 340px' }}>
-            <Paper tilt="l" className="contact">
+            <Paper sheet="text" corner={cornerOf(0)} tilt="l" className="contact">
               <Icon name="mail" />
               <span className="who">
                 <span>{t('c-mail')}</span>
@@ -145,21 +145,21 @@ export default function Contact() {
               </span>
               <CopyButton text={EMAIL} />
             </Paper>
-            <Paper as="a" tilt="r" className="contact" href="https://github.com/salonas" {...outside}>
+            <Paper as="a" sheet="text" corner={cornerOf(1)} tilt="r" className="contact" href="https://github.com/salonas" {...outside}>
               <Icon name="github" />
               <span className="who">
                 <span>GitHub</span>
                 <small>salonas</small>
               </span>
             </Paper>
-            <Paper as="a" tilt="l" className="contact" href="https://www.linkedin.com/in/joaqu%C3%ADn-salinas-enr%C3%ADquez-590637300/" {...outside}>
+            <Paper as="a" sheet="text" corner={cornerOf(2)} tilt="l" className="contact" href="https://www.linkedin.com/in/joaqu%C3%ADn-salinas-enr%C3%ADquez-590637300/" {...outside}>
               <Icon name="linkedin" />
               <span className="who">
                 <span>LinkedIn</span>
                 <small>Joaquín Salinas</small>
               </span>
             </Paper>
-            <Paper tilt="r" className="contact">
+            <Paper sheet="text" corner={cornerOf(3)} tilt="r" className="contact">
               <Icon name="discord" />
               <span className="who">
                 <span>Discord</span>
@@ -167,6 +167,13 @@ export default function Contact() {
                 <a href={`https://discord.com/users/${DISCORD_USER_ID}`} {...outside}>{t('discord-open')}</a>
               </span>
               <CopyButton text={DISCORD_NAME} />
+            </Paper>
+            <Paper as="a" sheet="text" corner={cornerOf(4)} tilt="l" className="contact" href={`/cv/CV_Joaquin_Salinas_${lang.toUpperCase()}.pdf`} download>
+              <Icon name="cv" />
+              <span className="who">
+                <span>{t('c-cv')}</span>
+                <small>{t('c-cv-note')}</small>
+              </span>
             </Paper>
           </div>
           <ContactForm />

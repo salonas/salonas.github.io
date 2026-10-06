@@ -45,6 +45,10 @@ en el orden en que aparecen en su archivo. Los textos van en los dos idiomas.
 Cada push a `master` corre las pruebas, construye el sitio y lo publica en GitHub Pages
 (`.github/workflows/deploy.yml`).
 
+## Currículum
+
+Las fuentes están en `cv/es.html` y `cv/en.html`, con el estilo en `cv/cv.css`. Contacto enlaza al PDF del idioma activo, en `public/cv/`. Para regenerarlos después de editar, imprime cada HTML a PDF en tamaño carta desde el navegador, sin encabezado ni pie, y reemplaza el archivo.
+
 ## Créditos
 
 - Fuentes: MGPixel y Notepen. Los símbolos de las caritas usan [GNU Unifont](https://unifoundry.com/unifont/), licencia SIL Open Font License 1.1.

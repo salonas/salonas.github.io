@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useLanguage } from '../i18n/LanguageProvider'
 import { PixelIcon } from './MediaPlayer'
+import { Holes, LoopStamp, Sprockets } from './Paper'
 
 const ZOOMS = [1, 1.5, 2, 3, 4]
 const VIDEO_PROPS = { autoPlay: true, muted: true, loop: true, playsInline: true }
@@ -100,7 +101,14 @@ export default function ImageViewer({ images, index, onIndex, onClose }) {
   return createPortal(
     <div className="modal" id="zoom" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="zbox" role="dialog" aria-modal="true" aria-labelledby={captionId}>
-        <div className={`paper zframe ${image.sketch ? 'sketch' : ''}`}>
+        <div className={`paper zframe ${image.sketch ? 'nb sketch' : image.video ? 'film' : 'foto'}`}>
+          {image.sketch && <Holes />}
+          {image.video && (
+            <>
+              <Sprockets />
+              <LoopStamp label={t('loop-badge')} />
+            </>
+          )}
           <div className={`zpane ${zoom > 1 ? 'zoomed' : ''}`} ref={paneRef} style={paneStyle}>
             <Media
               ref={imgRef}
@@ -118,10 +126,18 @@ export default function ImageViewer({ images, index, onIndex, onClose }) {
               }}
             />
           </div>
+          {image.video && <Sprockets />}
+          {!image.sketch && !image.video && (
+            <p className="capt" id={captionId}>
+              {image.alt}
+            </p>
+          )}
         </div>
-        <p className="zcap" id={captionId}>
-          {image.alt}
-        </p>
+        {(image.sketch || image.video) && (
+          <p className="zcap" id={captionId}>
+            {image.alt}
+          </p>
+        )}
         <div className="zbar">
           {many && (
             <>

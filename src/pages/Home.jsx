@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Paper from '../components/Paper'
+import Paper, { cornerOf } from '../components/Paper'
 import ProjectCard from '../components/ProjectCard'
 import { useLanguage } from '../i18n/LanguageProvider'
 import { projects } from '../projects'
@@ -43,7 +43,7 @@ export default function Home() {
 
       <div className="stack">
         <h2 className="label">{t('about')}</h2>
-        <Paper>
+        <Paper sheet="text" className="big">
           <h3>{t('journey-title')}</h3>
           <div className="prose">
             <p>{t('journey-1')}</p>
@@ -53,14 +53,14 @@ export default function Home() {
           <p className="quote">{t('journey-quote')}</p>
         </Paper>
         <div className="row">
-          <Paper tilt="l" className="card">
+          <Paper sheet="text" corner={cornerOf(0)} tilt="l" className="card">
             <h3>{t('interests-title')}</h3>
             <div className="prose">
               <p>{t('interests-1')}</p>
               <p>{t('interests-2')}</p>
             </div>
           </Paper>
-          <Paper tilt="r" className="card">
+          <Paper sheet="text" corner={cornerOf(1)} tilt="r" className="card">
             <h3>{t('community-title')}</h3>
             <div className="prose">
               <p>{t('community-1')}</p>
