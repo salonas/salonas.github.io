@@ -126,12 +126,12 @@ export default {
       items: {
         es: [
           'Bug conocido: algunos enemigos pueden aparecer dentro de objetos con colisión y quedar sin poder moverse.',
-          'El nombre Agami mezcla los nombres de cuatro gatos: Agata y Mina, que son míos, y Mila y Gala, de Venjyy.',
+          'El nombre Agami mezcla los nombres de cuatro gatos: Agata y Mina, que son míos, y Mila y Gala, de [[Venjyy|https://github.com/Venjyy]].',
           'La idea inicial era un juego más grande. Terminé desarrollándolo yo solo, porque me gustaba más la idea.'
         ],
         en: [
           'Known bug: some enemies can spawn inside objects with collision and end up unable to move.',
-          'The name Agami blends the names of four cats: Agata and Mina, who are mine, and Mila and Gala, who are Venjyy’s.',
+          'The name Agami blends the names of four cats: Agata and Mina, who are mine, and Mila and Gala, who belong to [[Venjyy|https://github.com/Venjyy]].',
           'The first idea was a bigger game. I ended up building it on my own, because I liked the idea more.'
         ]
       }

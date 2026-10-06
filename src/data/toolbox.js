@@ -1,17 +1,40 @@
+const SITE = { href: 'https://github.com/salonas/salonas.github.io', label: { es: 'en este sitio', en: 'on this site' } }
+
 export const toolbox = [
   {
     title: { es: 'Código', en: 'Code' },
     tools: [
       { name: 'C#', to: 'agami' },
+      { name: '.NET' },
+      { name: 'Java + Android', to: 'guide' },
+      { name: 'JavaScript' },
+      { name: { es: 'HTML y CSS', en: 'HTML and CSS' } },
       { name: 'React', to: 'orquesta' },
       { name: 'Node.js + Express', to: 'orquesta' },
-      { name: 'MySQL', to: 'orquesta' },
       { name: 'Tailwind CSS', to: 'orquesta' },
-      { name: 'Java + Android', to: 'guide' },
-      { name: 'Firebase', to: 'guide' },
+      { name: 'Vite + React Router', ...SITE },
+      { name: { es: 'Pruebas con Vitest', en: 'Testing with Vitest' }, ...SITE },
       { name: 'Gemini API', to: 'guide' },
-      { name: 'ESP8266 + MQTT', to: 'plantochi' },
       { name: 'Python' },
+      { name: { es: 'Programación orientada a objetos', en: 'Object-oriented programming' } },
+      { name: { es: 'Patrones de diseño', en: 'Design patterns' } },
+      { name: { es: 'Git y GitHub', en: 'Git and GitHub' } },
+    ],
+  },
+  {
+    title: { es: 'Datos y sistemas', en: 'Data and systems' },
+    tools: [
+      { name: 'SQL' },
+      { name: 'MySQL', to: 'orquesta' },
+      { name: 'PostgreSQL', to: 'procedimiento-seguro' },
+      { name: 'Firebase', to: 'guide' },
+      { name: { es: 'Diseño de bases de datos', en: 'Database design' } },
+      { name: { es: 'Servidores Linux en Azure', en: 'Linux servers on Azure' }, to: 'procedimiento-seguro' },
+      { name: 'Cloudflare Tunnel', to: 'procedimiento-seguro' },
+      { name: { es: 'GitHub Actions y Pages', en: 'GitHub Actions and Pages' }, ...SITE },
+      { name: { es: 'Windows y GNU/Linux', en: 'Windows and GNU/Linux' } },
+      { name: { es: 'Soporte de equipos y hardware', en: 'Hardware and PC support' } },
+      { name: 'ESP8266 + MQTT', to: 'plantochi' },
     ],
   },
   {

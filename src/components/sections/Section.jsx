@@ -1,6 +1,6 @@
 import GameDemo from '../GameDemo'
 import MediaPlayer from '../MediaPlayer'
-import Paper from '../Paper'
+import Paper, { LoopStamp, Rules, Sprockets, cornerOf } from '../Paper'
 import { useLanguage } from '../../i18n/LanguageProvider'
 import { loopCaption, mediaUrl, sectionId } from '../../projects'
 import { outside } from '../outside'
@@ -27,7 +27,7 @@ export default function Section({ id, project, section, onZoom }) {
 
   const body = {
     game: () => (
-      <Paper className="media">
+      <Paper sheet="notebook" className="media">
         <GameDemo
           build={section.build}
           size={section.size}
@@ -39,22 +39,30 @@ export default function Section({ id, project, section, onZoom }) {
       </Paper>
     ),
     video: () => (
-      <Paper className="media">
+      <Paper sheet="notebook" className="media">
         <MediaPlayer kind="video" src={url(section.src)} label={L(section.title)} />
       </Paper>
     ),
     loops: () => (
       <div className="loops">
         {section.items.map((file, i) => (
-          <Paper key={file} tilt={tiltOf(i)}>
+          <Paper key={file} tilt={tiltOf(i)} className="film">
+            <Sprockets />
+            <LoopStamp label={t('loop-badge')} />
             <button
               type="button"
               className="zbtn"
-              aria-label={`${t('zoom')}: ${loopCaption(L(section.title), i)}`}
+              aria-label={`${t('zoom')}: ${loopCaption(section, i, L)}`}
               onClick={() => onZoom(file)}
             >
               <video autoPlay muted loop playsInline src={url(file)} />
             </button>
+            <Sprockets />
+            {section.captions && (
+              <span className="capt" aria-hidden="true">
+                {L(section.captions[i])}
+              </span>
+            )}
           </Paper>
         ))}
       </div>
@@ -62,26 +70,34 @@ export default function Section({ id, project, section, onZoom }) {
     shots: () => (
       <div className="shots">
         {section.items.map((item, i) => (
-          <Paper key={item.src} tilt={tiltOf(i)} className={section.sketch ? 'sketch' : ''}>
+          <Paper key={item.src} sheet={section.sketch ? 'notebook' : 'photo'} tilt={tiltOf(i)} className={section.sketch ? 'sketch' : ''}>
             <button type="button" className="zbtn" aria-label={`${t('zoom')}: ${L(item.alt)}`} onClick={() => onZoom(item.src)}>
               <img loading="lazy" src={url(item.src)} alt={L(item.alt)} />
             </button>
+            {!section.sketch && (
+              <span className="capt" aria-hidden="true">
+                {L(item.alt)}
+              </span>
+            )}
           </Paper>
         ))}
       </div>
     ),
     text: () => (
-      <Paper>
+      <Paper sheet="text" className="big nohead">
         <p className="prose">
           <RichText text={L(section.body)} />
         </p>
       </Paper>
     ),
     list: () => (
-      <Paper>
+      <Paper sheet="notebook" className="list">
+        <Rules />
         <ul className="plain">
           {L(section.items).map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>
+              <RichText text={item} />
+            </li>
           ))}
         </ul>
       </Paper>
@@ -89,7 +105,7 @@ export default function Section({ id, project, section, onZoom }) {
     items: () => (
       <div className="items">
         {section.items.map((item, i) => (
-          <Paper key={L(item.name)} tilt={tiltOf(i)}>
+          <Paper key={L(item.name)} sheet="text" corner={cornerOf(i)} tilt={tiltOf(i)}>
             <h4>{L(item.name)}</h4>
             <p>
               <RichText text={L(item.text)} />

@@ -1,0 +1,18 @@
+@page{size:Letter;margin:.45in .6in}
+*{box-sizing:border-box}
+html{font-size:10pt}
+body{margin:0;color:#000;font-family:Georgia,'Times New Roman',Times,serif;line-height:1.25}
+a{color:inherit;text-decoration:none}
+header{text-align:center;margin-bottom:.5rem}
+h1{margin:0;font-size:1.9rem;font-weight:700;letter-spacing:.02em}
+header p{margin:.2rem 0 0}
+h2{margin:.55rem 0 .25rem;padding-bottom:.1rem;border-bottom:1px solid #000;font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.entry{margin-bottom:.28rem;break-inside:avoid}
+.row{display:flex;justify-content:space-between;gap:1rem}
+.row b{font-weight:700}
+.row i{font-style:italic}
+.row span{white-space:nowrap}
+ul{margin:.15rem 0 0;padding-left:1.1rem}
+li{margin:0}
+p{margin:.15rem 0 0}
+.skills p{margin:0 0 .1rem}

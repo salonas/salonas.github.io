@@ -28,7 +28,7 @@ it('shows each status in words on its card', () => {
 
 it('features only the flagged projects on home', () => {
   renderAt('/')
-  expect(projectLinks()).toEqual(['/projects/agami', '/projects/orquesta'])
+  expect(projectLinks()).toEqual(['/projects/procedimiento-seguro', '/projects/agami'])
 })
 
 it('introduces Salonas on home with the highlighted quote', () => {
@@ -69,7 +69,7 @@ it('filters the projects by type', async () => {
 it('lists a project under every type it belongs to', async () => {
   renderAt('/projects')
   await userEvent.click(within(main()).getByRole('button', { name: 'WEB' }))
-  expect(projectLinks()).toEqual(['/projects/orquesta', '/projects/plantochi'])
+  expect(projectLinks()).toEqual(['/projects/procedimiento-seguro', '/projects/orquesta', '/projects/plantochi'])
 })
 
 it('fills the empty spot with a note only when every project is shown', async () => {
@@ -109,4 +109,41 @@ it.each(['/', '/projects'])('stamps the playable demo on its card at %s', (path)
   renderAt(path)
   expect(within(within(main()).getByRole('link', { name: /Agami/ })).getByText(es['demo-badge'])).toHaveClass('stamp')
   expect(within(main()).getAllByText(es['demo-badge'])).toHaveLength(1)
+})
+
+it('pins the project cards as notebook sheets', () => {
+  renderAt('/projects')
+  const card = within(main()).getByRole('link', { name: /Agami's Alley/ })
+  expect(card).toHaveClass('nb', 'card')
+  expect(card.querySelector('.holes')).toBeInTheDocument()
+})
+
+it('writes the home story on text sheets, the long one without a fold', () => {
+  renderAt('/')
+  const story = within(main()).getByRole('heading', { name: es['journey-title'] }).closest('.paper')
+  expect(story).toHaveClass('ts', 'big')
+  expect(story.querySelector('.ear')).not.toBeInTheDocument()
+  expect(within(main()).getByRole('heading', { name: es['interests-title'] }).closest('.paper')).toHaveClass('ts')
+})
+
+it('rules the toolbox lists like notebook pages', () => {
+  renderAt('/toolbox')
+  const list = within(main()).getByRole('heading', { name: 'Arte' }).closest('.paper')
+  expect(list).toHaveClass('nb')
+  expect(list.querySelector('.rows .lines')).toBeInTheDocument()
+})
+
+it('keeps the contact form on a notebook sheet and the channels on small sheets', () => {
+  renderAt('/contact')
+  expect(within(main()).getByRole('heading', { name: es['form-title'] }).closest('.paper')).toHaveClass('nb')
+  expect(within(main()).getByRole('link', { name: /GitHub/ })).toHaveClass('ts', 'contact')
+})
+
+it('offers the résumé in the language of the page', async () => {
+  renderAt('/contact')
+  const cv = () => within(main()).getByRole('link', { name: /Currículum|Résumé/ })
+  expect(cv()).toHaveAttribute('href', '/cv/CV_Joaquin_Salinas_ES.pdf')
+  expect(cv()).toHaveAttribute('download')
+  await userEvent.click(screen.getByRole('button', { name: 'English' }))
+  expect(cv()).toHaveAttribute('href', '/cv/CV_Joaquin_Salinas_EN.pdf')
 })

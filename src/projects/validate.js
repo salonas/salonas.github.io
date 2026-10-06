@@ -1,4 +1,4 @@
-const STATUSES = ['done', 'paused', 'failed']
+const STATUSES = ['live', 'done', 'paused', 'failed']
 
 function bilingual(value, name) {
   if (!value || typeof value !== 'object') return [`${name}: missing`]
@@ -8,7 +8,10 @@ function bilingual(value, name) {
 const KINDS = {
   game: (s) => (s.build && s.size ? [] : ['build and size: missing']),
   video: (s) => (s.src ? [] : ['src: missing']),
-  loops: (s) => (Array.isArray(s.items) && s.items.length ? [] : ['items: missing']),
+  loops: (s) => [
+    ...(Array.isArray(s.items) && s.items.length ? [] : ['items: missing']),
+    ...(s.captions ? (s.captions.length === s.items?.length ? s.captions.flatMap((c, i) => bilingual(c, `captions[${i}]`)) : ['captions: one per item']) : []),
+  ],
   shots: (s) =>
     Array.isArray(s.items)
       ? s.items.flatMap((x, i) => [...(x.src ? [] : [`items[${i}].src: missing`]), ...bilingual(x.alt, `items[${i}].alt`)])
@@ -34,7 +37,7 @@ const KINDS = {
 export function validateProject(p) {
   const problems = []
   for (const key of ['slug', 'title', 'tools']) if (!p[key]) problems.push(`${key}: missing`)
-  if (!STATUSES.includes(p.status)) problems.push('status: must be done, paused or failed')
+  if (!STATUSES.includes(p.status)) problems.push('status: must be live, done, paused or failed')
   for (const key of ['type', 'state', 'roles', 'summary']) problems.push(...bilingual(p[key], key))
   if (p.cover) problems.push(...bilingual(p.coverAlt, 'coverAlt'))
   if (!p.repo) problems.push(...bilingual(p.code, 'code'))

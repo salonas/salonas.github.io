@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageProvider'
 import { mediaUrl } from '../projects'
+import Paper from './Paper'
 
 export function Cover({ project, className = '' }) {
   const { t, L } = useLanguage()
@@ -41,7 +42,7 @@ export function Tags({ project }) {
 export default function ProjectCard({ project, variant = 'full', tilt }) {
   const { t, L } = useLanguage()
   return (
-    <Link className={`paper ${tilt === 'r' ? 'tr' : 'tl'} card`} to={`/projects/${project.slug}`}>
+    <Paper as={Link} sheet="notebook" tilt={tilt === 'r' ? 'r' : 'l'} className="card" to={`/projects/${project.slug}`}>
       <Cover project={project} />
       {project.sections.some((s) => s.kind === 'game') && (
         <span className="stamp">
@@ -59,6 +60,6 @@ export default function ProjectCard({ project, variant = 'full', tilt }) {
           <span className="more">{t('see')}</span>
         </>
       )}
-    </Link>
+    </Paper>
   )
 }

@@ -17,7 +17,7 @@ function allMediaFiles(list) {
 }
 
 it('lists the projects in order', () => {
-  expect(projects.map((p) => p.slug)).toEqual(['agami', 'guide', 'orquesta', 'plantochi', 'sailing'])
+  expect(projects.map((p) => p.slug)).toEqual(['procedimiento-seguro', 'agami', 'guide', 'orquesta', 'plantochi', 'sailing'])
 })
 
 it.each(projects)('$slug is a valid project', (p) => {
@@ -30,7 +30,7 @@ it('rejects a text that lacks a language', () => {
 
 it('rejects an unknown status and an unknown section kind', () => {
   const agami = findProject('agami')
-  expect(validateProject({ ...agami, status: 'wip' })).toContain('status: must be done, paused or failed')
+  expect(validateProject({ ...agami, status: 'wip' })).toContain('status: must be live, done, paused or failed')
   expect(validateProject({ ...agami, sections: [{ kind: 'carousel', title: { es: 'a', en: 'a' } }] })).toContain(
     'sections[0]: unknown kind carousel',
   )
@@ -61,9 +61,9 @@ it('links every toolbox entry to a project that exists', () => {
 
 const ORDER = [
   ['Demo jugable'],
-  ['Gameplay', 'Capturas'],
-  ['Sobre el proyecto', 'Descripción', 'Qué faltó', 'Cómo funciona'],
-  ['Mecánicas', 'Qué hace', 'Características principales', 'Comportamiento del jefe'],
+  ['Gameplay', 'Capturas', 'Presentación'],
+  ['Sobre el proyecto', 'Qué faltó', 'Cómo funciona', 'Equipo'],
+  ['Mecánicas', 'Mi parte', 'Qué hace', 'Comportamiento del jefe'],
   ['Tecnologías'],
   ['Música', 'Temas', 'Modelado 3D', 'Sobre el modelo', 'Sprites', 'Prototipo y diagrama preliminar'],
   ['Inspiración'],
@@ -75,4 +75,8 @@ it.each(projects)('keeps the sections of $slug in the shared order', (p) => {
   const ranks = p.sections.map((s) => ORDER.findIndex((group) => group.includes(s.title.es)))
   expect(ranks).not.toContain(-1)
   expect(ranks).toEqual([...ranks].sort((a, b) => a - b))
+})
+
+it('ships a résumé for each language', () => {
+  for (const lang of ['ES', 'EN']) expect(existsSync(`public/cv/CV_Joaquin_Salinas_${lang}.pdf`)).toBe(true)
 })

@@ -123,3 +123,46 @@ it('opens the looping clips in the viewer too', async () => {
   expect(within(viewer).getByText('2 / 2')).toBeInTheDocument()
   expect(viewer.querySelector('video')).toHaveAttribute('src', '/media/orquesta/screen-2.mp4')
 })
+
+it('shows screenshots as captioned photos and sketches as notebook pages', () => {
+  renderAt('/projects/guide')
+  const shot = screen.getByRole('img', { name: 'Pantalla de inicio de sesión' }).closest('.paper')
+  expect(shot).toHaveClass('foto')
+  expect(shot.querySelector('.capt')).toHaveTextContent('Pantalla de inicio de sesión')
+})
+
+it('puts sketches, lists and players on notebook sheets', () => {
+  renderAt('/projects/agami')
+  for (const el of document.querySelectorAll('.sketch, .paper.media:not(.track), .paper:has(> ul.plain)')) expect(el).toHaveClass('nb')
+  expect(document.querySelectorAll('.sketch').length).toBeGreaterThan(0)
+  expect(document.querySelector('.items .paper')).toHaveClass('ts')
+})
+
+it('links the people it credits to their profiles', () => {
+  renderAt('/projects/agami')
+  expect(within(main()).getByRole('link', { name: 'Venjyy' })).toHaveAttribute('href', 'https://github.com/Venjyy')
+})
+
+it('sends a live project to its site and credits the partner who built it', () => {
+  renderAt('/projects/procedimiento-seguro')
+  expect(within(main()).getByRole('link', { name: es['site-open'] })).toHaveAttribute('href', 'https://procedimientoseguro.cl')
+  expect(within(main()).getAllByRole('link', { name: 'Venjyy' })[0]).toHaveAttribute('href', 'https://github.com/Venjyy')
+})
+
+it('names the orchestra screens and opens them as photos, sketches as notebook pages', async () => {
+  renderAt('/projects/orquesta')
+  await userEvent.click(screen.getByRole('button', { name: /Página principal y noticias/ }))
+  const frame = document.querySelector('.zframe')
+  expect(frame).toHaveClass('film')
+  expect(frame.querySelectorAll('.sprk')).toHaveLength(2)
+  expect(within(frame).getByText(es['loop-badge'])).toBeInTheDocument()
+  expect(screen.getByText('Página principal y noticias', { selector: '.zcap' })).toBeInTheDocument()
+})
+
+it('opens a sketch on a notebook page with its holes', async () => {
+  renderAt('/projects/sailing')
+  await userEvent.click(screen.getByRole('button', { name: /Boceto a lápiz/ }))
+  const frame = document.querySelector('.zframe')
+  expect(frame).toHaveClass('nb')
+  expect(frame.querySelector('.holes')).toBeInTheDocument()
+})
