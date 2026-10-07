@@ -87,3 +87,8 @@ it('wraps a viewer caption to the picture instead of widening the frame', () => 
   const [caption] = css.match(/\.zframe \.capt\{[^}]+\}/)
   expect(caption).toContain('width:0;min-width:100%')
 })
+
+it('keeps the pin of the project index still', () => {
+  const css = readFileSync('src/styles/site.css', 'utf8')
+  expect(css).not.toMatch(/\.index \.tabs:(hover|focus-within)::before/)
+})
