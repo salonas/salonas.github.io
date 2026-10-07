@@ -423,7 +423,7 @@ form.paper [aria-invalid]{border-style:dashed}
 .zframe.foto{padding:16px 16px 10px}
 .zframe.nb{padding:3.5rem 16px 16px}
 .zframe.foto img,.zframe.foto video,.zframe.nb img{max-height:calc(100vh - 330px)}
-.zframe .capt{margin:0;max-width:min(calc(100vw - 80px),1100px);font-size:1.5rem}
+.zframe .capt{margin:0;width:0;min-width:100%;font-size:1.5rem}
 @media (max-width:599px){
   .zframe.foto{padding:8px 8px 6px}
   .zframe.nb{padding:3rem 8px 8px}
