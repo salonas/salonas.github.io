@@ -51,6 +51,6 @@ Las fuentes están en `cv/es.html` y `cv/en.html`, con el estilo en `cv/cv.css`.
 
 ## Créditos
 
-- Fuentes: MGPixel y Notepen. Los símbolos de las caritas usan [GNU Unifont](https://unifoundry.com/unifont/), licencia SIL Open Font License 1.1.
+- Fuentes: MGPixel y [Notepen](https://www.dafont.com/notepen.font), de jeti, licencia CC BY 4.0. Los símbolos de las caritas usan [GNU Unifont](https://unifoundry.com/unifont/), licencia SIL Open Font License 1.1.
 - Íconos de contacto: [Simple Icons](https://simpleicons.org/), licencia CC0.
 - Cursores: dibujados para este sitio.
