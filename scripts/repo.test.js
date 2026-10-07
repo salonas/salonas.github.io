@@ -81,3 +81,9 @@ it('ships the two big fonts compressed, with nothing pointing at a missing file'
   for (const file of files) expect(existsSync('public/fonts/' + file)).toBe(true)
   expect(readdirSync('public/fonts').sort()).toEqual([...new Set(files)].sort())
 })
+
+it('wraps a viewer caption to the picture instead of widening the frame', () => {
+  const css = readFileSync('src/styles/site.css', 'utf8')
+  const [caption] = css.match(/\.zframe \.capt\{[^}]+\}/)
+  expect(caption).toContain('width:0;min-width:100%')
+})
