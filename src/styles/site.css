@@ -352,8 +352,8 @@ form.paper [aria-invalid]{border-style:dashed}
 
 /* sheets */
 :root{--pin:var(--stud) 39px 39px/21px 21px no-repeat;--pin-up:var(--stud) 42px 33px/21px 21px no-repeat,linear-gradient(var(--ink),var(--ink)) 45px 54px/6px 3px no-repeat,linear-gradient(var(--tan-dark),var(--tan-dark)) 45px 57px/3px 3px no-repeat;--ear:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath fill='%233a2d1a' d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM0 1h1v1h-1zM0 2h1v1h-1zM0 3h1v1h-1zM0 4h1v1h-1zM0 5h1v1h-1zM0 6h1v1h-1z'/%3E%3Cpath fill='%23f2e5cc' d='M1 1h1v1h-1zM2 1h1v1h-1zM1 2h1v1h-1z'/%3E%3Cpath fill='%23e3d7c0' d='M3 1h1v1h-1zM4 1h1v1h-1zM5 1h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM1 4h1v1h-1zM2 4h1v1h-1zM1 5h1v1h-1z'/%3E%3C/svg%3E");--edge:drop-shadow(3px 0 0 var(--ink)) drop-shadow(-3px 0 0 var(--ink)) drop-shadow(0 3px 0 var(--ink)) drop-shadow(0 -3px 0 var(--ink))}
-.paper:not(.media):not(.zframe):not(.facts):focus-within::before,.index .tabs:focus-within::before{background:var(--pin-up);filter:drop-shadow(3px 6px 0 rgba(58,45,26,.3))}
-@media (hover:hover){.paper:not(.media):not(.zframe):not(.facts):hover::before,.index .tabs:hover::before{background:var(--pin-up);filter:drop-shadow(3px 6px 0 rgba(58,45,26,.3))}}
+.paper:not(.media):not(.zframe):not(.facts):focus-within::before{background:var(--pin-up);filter:drop-shadow(3px 6px 0 rgba(58,45,26,.3))}
+@media (hover:hover){.paper:not(.media):not(.zframe):not(.facts):hover::before{background:var(--pin-up);filter:drop-shadow(3px 6px 0 rgba(58,45,26,.3))}}
 .lines{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .lines b{display:block;height:var(--row,36px);border-bottom:3px solid var(--tan)}
 
