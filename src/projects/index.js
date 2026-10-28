@@ -1,11 +1,12 @@
 import agami from './agami'
+import chordAnalyzer from './chord-analyzer'
 import guide from './guide'
 import orquesta from './orquesta'
 import plantochi from './plantochi'
 import procedimientoSeguro from './procedimiento-seguro'
 import sailing from './sailing'
 
-export const projects = [procedimientoSeguro, agami, guide, orquesta, plantochi, sailing]
+export const projects = [procedimientoSeguro, chordAnalyzer, agami, guide, orquesta, plantochi, sailing]
 
 export function findProject(slug) {
   return projects.find((p) => p.slug === slug)

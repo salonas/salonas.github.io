@@ -12,5 +12,6 @@ beforeEach(() => {
 
 afterEach(() => {
   cleanup()
+  localStorage.clear()
   window.history.pushState({}, '', '/')
 })

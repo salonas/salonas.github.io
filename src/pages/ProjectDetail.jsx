@@ -81,7 +81,7 @@ export default function ProjectDetail() {
           {project.site && (
             <div>
               <small>{t('site')}</small>
-              <a href={project.site} {...outside}>
+              <a href={project.site} {...(project.site.startsWith('/') ? {} : outside)}>
                 {t('site-open')}
               </a>
             </div>

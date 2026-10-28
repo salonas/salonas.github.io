@@ -13,6 +13,13 @@ it.each(['/', '/toolbox', '/projects', '/projects/orquesta', '/contact'])(
   },
 )
 
+it('opens the chord analyzer in the same tab, as a page of this site', () => {
+  renderAt('/projects/chord-analyzer')
+  const open = screen.getByRole('link', { name: 'Abrir el sitio' })
+  expect(open).toHaveAttribute('href', '/chord-analyzer/')
+  expect(open).not.toHaveAttribute('target')
+})
+
 it('finds outside links where they are expected', () => {
   renderAt('/contact')
   const outside = screen.getAllByRole('link').filter((a) => /^https?:/.test(a.getAttribute('href')))
