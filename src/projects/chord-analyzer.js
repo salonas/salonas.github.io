@@ -8,8 +8,8 @@ export default {
   year: 2026,
   cover: 'cover.jpg',
   coverAlt: {
-    es: 'Análisis de una progresión en Do mayor: los 21 acordes con su grado, función y tensión, sobre una hoja de cuaderno, y el teclado debajo',
-    en: 'Analysis of a progression in C major: the 21 chords with their degree, function and tension, on a notebook sheet, with the keyboard below'
+    es: 'Análisis de un turnaround en Do mayor: los 4 acordes con su grado, función y tensión y los patrones que reconoce, sobre una hoja de cuaderno, y el teclado debajo',
+    en: 'Analysis of a turnaround in C major: the 4 chords with their degree, function and tension and the patterns it recognizes, on a notebook sheet, with the keyboard below'
   },
   roles: { es: 'Diseño y desarrollo', en: 'Design and development' },
   tools: 'JavaScript · Vite · Web Audio · Vitest',
