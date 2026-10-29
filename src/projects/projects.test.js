@@ -69,6 +69,7 @@ const ORDER = [
   ['Inspiración'],
   ['Bugs conocidos y curiosidades'],
   ['Bocetos'],
+  ['Agradecimientos'],
 ]
 
 it.each(projects)('keeps the sections of $slug in the shared order', (p) => {
