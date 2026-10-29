@@ -7,7 +7,7 @@ export const toolbox = [
       { name: 'C#', to: 'agami' },
       { name: '.NET' },
       { name: 'Java + Android', to: 'guide' },
-      { name: 'JavaScript' },
+      { name: 'JavaScript', to: 'chord-analyzer' },
       { name: { es: 'HTML y CSS', en: 'HTML and CSS' } },
       { name: 'React', to: 'orquesta' },
       { name: 'Node.js + Express', to: 'orquesta' },
@@ -55,6 +55,7 @@ export const toolbox = [
     tools: [
       { name: 'Unity 6', to: 'agami' },
       { name: { es: 'Composición musical', en: 'Music composition' }, to: 'agami' },
+      { name: { es: 'Web Audio y MIDI', en: 'Web Audio and MIDI' }, to: 'chord-analyzer' },
       {
         name: { es: 'Arreglos sacados a oído', en: 'Arrangements by ear' },
         href: 'https://youtu.be/YOYFk65Kr_4',
