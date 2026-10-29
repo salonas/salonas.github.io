@@ -69,7 +69,7 @@ it('filters the projects by type', async () => {
 it('lists a project under every type it belongs to', async () => {
   renderAt('/projects')
   await userEvent.click(within(main()).getByRole('button', { name: 'WEB' }))
-  expect(projectLinks()).toEqual(['/projects/procedimiento-seguro', '/projects/orquesta', '/projects/plantochi'])
+  expect(projectLinks()).toEqual(['/projects/procedimiento-seguro', '/projects/chord-analyzer', '/projects/orquesta', '/projects/plantochi'])
 })
 
 it('fills the empty spot with a note only when every project is shown', async () => {

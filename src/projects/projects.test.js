@@ -17,7 +17,7 @@ function allMediaFiles(list) {
 }
 
 it('lists the projects in order', () => {
-  expect(projects.map((p) => p.slug)).toEqual(['procedimiento-seguro', 'agami', 'guide', 'orquesta', 'plantochi', 'sailing'])
+  expect(projects.map((p) => p.slug)).toEqual(['procedimiento-seguro', 'chord-analyzer', 'agami', 'guide', 'orquesta', 'plantochi', 'sailing'])
 })
 
 it.each(projects)('$slug is a valid project', (p) => {
