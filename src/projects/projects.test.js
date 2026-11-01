@@ -81,3 +81,13 @@ it.each(projects)('keeps the sections of $slug in the shared order', (p) => {
 it('ships a résumé for each language', () => {
   for (const lang of ['ES', 'EN']) expect(existsSync(`public/cv/CV_Joaquin_Salinas_${lang}.pdf`)).toBe(true)
 })
+
+it('describes the current chord analyzer: 44 chord types, tracks and the General MIDI soundfont', () => {
+  const text = JSON.stringify(findProject('chord-analyzer'))
+  expect(text).toMatch(/44 tipos/)
+  expect(text).toMatch(/44 types/)
+  expect(text).not.toMatch(/42 (tipos|types)/)
+  expect(text).toMatch(/FluidR3/)
+  const shots = findProject('chord-analyzer').sections.find((s) => s.kind === 'shots')
+  expect(shots.items.map((x) => x.src)).toContain('pistas.jpg')
+})
