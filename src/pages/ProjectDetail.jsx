@@ -50,7 +50,7 @@ export default function ProjectDetail() {
           {t('back')}
         </Link>
 
-        <div className="row" style={{ alignItems: 'center' }}>
+        <div className="row" style={{ alignItems: 'flex-start' }}>
           <Cover project={project} className="cover" />
           <div className="phead">
             <Tags project={project} />
