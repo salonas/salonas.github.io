@@ -5,6 +5,11 @@ function bilingual(value, name) {
   return ['es', 'en'].filter((l) => typeof value[l] !== 'string' || !value[l]).map((l) => `${name}: missing ${l}`)
 }
 
+const listItems = (s) =>
+  Array.isArray(s.items?.es) && Array.isArray(s.items?.en) && s.items.es.length === s.items.en.length
+    ? []
+    : ['items: es and en lists must match']
+
 const KINDS = {
   game: (s) => (s.build && s.size ? [] : ['build and size: missing']),
   video: (s) => (s.src ? [] : ['src: missing']),
@@ -18,9 +23,9 @@ const KINDS = {
       : ['items: missing'],
   text: (s) => bilingual(s.body, 'body'),
   list: (s) =>
-    Array.isArray(s.items?.es) && Array.isArray(s.items?.en) && s.items.es.length === s.items.en.length
-      ? []
-      : ['items: es and en lists must match'],
+    s.groups
+      ? s.groups.flatMap((g, i) => [...bilingual(g.title, `groups[${i}].title`), ...listItems(g).map((m) => `groups[${i}].${m}`)])
+      : listItems(s),
   items: (s) =>
     Array.isArray(s.items)
       ? s.items.flatMap((x, i) => [
@@ -40,6 +45,7 @@ export function validateProject(p) {
   if (!STATUSES.includes(p.status)) problems.push('status: must be live, done, paused or failed')
   for (const key of ['type', 'state', 'roles', 'summary']) problems.push(...bilingual(p[key], key))
   if (p.cover) problems.push(...bilingual(p.coverAlt, 'coverAlt'))
+  if (p.stats) problems.push(...bilingual(p.stats, 'stats'))
   if (!p.repo) problems.push(...bilingual(p.code, 'code'))
   if (!Array.isArray(p.sections)) return [...problems, 'sections: missing']
   p.sections.forEach((s, i) => {

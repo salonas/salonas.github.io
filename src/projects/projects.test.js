@@ -61,8 +61,9 @@ it('links every toolbox entry to a project that exists', () => {
 
 const ORDER = [
   ['Demo jugable'],
-  ['Gameplay', 'Capturas', 'Presentación'],
+  ['Gameplay', 'Capturas', 'Presentación', 'Video'],
   ['Sobre el proyecto', 'Qué faltó', 'Cómo funciona', 'Equipo'],
+  ['Cómo sé que el análisis es correcto', 'Decisiones de teoría'],
   ['Mecánicas', 'Mi parte', 'Qué hace', 'Comportamiento del jefe'],
   ['Tecnologías'],
   ['Música', 'Temas', 'Modelado 3D', 'Sobre el modelo', 'Sprites', 'Prototipo y diagrama preliminar'],
@@ -88,6 +89,20 @@ it('describes the current chord analyzer: 44 chord types, tracks and the General
   expect(text).toMatch(/44 types/)
   expect(text).not.toMatch(/42 (tipos|types)/)
   expect(text).toMatch(/FluidR3/)
-  const shots = findProject('chord-analyzer').sections.find((s) => s.kind === 'shots')
-  expect(shots.items.map((x) => x.src)).toContain('pistas.jpg')
+})
+
+it('shows the chord analyzer with lossless screens of its analysis and a clip of the modulation', () => {
+  const p = findProject('chord-analyzer')
+  expect(p.cover).toBe('cover.png')
+  expect(p.sections.find((s) => s.kind === 'shots').items.map((x) => x.src)).toEqual(['analisis.png', 'inspector.png', 'alberti.png', 'texto.png', 'expresion.png'])
+  expect(p.sections.find((s) => s.kind === 'loops').items).toEqual(['modulacion.mp4'])
+})
+
+it('credits the two corpora the analysis is measured against, with their licenses', () => {
+  const thanks = findProject('chord-analyzer').sections.find((s) => s.title.es === 'Agradecimientos')
+  for (const lang of ['es', 'en']) {
+    const text = thanks.items[lang].join(' ')
+    expect(text).toMatch(/TAVERN.*Devaney.*Arthur.*Condit-Schultz.*Nisula.*ISMIR 2015.*CC BY-SA 4\.0/)
+    expect(text).toMatch(/Rock Corpus.*de Clercq.*Temperley.*Lustig.*Tan.*CC BY 4\.0/)
+  }
 })

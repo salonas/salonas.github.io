@@ -17,7 +17,7 @@ it('names each project in the title and the link preview, with its cover as the 
   const page = routePages(shell).find((p) => p.file === 'projects/chord-analyzer.html').html
   expect(page).toMatch(/<title>Salonas Chord Analyzer · [^<]+<\/title>/)
   expect(head(page, 'og:title')).toBe('Salonas Chord Analyzer')
-  expect(head(page, 'og:image')).toBe('https://salonas.github.io/media/chord-analyzer/cover.jpg')
+  expect(head(page, 'og:image')).toBe('https://salonas.github.io/media/chord-analyzer/cover.png')
   expect(head(page, 'og:url')).toBe('https://salonas.github.io/projects/chord-analyzer')
   expect(page).toContain('<link rel="canonical" href="https://salonas.github.io/projects/chord-analyzer" />')
   expect(page).toMatch(/<meta name="description" content="A piano roll/)
