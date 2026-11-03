@@ -2,7 +2,7 @@ import { screen, within } from '@testing-library/react'
 import { vi } from 'vitest'
 import userEvent from '@testing-library/user-event'
 import es from '../i18n/es'
-import { projects } from '../projects'
+import { findProject, projects } from '../projects'
 import { renderAt } from '../test/render'
 
 const main = () => screen.getByRole('main')
@@ -165,4 +165,16 @@ it('opens a sketch on a notebook page with its holes', async () => {
   const frame = document.querySelector('.zframe')
   expect(frame).toHaveClass('nb')
   expect(frame.querySelector('.holes')).toBeInTheDocument()
+})
+
+it('shows the figures of the chord analyzer under its title', () => {
+  renderAt('/projects/chord-analyzer')
+  expect(within(main()).getByText('1148 tests · 647 comprobaciones de teoría · 2 corpus con análisis humanos')).toBeInTheDocument()
+})
+
+it('groups what the chord analyzer does under its own headings', () => {
+  renderAt('/projects/chord-analyzer')
+  const list = document.getElementById('section-' + findProject('chord-analyzer').sections.findIndex((s) => s.title.es === 'Qué hace'))
+  expect(within(list).getAllByRole('heading', { level: 4 }).map((h) => h.textContent)).toEqual(['Escribir', 'Analizar', 'Abrir y exportar'])
+  expect(within(list).getByText('Mide la tensión de cada acorde')).toBeInTheDocument()
 })

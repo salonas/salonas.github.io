@@ -55,6 +55,7 @@ export default function ProjectDetail() {
           <div className="phead">
             <Tags project={project} />
             <h2>{project.title}</h2>
+            {project.stats && <p className="stats">{L(project.stats)}</p>}
             <p style={{ fontSize: 'var(--t3)' }}>{L(project.summary)}</p>
           </div>
         </div>

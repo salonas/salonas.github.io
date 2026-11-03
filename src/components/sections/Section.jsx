@@ -93,13 +93,20 @@ export default function Section({ id, project, section, onZoom }) {
     list: () => (
       <Paper sheet="notebook" className="list">
         <Rules />
-        <ul className="plain">
-          {L(section.items).map((item) => (
-            <li key={item}>
-              <RichText text={item} />
-            </li>
+        <div>
+          {(section.groups ?? [{ items: section.items }]).map((group, i) => (
+            <div key={i}>
+              {group.title && <h4>{L(group.title)}</h4>}
+              <ul className="plain">
+                {L(group.items).map((item) => (
+                  <li key={item}>
+                    <RichText text={item} />
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </Paper>
     ),
     items: () => (
