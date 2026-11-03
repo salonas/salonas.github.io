@@ -1,11 +1,11 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { mediaUrl, projects } from '../src/projects/index.js'
-import es from '../src/i18n/es.js'
+import en from '../src/i18n/en.js'
 
 const ORIGIN = 'https://salonas.github.io'
 // Link previews are read without running the app, so each page carries a single language.
-const t = es
+const t = en
 
 const escape = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 const plain = (s) => s.replace(/\[\[([^|\]]+)\|[^\]]+\]\]/g, '$1')
@@ -24,9 +24,9 @@ function pages() {
       path: `/projects/${p.slug}`,
       title: titled(p.title),
       name: p.title,
-      description: plain(p.summary.es),
+      description: plain(p.summary.en),
       image: mediaUrl(p.slug, p.cover),
-      imageAlt: p.coverAlt.es
+      imageAlt: p.coverAlt.en
     }))
   ]
 }
@@ -37,7 +37,7 @@ function render(shell, page) {
     `<link rel="canonical" href="${url}" />`,
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="${escape(t['page-title'])}" />`,
-    `<meta property="og:locale" content="es_CL" />`,
+    `<meta property="og:locale" content="en_US" />`,
     `<meta property="og:title" content="${escape(page.name)}" />`,
     `<meta property="og:description" content="${escape(page.description)}" />`,
     `<meta property="og:url" content="${url}" />`,

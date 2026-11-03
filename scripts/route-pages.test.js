@@ -20,7 +20,7 @@ it('names each project in the title and the link preview, with its cover as the 
   expect(head(page, 'og:image')).toBe('https://salonas.github.io/media/chord-analyzer/cover.jpg')
   expect(head(page, 'og:url')).toBe('https://salonas.github.io/projects/chord-analyzer')
   expect(page).toContain('<link rel="canonical" href="https://salonas.github.io/projects/chord-analyzer" />')
-  expect(page).toMatch(/<meta name="description" content="Piano roll/)
+  expect(page).toMatch(/<meta name="description" content="A piano roll/)
   expect(page.match(/<meta name="description"/g)).toHaveLength(1)
   expect(page.match(/<title>/g)).toHaveLength(1)
 })
@@ -33,7 +33,7 @@ it('keeps the app and the escaped text intact in every page', () => {
     for (const [, value] of html.matchAll(/content="([^"]*)"/g)) expect(value).not.toMatch(/[<>]/)
   }
   const agami = routePages(shell).find((p) => p.file === 'projects/agami.html').html
-  expect(head(agami, 'og:image:alt')).toBe("Portada de Agami's Alley: un gato gris con bufanda roja y dos globos")
+  expect(head(agami, 'og:image:alt')).toBe("Agami's Alley cover: a grey cat with a red scarf and two balloons")
   const sailing = routePages(shell).find((p) => p.file === 'projects/sailing.html').html
   expect(sailing.match(/<meta name="description" content="([^"]*)"/)[1]).not.toContain('[[')
 })
