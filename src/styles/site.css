@@ -16,6 +16,7 @@ h1,h2,h3{text-wrap:balance;line-height:1.15}
 h1,h2,h3,h4,p,li,span,small,a,label{overflow-wrap:anywhere}
 .paper{min-width:0}
 img,video{max-width:100%;display:block}
+img{font-size:0}
 .px{image-rendering:pixelated}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 

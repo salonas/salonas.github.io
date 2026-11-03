@@ -92,3 +92,8 @@ it('keeps the pin of the project index still', () => {
   const css = readFileSync('src/styles/site.css', 'utf8')
   expect(css).not.toMatch(/\.index \.tabs:(hover|focus-within)::before/)
 })
+
+it('keeps the description of an image that fails to load out of sight', () => {
+  const css = readFileSync('src/styles/site.css', 'utf8')
+  expect(css).toMatch(/(^|\n)img\{[^}]*font-size:0/)
+})
