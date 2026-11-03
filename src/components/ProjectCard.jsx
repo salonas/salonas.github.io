@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageProvider'
 import { mediaUrl } from '../projects'
@@ -21,7 +22,17 @@ export function Cover({ project, className = '' }) {
       />
     )
   }
-  return <img className={`${className} ${project.pixel ? 'px' : ''}`} src={poster} alt={L(project.coverAlt)} />
+  return <CoverImage className={`${className} ${project.pixel ? 'px' : ''}`} src={poster} alt={L(project.coverAlt)} />
+}
+
+function CoverImage({ className, src, alt }) {
+  const ref = useRef(null)
+  const [loaded, setLoaded] = useState(false)
+  useLayoutEffect(() => {
+    if (ref.current.complete && ref.current.naturalWidth) setLoaded(true)
+  }, [])
+  const show = () => setLoaded(true)
+  return <img ref={ref} className={`${className} ${loaded ? '' : 'loading'}`} src={src} alt={alt} onLoad={show} onError={show} />
 }
 
 export function Tags({ project }) {
