@@ -94,7 +94,7 @@ it('describes the current chord analyzer: 44 chord types, tracks and the General
 it('shows the chord analyzer with lossless screens of its analysis and a clip of the modulation', () => {
   const p = findProject('chord-analyzer')
   expect(p.cover).toBe('cover.png')
-  expect(p.sections.find((s) => s.kind === 'shots').items.map((x) => x.src)).toEqual(['analisis.png', 'inspector.png', 'alberti.png', 'texto.png', 'expresion.png'])
+  expect(p.sections.find((s) => s.kind === 'shots').items.map((x) => x.src)).toEqual(['analisis.png', 'inspector.png', 'nombres.png', 'alberti.png', 'texto.png', 'expresion.png'])
   expect(p.sections.find((s) => s.kind === 'loops').items).toEqual(['modulacion.mp4'])
 })
 

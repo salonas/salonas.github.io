@@ -29,7 +29,8 @@ export default {
       title: { es: 'Capturas', en: 'Screens' },
       items: [
         { src: 'analisis.png', alt: { es: 'Hoja de análisis: modula de C mayor a G mayor por el pivote Am (vi = ii), con el porqué de cada tonalidad', en: 'Analysis sheet: it modulates from C major to G major through the pivot Am (vi = ii), with why each key was chosen' } },
-        { src: 'inspector.png', alt: { es: 'Inspector del acorde F A D♯ con un C arriba: Ger⁺⁶, sus notas desde el bajo y F7 entre los posibles nombres', en: 'Inspector for the chord F A D♯ with a C above: Ger⁺⁶, its notes from the bass and F7 among the possible names' } },
+        { src: 'inspector.png', alt: { es: 'Inspector del acorde F A D♯ con un C arriba: Ger⁺⁶ y sus notas desde el bajo', en: 'Inspector for the chord F A D♯ with a C above: Ger⁺⁶ and its notes from the bass' } },
+        { src: 'nombres.png', alt: { es: 'Posibles nombres del mismo acorde: F7, que suena igual', en: 'Possible names for the same chord: F7, which sounds the same' } },
         { src: 'alberti.png', alt: { es: 'Piano roll con la franja C, F/C, G7/B, C y el Alberti bajo la melodía', en: 'Piano roll with the strip C, F/C, G7/B, C and the Alberti under the melody' } },
         { src: 'texto.png', alt: { es: 'Pestaña Texto con la armonía y la melodía: el F5 sobre E7 sale como ♭9, escapada', en: 'Text tab with the harmony and the melody: the F5 over E7 comes out as ♭9, escape tone' } },
         { src: 'expresion.png', alt: { es: 'Pestaña Expresión, con velocity, sensibilidad, acentos y humanizar', en: 'Expression tab, with velocity, sensitivity, accents and humanize' } }
