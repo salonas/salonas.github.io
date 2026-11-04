@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import FadeIn from '../components/FadeIn'
 import Paper, { cornerOf } from '../components/Paper'
 import ProjectCard from '../components/ProjectCard'
 import { useLanguage } from '../i18n/LanguageProvider'
@@ -23,7 +24,7 @@ export default function Home() {
     <section className="page">
       <div className="row hero">
         <Paper as="figure" tilt="l" className="photo">
-          <img
+          <FadeIn
             className="px"
             src="/img/cat.png"
             alt={lang === 'es' ? 'Gato en pixel art dibujado por Salonas' : 'Pixel art cat drawn by Salonas'}

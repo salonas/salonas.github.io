@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { startGame } from '../game/unity'
+import FadeIn from './FadeIn'
 import { useLanguage } from '../i18n/LanguageProvider'
 import { useMusic } from '../music/MusicProvider'
 import { PixelIcon } from './MediaPlayer'
@@ -146,7 +147,7 @@ export default function GameDemo({ build, size, label, poster, controls, videoId
           <canvas ref={canvasRef} id={`game-${build}`} tabIndex={-1} aria-label={label} />
           {!open && playable && (
             <div className="gcover">
-              {poster && <img src={poster} alt="" />}
+              {poster && <FadeIn src={poster} alt="" />}
               <button type="button" className="btn dark" onClick={play}>
                 {t('demo-play')} ({size})
               </button>
