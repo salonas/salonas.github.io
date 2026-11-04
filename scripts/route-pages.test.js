@@ -20,9 +20,20 @@ it('names each project in the title and the link preview, with its cover as the 
   expect(head(page, 'og:image')).toBe('https://salonas.github.io/media/chord-analyzer/cover.png')
   expect(head(page, 'og:url')).toBe('https://salonas.github.io/projects/chord-analyzer')
   expect(page).toContain('<link rel="canonical" href="https://salonas.github.io/projects/chord-analyzer" />')
-  expect(page).toMatch(/<meta name="description" content="A piano roll/)
+  expect(page).toMatch(/<meta name="description" content="Piano roll que nombra los acordes/)
   expect(page.match(/<meta name="description"/g)).toHaveLength(1)
   expect(page.match(/<title>/g)).toHaveLength(1)
+})
+
+it('gives the chord analyzer a Spanish preview, with English as the alternate locale', () => {
+  const page = routePages(shell).find((p) => p.file === 'projects/chord-analyzer.html').html
+  expect(page.match(/<meta name="description" content="([^"]*)"/)[1]).toBe('Piano roll que nombra los acordes y analiza la progresión: tonalidad, grados, función, cadencias y modulaciones. Explica por qué elige cada lectura y cuál era la alternativa.')
+  expect(head(page, 'og:description')).toBe(page.match(/<meta name="description" content="([^"]*)"/)[1])
+  expect(head(page, 'og:locale')).toBe('es_CL')
+  expect(head(page, 'og:locale:alternate')).toBe('en_US')
+  const sailing = routePages(shell).find((p) => p.file === 'projects/sailing.html').html
+  expect(head(sailing, 'og:locale')).toBe('en_US')
+  expect(head(sailing, 'og:locale:alternate')).toBeUndefined()
 })
 
 it('keeps the app and the escaped text intact in every page', () => {

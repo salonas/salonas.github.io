@@ -11,6 +11,11 @@ const escape = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/
 const plain = (s) => s.replace(/\[\[([^|\]]+)\|[^\]]+\]\]/g, '$1')
 const titled = (name) => `${name} · ${t['page-title']}`
 
+// Pages whose link preview is in Spanish instead of the shared English one.
+const SPANISH = {
+  'chord-analyzer': 'Piano roll que nombra los acordes y analiza la progresión: tonalidad, grados, función, cadencias y modulaciones. Explica por qué elige cada lectura y cuál era la alternativa.'
+}
+
 function pages() {
   const site = { description: t['hero-lead'], image: '/img/header.png', imageAlt: '' }
   return [
@@ -24,7 +29,8 @@ function pages() {
       path: `/projects/${p.slug}`,
       title: titled(p.title),
       name: p.title,
-      description: plain(p.summary.en),
+      description: SPANISH[p.slug] ?? plain(p.summary.en),
+      ...(SPANISH[p.slug] && { locale: 'es_CL', alternate: 'en_US' }),
       image: mediaUrl(p.slug, p.cover),
       imageAlt: p.coverAlt.en
     }))
@@ -37,7 +43,8 @@ function render(shell, page) {
     `<link rel="canonical" href="${url}" />`,
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="${escape(t['page-title'])}" />`,
-    `<meta property="og:locale" content="en_US" />`,
+    `<meta property="og:locale" content="${page.locale ?? 'en_US'}" />`,
+    ...(page.alternate ? [`<meta property="og:locale:alternate" content="${page.alternate}" />`] : []),
     `<meta property="og:title" content="${escape(page.name)}" />`,
     `<meta property="og:description" content="${escape(page.description)}" />`,
     `<meta property="og:url" content="${url}" />`,
