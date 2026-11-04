@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageProvider'
 import { mediaUrl } from '../projects'
+import FadeIn from './FadeIn'
 import Paper from './Paper'
 
 export function Cover({ project, className = '' }) {
@@ -21,7 +22,7 @@ export function Cover({ project, className = '' }) {
       />
     )
   }
-  return <img className={`${className} ${project.pixel ? 'px' : ''}`} src={poster} alt={L(project.coverAlt)} />
+  return <FadeIn className={`${className} ${project.pixel ? 'px' : ''}`} src={poster} alt={L(project.coverAlt)} />
 }
 
 export function Tags({ project }) {

@@ -140,6 +140,8 @@ kbd{display:inline-grid;place-items:center;min-width:1.9em;padding:.05em .4em;fo
 .filters{display:flex;flex-wrap:wrap;gap:.6rem}
 .filters .btn{padding:.3em 1em;font-size:var(--small)}
 .card img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.loading:is(img,video){opacity:0}
+img,video{transition:opacity .25s}
 video.cover{background:var(--ink)}
 .prose{max-width:62ch}
 .prose p+p{margin-top:.8rem}

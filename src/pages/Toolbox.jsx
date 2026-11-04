@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import FadeIn from '../components/FadeIn'
 import { outside } from '../components/outside'
 import Paper, { Rules } from '../components/Paper'
 import { toolbox } from '../data/toolbox'
@@ -36,7 +37,7 @@ export default function Toolbox() {
           {toolbox.map((group, i) => (
             <Paper key={L(group.title)} sheet="notebook" tilt={i % 2 ? 'r' : 'l'} className="card">
               <h3 className="rule">{L(group.title)}</h3>
-              {group.image && <img className="px doodle" src={group.image.src} alt={L(group.image.alt)} />}
+              {group.image && <FadeIn className="px doodle" src={group.image.src} alt={L(group.image.alt)} />}
               <div className="rows">
                 <Rules />
                 {group.tools.map((tool) => (

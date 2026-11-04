@@ -1,3 +1,4 @@
+import FadeIn from '../FadeIn'
 import GameDemo from '../GameDemo'
 import MediaPlayer from '../MediaPlayer'
 import Paper, { LoopStamp, Rules, Sprockets, cornerOf } from '../Paper'
@@ -55,7 +56,7 @@ export default function Section({ id, project, section, onZoom }) {
               aria-label={`${t('zoom')}: ${loopCaption(section, i, L)}`}
               onClick={() => onZoom(file)}
             >
-              <video autoPlay muted loop playsInline src={url(file)} />
+              <FadeIn as="video" autoPlay muted loop playsInline src={url(file)} />
             </button>
             <Sprockets />
             {section.captions && (
@@ -72,7 +73,7 @@ export default function Section({ id, project, section, onZoom }) {
         {section.items.map((item, i) => (
           <Paper key={item.src} sheet={section.sketch ? 'notebook' : 'photo'} tilt={tiltOf(i)} className={section.sketch ? 'sketch' : ''}>
             <button type="button" className="zbtn" aria-label={`${t('zoom')}: ${L(item.alt)}`} onClick={() => onZoom(item.src)}>
-              <img loading="lazy" src={url(item.src)} alt={L(item.alt)} />
+              <FadeIn loading="lazy" src={url(item.src)} alt={L(item.alt)} />
             </button>
             {!section.sketch && (
               <span className="capt" aria-hidden="true">

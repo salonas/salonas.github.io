@@ -1,7 +1,7 @@
-import { screen, within } from '@testing-library/react'
+import { fireEvent, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import es from '../i18n/es'
-import { projects } from '../projects'
+import { mediaUrl, projects } from '../projects'
 import { renderAt } from '../test/render'
 
 const main = () => screen.getByRole('main')
@@ -29,6 +29,34 @@ it('shows each status in words on its card', () => {
 it('features only the flagged projects on home', () => {
   renderAt('/')
   expect(projectLinks()).toEqual(['/projects/procedimiento-seguro', '/projects/agami'])
+})
+
+it('fades a project cover in once it has loaded', () => {
+  renderAt('/projects')
+  const chord = projects.find((p) => p.slug === 'chord-analyzer')
+  const img = within(main()).getByAltText(chord.coverAlt.es)
+  expect(img).toHaveClass('loading')
+  fireEvent.load(img)
+  expect(img).not.toHaveClass('loading')
+})
+
+it('preloads the covers home does not show once the browser is idle', () => {
+  const requested = []
+  vi.stubGlobal(
+    'Image',
+    class {
+      set src(url) {
+        requested.push(url)
+      }
+    }
+  )
+  vi.stubGlobal('requestIdleCallback', (run) => (run(), 1))
+  try {
+    renderAt('/')
+    expect(requested).toEqual(projects.filter((p) => !p.featured).map((p) => mediaUrl(p.slug, p.cover)))
+  } finally {
+    vi.unstubAllGlobals()
+  }
 })
 
 it('introduces Salonas on home with the highlighted quote', () => {

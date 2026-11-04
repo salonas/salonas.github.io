@@ -1,18 +1,30 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import FadeIn from '../components/FadeIn'
 import Paper, { cornerOf } from '../components/Paper'
 import ProjectCard from '../components/ProjectCard'
 import { useLanguage } from '../i18n/LanguageProvider'
-import { projects } from '../projects'
+import { mediaUrl, projects } from '../projects'
 
 export default function Home() {
   const { t, lang } = useLanguage()
   const featured = projects.filter((p) => p.featured)
 
+  useEffect(() => {
+    if (navigator.connection?.saveData) return
+    const idle = window.requestIdleCallback ?? ((run) => setTimeout(run, 2000))
+    const cancel = window.cancelIdleCallback ?? clearTimeout
+    const id = idle(() => {
+      for (const p of projects) if (!p.featured && p.cover) new Image().src = mediaUrl(p.slug, p.cover)
+    })
+    return () => cancel(id)
+  }, [])
+
   return (
     <section className="page">
       <div className="row hero">
         <Paper as="figure" tilt="l" className="photo">
-          <img
+          <FadeIn
             className="px"
             src="/img/cat.png"
             alt={lang === 'es' ? 'Gato en pixel art dibujado por Salonas' : 'Pixel art cat drawn by Salonas'}
